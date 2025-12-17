@@ -9,7 +9,7 @@ import {
   UpdateUser,
   UserRepositoryToken
 } from '@domain/repositories/user/user.repository';
-import { UserModel } from '../models/user.model';
+import { UserModel } from '../../models/user/user.model';
 
 type WhereUser = FindOptionsWhere<UserModel> | FindOptionsWhere<UserModel>[];
 

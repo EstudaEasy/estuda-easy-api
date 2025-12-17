@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { UserRepositoryModule } from '@database/typeorm/repository/user.repository';
+import { UserRepositoryModule } from '@database/typeorm/repository/user/user.repository';
 import { CreateUserUseCase } from './create-user.use-case';
 import { FindUsersUseCase } from './find-users.use-case';
 import { FindOneUserUseCase } from './find-one-user.use-case';
