@@ -21,7 +21,8 @@ export class JwtAccessTokenStrategy extends PassportStrategy(Strategy, 'access-t
     return {
       id: payload.user.id,
       name: payload.user.name,
-      email: payload.user.email
+      email: payload.user.email,
+      role: payload.user.role
     };
   }
 }

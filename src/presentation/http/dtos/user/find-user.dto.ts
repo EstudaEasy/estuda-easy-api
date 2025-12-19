@@ -36,6 +36,7 @@ export class FindUserQueryDTO {
 
 export class FindUserResponseDTO {
   @ApiProperty({ description: 'Lista de usuários', type: [UserResponseDTO] })
+  @Type(() => UserResponseDTO)
   users: UserResponseDTO[];
 
   @ApiProperty({ description: 'Total de usuários encontrados', example: 10 })

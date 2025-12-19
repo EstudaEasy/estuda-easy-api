@@ -1,4 +1,4 @@
-import { IUser } from './user.interface';
+import { IUser, UserRole } from './user.interface';
 
 export class UserEntity implements IUser {
   constructor(props: IUser) {
@@ -9,9 +9,10 @@ export class UserEntity implements IUser {
   name: string;
   email: string;
   password: string;
+  birthdate?: Date;
   phoneNumber?: string;
   photoUrl?: string;
-  birthdate?: Date;
+  role: UserRole;
   createdAt: Date;
   updatedAt: Date;
 }

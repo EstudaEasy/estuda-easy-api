@@ -1,3 +1,4 @@
+import { UserRole } from '@domain/entities/user/user.interface';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Exclude, Expose } from 'class-transformer';
 
@@ -25,6 +26,13 @@ export class UserResponseDTO {
   email: string;
 
   @ApiPropertyOptional({
+    description: 'Data de nascimento do usuário',
+    example: '1990-01-15T00:00:00.000Z'
+  })
+  @Expose()
+  birthdate?: Date;
+
+  @ApiPropertyOptional({
     description: 'Número de telefone do usuário',
     example: '+55 11 98765-4321'
   })
@@ -38,12 +46,13 @@ export class UserResponseDTO {
   @Expose()
   photoUrl?: string;
 
-  @ApiPropertyOptional({
-    description: 'Data de nascimento do usuário',
-    example: '1990-01-15T00:00:00.000Z'
+  @ApiProperty({
+    description: 'Papel do usuário',
+    example: UserRole.USER,
+    enum: UserRole
   })
   @Expose()
-  birthdate?: Date;
+  role: UserRole;
 
   @ApiProperty({
     description: 'Data de criação do registro',

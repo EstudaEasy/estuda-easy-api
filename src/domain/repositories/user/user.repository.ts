@@ -1,6 +1,6 @@
 import { IUser, RelationsUser } from '@domain/entities/user/user.interface';
 
-export type CreateUser = Omit<IUser, 'id' | 'createdAt' | 'updatedAt'>;
+export type CreateUser = Omit<IUser, 'id' | 'role' | 'createdAt' | 'updatedAt'>;
 export type UpdateUser = Partial<Omit<CreateUser, 'email'>>;
 export type WhereUser = Partial<IUser> | Partial<IUser>[];
 

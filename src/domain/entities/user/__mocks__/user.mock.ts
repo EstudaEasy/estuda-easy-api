@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-import { IUser } from '../user.interface';
+import { IUser, UserRole } from '../user.interface';
 
 export class UserMock implements IUser {
   public readonly id: number;
@@ -10,6 +10,7 @@ export class UserMock implements IUser {
   public readonly birthdate?: Date;
   public readonly phoneNumber?: string;
   public readonly photoUrl?: string;
+  public readonly role: UserRole;
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
 
@@ -21,6 +22,7 @@ export class UserMock implements IUser {
     this.birthdate = faker.date.birthdate({ min: 18, max: 80, mode: 'age' });
     this.phoneNumber = faker.phone.number();
     this.photoUrl = faker.image.url();
+    this.role = faker.helpers.enumValue(UserRole);
     this.createdAt = faker.date.past();
     this.updatedAt = faker.date.recent();
   }

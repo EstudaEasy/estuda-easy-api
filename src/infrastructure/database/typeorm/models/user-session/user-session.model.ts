@@ -10,11 +10,11 @@ export class UserSessionModel implements IUserSession {
   jti: string;
 
   @Column({ name: 'user_id', type: 'int' })
-  @Index('IX_user_sessions_user_id')
+  @Index('ix_user_sessions_user_id')
   userId: number;
 
   @ManyToOne(() => UserModel, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'user_id', foreignKeyConstraintName: 'FK_user_sessions_user_id' })
+  @JoinColumn({ name: 'user_id', foreignKeyConstraintName: 'fk_user_sessions_user_id' })
   user?: UserModel;
 
   @Column({ name: 'ip_address', type: 'inet' })
