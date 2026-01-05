@@ -1,5 +1,5 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { IUserRepository, UserRepositoryToken, WhereUser } from '@domain/repositories/user/user.repository';
+import { IUserRepository, USER_REPOSITORY_TOKEN, WhereUser } from '@domain/repositories/user/user.repository';
 import { UserEntity } from '@domain/entities/user/user.entity';
 import { RelationsUser } from '@domain/entities/user/user.interface';
 
@@ -11,7 +11,7 @@ type FindOneUserInput = {
 @Injectable()
 export class FindOneUserUseCase {
   constructor(
-    @Inject(UserRepositoryToken)
+    @Inject(USER_REPOSITORY_TOKEN)
     private readonly userRepository: IUserRepository
   ) {}
 

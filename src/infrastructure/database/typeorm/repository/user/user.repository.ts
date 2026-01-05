@@ -7,7 +7,7 @@ import {
   CreateUser,
   IUserRepository,
   UpdateUser,
-  UserRepositoryToken
+  USER_REPOSITORY_TOKEN
 } from '@domain/repositories/user/user.repository';
 import { UserModel } from '../../models/user/user.model';
 
@@ -55,10 +55,10 @@ export class UserRepository implements IUserRepository {
   imports: [TypeOrmModule.forFeature([UserModel])],
   providers: [
     {
-      provide: UserRepositoryToken,
+      provide: USER_REPOSITORY_TOKEN,
       useClass: UserRepository
     }
   ],
-  exports: [UserRepositoryToken]
+  exports: [USER_REPOSITORY_TOKEN]
 })
 export class UserRepositoryModule {}

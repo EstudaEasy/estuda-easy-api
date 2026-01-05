@@ -1,5 +1,10 @@
 import { ConflictException, Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { IUserRepository, UserRepositoryToken, UpdateUser, WhereUser } from '@domain/repositories/user/user.repository';
+import {
+  IUserRepository,
+  USER_REPOSITORY_TOKEN,
+  UpdateUser,
+  WhereUser
+} from '@domain/repositories/user/user.repository';
 import { UserEntity } from '@domain/entities/user/user.entity';
 import { hash } from 'bcrypt';
 
@@ -11,7 +16,7 @@ type UpdateUserInput = {
 @Injectable()
 export class UpdateUserUseCase {
   constructor(
-    @Inject(UserRepositoryToken)
+    @Inject(USER_REPOSITORY_TOKEN)
     private readonly userRepository: IUserRepository
   ) {}
 

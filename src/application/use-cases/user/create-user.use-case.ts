@@ -1,5 +1,5 @@
 import { ConflictException, Inject, Injectable } from '@nestjs/common';
-import { CreateUser, IUserRepository, UserRepositoryToken } from '@domain/repositories/user/user.repository';
+import { CreateUser, IUserRepository, USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
 import { UserEntity } from '@domain/entities/user/user.entity';
 import { hash } from 'bcrypt';
 
@@ -10,7 +10,7 @@ export interface CreateUserInput {
 @Injectable()
 export class CreateUserUseCase {
   constructor(
-    @Inject(UserRepositoryToken)
+    @Inject(USER_REPOSITORY_TOKEN)
     private readonly userRepository: IUserRepository
   ) {}
 

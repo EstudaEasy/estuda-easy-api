@@ -1,5 +1,5 @@
 import { ConflictException, Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { IUserRepository, UserRepositoryToken, WhereUser } from '@domain/repositories/user/user.repository';
+import { IUserRepository, USER_REPOSITORY_TOKEN, WhereUser } from '@domain/repositories/user/user.repository';
 
 type DeleteUserInput = {
   filters: WhereUser;
@@ -8,7 +8,7 @@ type DeleteUserInput = {
 @Injectable()
 export class DeleteUserUseCase {
   constructor(
-    @Inject(UserRepositoryToken)
+    @Inject(USER_REPOSITORY_TOKEN)
     private readonly userRepository: IUserRepository
   ) {}
 

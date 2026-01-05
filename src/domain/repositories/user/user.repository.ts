@@ -4,7 +4,7 @@ export type CreateUser = Omit<IUser, 'id' | 'role' | 'createdAt' | 'updatedAt'>;
 export type UpdateUser = Partial<Omit<CreateUser, 'email'>>;
 export type WhereUser = Partial<IUser> | Partial<IUser>[];
 
-export const UserRepositoryToken = 'IUserRepository';
+export const USER_REPOSITORY_TOKEN = 'IUserRepository';
 
 export interface IUserRepository {
   create(data: CreateUser): Promise<IUser>;
