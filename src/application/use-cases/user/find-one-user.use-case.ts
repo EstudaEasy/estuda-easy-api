@@ -1,7 +1,8 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { IUserRepository, USER_REPOSITORY_TOKEN, WhereUser } from '@domain/repositories/user/user.repository';
 import { UserEntity } from '@domain/entities/user/user.entity';
 import { RelationsUser } from '@domain/entities/user/user.interface';
+import { Exception, UserErrorCodes } from '@application/errors';
 
 type FindOneUserInput = {
   filters: WhereUser;
@@ -20,7 +21,7 @@ export class FindOneUserUseCase {
 
     const user = await this.userRepository.findOne(filters, relations);
     if (!user) {
-      throw new NotFoundException('User not found');
+      throw new Exception(UserErrorCodes.NOT_FOUND);
     }
 
     return new UserEntity(user);

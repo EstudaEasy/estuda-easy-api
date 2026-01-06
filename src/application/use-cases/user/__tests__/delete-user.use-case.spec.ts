@@ -1,10 +1,10 @@
 import { Test } from '@nestjs/testing';
-import { ConflictException, NotFoundException } from '@nestjs/common';
 
 import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
 
 import { DeleteUserUseCase } from '../delete-user.use-case';
 import { USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
+import { Exception, UserErrorCodes } from '@application/errors';
 
 describe('Use Cases -> User -> Delete', () => {
   let deleteUserUseCase: DeleteUserUseCase;
@@ -53,7 +53,7 @@ describe('Use Cases -> User -> Delete', () => {
       filters: { id: user.id }
     };
 
-    await expect(deleteUserUseCase.execute(input)).rejects.toThrow(NotFoundException);
+    await expect(deleteUserUseCase.execute(input)).rejects.toThrow(new Exception(UserErrorCodes.NOT_FOUND));
     expect(userRepositoryMock.findOne).toHaveBeenCalledWith(input.filters);
     expect(userRepositoryMock.delete).not.toHaveBeenCalled();
   });
@@ -66,7 +66,7 @@ describe('Use Cases -> User -> Delete', () => {
       filters: { id: user.id }
     };
 
-    await expect(deleteUserUseCase.execute(input)).rejects.toThrow(ConflictException);
+    await expect(deleteUserUseCase.execute(input)).rejects.toThrow(new Exception(UserErrorCodes.NOT_DELETED));
     expect(userRepositoryMock.findOne).toHaveBeenCalledWith(input.filters);
     expect(userRepositoryMock.delete).toHaveBeenCalledWith(input.filters);
   });

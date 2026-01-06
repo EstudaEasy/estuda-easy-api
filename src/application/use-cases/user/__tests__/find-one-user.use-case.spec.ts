@@ -1,10 +1,10 @@
 import { Test } from '@nestjs/testing';
-import { NotFoundException } from '@nestjs/common';
 
 import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
 
 import { FindOneUserUseCase } from '../find-one-user.use-case';
 import { USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
+import { Exception, UserErrorCodes } from '@application/errors';
 
 describe('Use Cases -> User -> Find One', () => {
   let findOneUserUseCase: FindOneUserUseCase;
@@ -52,7 +52,7 @@ describe('Use Cases -> User -> Find One', () => {
       filters: { id: user.id }
     };
 
-    await expect(findOneUserUseCase.execute(input)).rejects.toThrow(NotFoundException);
+    await expect(findOneUserUseCase.execute(input)).rejects.toThrow(new Exception(UserErrorCodes.NOT_FOUND));
     expect(userRepositoryMock.findOne).toHaveBeenCalledWith(input.filters, undefined);
   });
 });

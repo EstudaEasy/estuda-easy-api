@@ -1,15 +1,16 @@
 import { randomUUID } from 'crypto';
 
-import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 import { JwtProvider } from '@providers/jwt/jwt.provider';
 import {
   IUserSessionRepository,
-  UserSessionRepositoryToken
+  USER_SESSION_REPOSITORY_TOKEN
 } from '@domain/repositories/user-session/user-session.repository';
 import { AuthenticatedUser } from '@adapters/jwt/strategies/types/authenticated-user.type';
 import { JwtConfig } from '@config/jwt/config';
+import { AuthErrorCodes, Exception } from '@application/errors';
 
 type RefreshTokensUserInput = {
   refreshToken: string;
@@ -24,7 +25,7 @@ type RefreshTokensUserOutput = {
 @Injectable()
 export class RefreshTokensUseCase {
   constructor(
-    @Inject(UserSessionRepositoryToken)
+    @Inject(USER_SESSION_REPOSITORY_TOKEN)
     private readonly userSessionRepository: IUserSessionRepository,
     private readonly configService: ConfigService,
     private readonly jwtService: JwtProvider
@@ -35,19 +36,19 @@ export class RefreshTokensUseCase {
 
     const decodedRefreshToken = this.jwtService.decodeToken<{ user: AuthenticatedUser }>(refreshToken);
     if (!decodedRefreshToken) {
-      throw new UnauthorizedException('Invalid refresh token');
+      throw new Exception(AuthErrorCodes.INVALID_REFRESH_TOKEN);
     }
 
     const { jti, user } = decodedRefreshToken;
 
     const foundToken = await this.userSessionRepository.findOne({ jti });
     if (!foundToken) {
-      throw new UnauthorizedException('Invalid refresh token');
+      throw new Exception(AuthErrorCodes.REFRESH_TOKEN_NOT_FOUND);
     }
 
     if (foundToken.userId !== user.id) {
       await this.userSessionRepository.delete({ userId: user.id });
-      throw new UnauthorizedException('Invalid refresh token');
+      throw new Exception(AuthErrorCodes.INVALID_REFRESH_TOKEN);
     }
 
     const userPayload: AuthenticatedUser = {

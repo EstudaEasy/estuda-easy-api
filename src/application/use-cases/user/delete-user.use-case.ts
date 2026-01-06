@@ -1,5 +1,6 @@
-import { ConflictException, Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { IUserRepository, USER_REPOSITORY_TOKEN, WhereUser } from '@domain/repositories/user/user.repository';
+import { Exception, UserErrorCodes } from '@application/errors';
 
 type DeleteUserInput = {
   filters: WhereUser;
@@ -17,12 +18,12 @@ export class DeleteUserUseCase {
 
     const user = await this.userRepository.findOne(filters);
     if (!user) {
-      throw new NotFoundException('User not found');
+      throw new Exception(UserErrorCodes.NOT_FOUND);
     }
 
     const deleted = await this.userRepository.delete(filters);
     if (!deleted) {
-      throw new ConflictException('Failed to delete user');
+      throw new Exception(UserErrorCodes.NOT_DELETED);
     }
   }
 }

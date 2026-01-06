@@ -1,11 +1,11 @@
 import { Test } from '@nestjs/testing';
-import { ConflictException, NotFoundException } from '@nestjs/common';
 
 import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
 
 import { UpdateUserUseCase } from '../update-user.use-case';
 import { USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
 import { hash } from 'bcrypt';
+import { Exception, UserErrorCodes } from '@application/errors';
 
 jest.mock('bcrypt');
 
@@ -85,7 +85,7 @@ describe('Use Cases -> User -> Update', () => {
       }
     };
 
-    await expect(updateUserUseCase.execute(input)).rejects.toThrow(NotFoundException);
+    await expect(updateUserUseCase.execute(input)).rejects.toThrow(new Exception(UserErrorCodes.NOT_FOUND));
     expect(userRepositoryMock.findOne).toHaveBeenCalledWith(input.filters);
     expect(userRepositoryMock.update).not.toHaveBeenCalled();
   });
@@ -101,7 +101,7 @@ describe('Use Cases -> User -> Update', () => {
       }
     };
 
-    await expect(updateUserUseCase.execute(input)).rejects.toThrow(ConflictException);
+    await expect(updateUserUseCase.execute(input)).rejects.toThrow(new Exception(UserErrorCodes.NOT_UPDATED));
     expect(userRepositoryMock.findOne).toHaveBeenCalledWith(input.filters);
     expect(userRepositoryMock.update).toHaveBeenCalledWith(input.filters, input.data);
   });

@@ -5,7 +5,7 @@ export type UpdateUserSession = Partial<CreateUserSession>;
 export type WhereUserSession = Partial<IUserSession> | Partial<IUserSession>[];
 export type RelationsUserSession = { user: boolean };
 
-export const UserSessionRepositoryToken = 'UserSessionRepository';
+export const USER_SESSION_REPOSITORY_TOKEN = 'UserSessionRepository';
 
 export interface IUserSessionRepository {
   create(data: CreateUserSession): Promise<IUserSession>;

@@ -1,11 +1,11 @@
 import { Test } from '@nestjs/testing';
-import { ConflictException } from '@nestjs/common';
 
 import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
 
 import { CreateUserUseCase } from '../create-user.use-case';
 import { USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
 import { hash } from 'bcrypt';
+import { Exception, UserErrorCodes } from '@application/errors';
 
 jest.mock('bcrypt');
 
@@ -74,7 +74,7 @@ describe('Use Cases -> User -> Create', () => {
       }
     };
 
-    await expect(createUserUseCase.execute(input)).rejects.toThrow(ConflictException);
+    await expect(createUserUseCase.execute(input)).rejects.toThrow(new Exception(UserErrorCodes.EMAIL_ALREADY_IN_USE));
     expect(userRepositoryMock.findOne).toHaveBeenCalledTimes(1);
     expect(userRepositoryMock.create).not.toHaveBeenCalled();
   });

@@ -1,18 +1,19 @@
 import { randomUUID } from 'crypto';
 
-import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
-import { IUserRepository, UserRepositoryToken } from '@domain/repositories/user/user.repository';
+import { IUserRepository, USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
 
 import { JwtProvider } from '@providers/jwt/jwt.provider';
 import { compare } from 'bcrypt';
 import { JwtConfig } from '@config/jwt/config';
 import {
   IUserSessionRepository,
-  UserSessionRepositoryToken
+  USER_SESSION_REPOSITORY_TOKEN
 } from '@domain/repositories/user-session/user-session.repository';
 import { AuthenticatedUser } from '@adapters/jwt/strategies/types/authenticated-user.type';
+import { AuthErrorCodes, Exception } from '@application/errors';
 
 type LoginInput = {
   email: string;
@@ -28,9 +29,9 @@ type LoginOutput = {
 @Injectable()
 export class LoginUseCase {
   constructor(
-    @Inject(UserRepositoryToken)
+    @Inject(USER_REPOSITORY_TOKEN)
     private readonly userRepository: IUserRepository,
-    @Inject(UserSessionRepositoryToken)
+    @Inject(USER_SESSION_REPOSITORY_TOKEN)
     private readonly userSessionRepository: IUserSessionRepository,
     private readonly configService: ConfigService,
     private readonly jwtService: JwtProvider
@@ -43,7 +44,7 @@ export class LoginUseCase {
     const isPasswordValid = user ? compare(password, user?.password ?? '') : false;
 
     if (!user || !isPasswordValid) {
-      throw new UnauthorizedException('Invalid credentials');
+      throw new Exception(AuthErrorCodes.INVALID_CREDENTIALS);
     }
 
     const userPayload: AuthenticatedUser = {

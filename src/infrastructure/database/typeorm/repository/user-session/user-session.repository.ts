@@ -7,7 +7,7 @@ import {
   IUserSessionRepository,
   RelationsUserSession,
   UpdateUserSession,
-  UserSessionRepositoryToken,
+  USER_SESSION_REPOSITORY_TOKEN,
   WhereUserSession
 } from '@domain/repositories/user-session/user-session.repository';
 
@@ -58,10 +58,10 @@ export class UserSessionRepository implements IUserSessionRepository {
   imports: [TypeOrmModule.forFeature([UserSessionModel])],
   providers: [
     {
-      provide: UserSessionRepositoryToken,
+      provide: USER_SESSION_REPOSITORY_TOKEN,
       useClass: UserSessionRepository
     }
   ],
-  exports: [UserSessionRepositoryToken]
+  exports: [USER_SESSION_REPOSITORY_TOKEN]
 })
 export class UserSessionRepositoryModule {}

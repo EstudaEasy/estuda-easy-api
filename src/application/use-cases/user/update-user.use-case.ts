@@ -1,4 +1,4 @@
-import { ConflictException, Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import {
   IUserRepository,
   USER_REPOSITORY_TOKEN,
@@ -7,6 +7,7 @@ import {
 } from '@domain/repositories/user/user.repository';
 import { UserEntity } from '@domain/entities/user/user.entity';
 import { hash } from 'bcrypt';
+import { Exception, UserErrorCodes } from '@application/errors';
 
 type UpdateUserInput = {
   filters: WhereUser;
@@ -25,7 +26,7 @@ export class UpdateUserUseCase {
 
     const existingUser = await this.userRepository.findOne(filters);
     if (!existingUser) {
-      throw new NotFoundException('User not found');
+      throw new Exception(UserErrorCodes.NOT_FOUND);
     }
 
     if (data.password) {
@@ -34,7 +35,7 @@ export class UpdateUserUseCase {
 
     const updatedUser = await this.userRepository.update(filters, data);
     if (!updatedUser) {
-      throw new ConflictException('Failed to update user');
+      throw new Exception(UserErrorCodes.NOT_UPDATED);
     }
 
     return new UserEntity(updatedUser);

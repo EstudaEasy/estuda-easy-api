@@ -1,7 +1,8 @@
-import { ConflictException, Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateUser, IUserRepository, USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
 import { UserEntity } from '@domain/entities/user/user.entity';
 import { hash } from 'bcrypt';
+import { Exception, UserErrorCodes } from '@application/errors';
 
 export interface CreateUserInput {
   data: CreateUser;
@@ -19,7 +20,7 @@ export class CreateUserUseCase {
 
     const existingUser = await this.userRepository.findOne({ email: data.email });
     if (existingUser) {
-      throw new ConflictException('Email already in use');
+      throw new Exception(UserErrorCodes.EMAIL_ALREADY_IN_USE);
     }
 
     const user = await this.userRepository.create({

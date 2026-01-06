@@ -6,7 +6,7 @@ import {
   ValidatorConstraintInterface
 } from 'class-validator';
 
-const name = 'IsPassword';
+const name = 'isPassword';
 
 @ValidatorConstraint({ name, async: false })
 export class IsPasswordConstraint implements ValidatorConstraintInterface {
@@ -25,7 +25,7 @@ export class IsPasswordConstraint implements ValidatorConstraintInterface {
 
   defaultMessage(args: ValidationArguments): string {
     const [min, max] = args.constraints;
-    return `${args.property} must be between ${min} and ${max} characters long, and include at least one uppercase letter, one lowercase letter, one number, and one special character.`;
+    return `${args.property} must be between ${min} and ${max} characters and include at least one uppercase letter, one lowercase letter, one number, and one special character`;
   }
 }
 
