@@ -1,8 +1,10 @@
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
-import { ApiModule } from './api.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
+
 import { setupSwagger } from '@core/docs/setup-swagger';
 import { ExceptionFilter } from '@core/filters/exception.filter';
+
+import { ApiModule } from './api.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(ApiModule);

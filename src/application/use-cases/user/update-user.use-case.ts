@@ -1,13 +1,14 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { hash } from 'bcrypt';
+
+import { Exception, UserErrorCodes } from '@application/errors';
+import { UserEntity } from '@domain/entities/user/user.entity';
 import {
   IUserRepository,
   USER_REPOSITORY_TOKEN,
   UpdateUser,
   WhereUser
 } from '@domain/repositories/user/user.repository';
-import { UserEntity } from '@domain/entities/user/user.entity';
-import { hash } from 'bcrypt';
-import { Exception, UserErrorCodes } from '@application/errors';
 
 type UpdateUserInput = {
   filters: WhereUser;

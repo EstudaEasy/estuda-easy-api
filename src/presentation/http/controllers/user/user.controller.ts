@@ -22,11 +22,13 @@ import {
   ApiConflictResponse,
   ApiNoContentResponse
 } from '@nestjs/swagger';
+
 import { CreateUserUseCase } from '@application/use-cases/user/create-user.use-case';
+import { DeleteUserUseCase } from '@application/use-cases/user/delete-user.use-case';
 import { FindOneUserUseCase } from '@application/use-cases/user/find-one-user.use-case';
 import { FindUsersUseCase } from '@application/use-cases/user/find-users.use-case';
 import { UpdateUserUseCase } from '@application/use-cases/user/update-user.use-case';
-import { DeleteUserUseCase } from '@application/use-cases/user/delete-user.use-case';
+
 import {
   CreateUserBodyDTO,
   FindOneUserParamsDTO,

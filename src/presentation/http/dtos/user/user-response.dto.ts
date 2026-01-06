@@ -1,6 +1,7 @@
-import { UserRole } from '@domain/entities/user/user.interface';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Exclude, Expose } from 'class-transformer';
+
+import { UserRole } from '@domain/entities/user/user.interface';
 
 @Exclude()
 export class UserResponseDTO {

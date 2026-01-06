@@ -1,7 +1,8 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { UserResponseDTO } from './user-response.dto';
 import { Type } from 'class-transformer';
 import { IsInt, IsOptional, IsPositive, IsString, Length } from 'class-validator';
+
+import { UserResponseDTO } from './user-response.dto';
 
 export class FindUserQueryDTO {
   @ApiPropertyOptional({

@@ -3,14 +3,14 @@ import { randomUUID } from 'crypto';
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
-import { JwtProvider } from '@providers/jwt/jwt.provider';
+import { AuthenticatedUser } from '@adapters/jwt/strategies/types/authenticated-user.type';
+import { AuthErrorCodes, Exception } from '@application/errors';
+import { JwtConfig } from '@config/jwt/config';
 import {
   IUserSessionRepository,
   USER_SESSION_REPOSITORY_TOKEN
 } from '@domain/repositories/user-session/user-session.repository';
-import { AuthenticatedUser } from '@adapters/jwt/strategies/types/authenticated-user.type';
-import { JwtConfig } from '@config/jwt/config';
-import { AuthErrorCodes, Exception } from '@application/errors';
+import { JwtProvider } from '@providers/jwt/jwt.provider';
 
 type RefreshTokensUserInput = {
   refreshToken: string;

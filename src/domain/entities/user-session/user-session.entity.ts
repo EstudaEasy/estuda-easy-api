@@ -1,6 +1,6 @@
-import { IUserSession } from './interface';
-
 import { UserEntity } from '../user/user.entity';
+
+import { IUserSession } from './interface';
 
 export class UserSessionEntity implements IUserSession {
   constructor(props: IUserSession) {

@@ -1,5 +1,3 @@
-import { Exception } from '@application/errors';
-import { Lang } from '@core/types';
 import {
   ExceptionFilter as NestExceptionFilter,
   Catch,
@@ -8,6 +6,9 @@ import {
   HttpException
 } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
+
+import { Exception } from '@application/errors';
+import { Lang } from '@core/types';
 
 @Catch()
 export class ExceptionFilter implements NestExceptionFilter {

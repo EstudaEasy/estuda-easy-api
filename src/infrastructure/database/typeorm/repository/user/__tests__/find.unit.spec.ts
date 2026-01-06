@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 
 import { UserModel } from '@database/typeorm/models/user/user.model';
 import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
+
 import { UserRepository } from '../user.repository';
 
 describe('TypeOrm -> User Repository -> Find', () => {

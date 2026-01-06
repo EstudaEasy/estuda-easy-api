@@ -1,9 +1,9 @@
 import { Test } from '@nestjs/testing';
 
 import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
+import { USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
 
 import { FindUsersUseCase } from '../find-users.use-case';
-import { USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
 
 describe('Use Cases -> User -> Find', () => {
   let findUsersUseCase: FindUsersUseCase;

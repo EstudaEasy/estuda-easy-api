@@ -1,6 +1,7 @@
-import { DecodedJwtToken } from '@adapters/jwt/strategies/types/decoded-jwt.type';
 import { Injectable } from '@nestjs/common';
 import { JwtSignOptions, JwtVerifyOptions, JwtService } from '@nestjs/jwt';
+
+import { DecodedJwtToken } from '@adapters/jwt/strategies/types/decoded-jwt.type';
 
 @Injectable()
 export class JwtProvider {

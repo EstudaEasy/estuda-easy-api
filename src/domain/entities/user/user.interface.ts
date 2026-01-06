@@ -16,4 +16,4 @@ export enum UserRole {
   USER = 'user'
 }
 
-export type RelationsUser = {};
+export type RelationsUser = object;

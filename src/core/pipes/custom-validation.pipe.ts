@@ -36,7 +36,7 @@ export class CustomValidationPipe extends ValidationPipe {
     super({
       whitelist: true,
       transform: true,
-      exceptionFactory(errors) {
+      exceptionFactory: (errors) => {
         return new UnprocessableEntityException(this.formatValidationErrors(errors));
       }
     });

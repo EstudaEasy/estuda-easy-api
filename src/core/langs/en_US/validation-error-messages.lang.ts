@@ -117,5 +117,5 @@ export const VALIDATION_ERROR_MESSAGES_EN_US: Record<ValidatorConstraintKey, str
   notContains: 'the field $property must not contain the string $constraint1',
   notEquals: 'the field $property must not be equal to $constraint1',
   isPassword:
-    'the field $property must be between $constraint1 and $constraint2 characters and include at least one uppercase letter, one lowercase letter, one number, and one special character',
+    'the field $property must be between $constraint1 and $constraint2 characters and include at least one uppercase letter, one lowercase letter, one number, and one special character'
 };

@@ -1,7 +1,8 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty, IsOptional, IsString, Length, IsDate, IsPhoneNumber } from 'class-validator';
-import { IsPassword } from '@presentation/validators/is-password.validator';
 import { Type } from 'class-transformer';
+import { IsEmail, IsNotEmpty, IsOptional, IsString, Length, IsDate, IsPhoneNumber } from 'class-validator';
+
+import { IsPassword } from '@presentation/validators/is-password.validator';
 
 export class CreateUserBodyDTO {
   @ApiProperty({

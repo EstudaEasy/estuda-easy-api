@@ -2,18 +2,17 @@ import { randomUUID } from 'crypto';
 
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-
-import { IUserRepository, USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
-
-import { JwtProvider } from '@providers/jwt/jwt.provider';
 import { compare } from 'bcrypt';
+
+import { AuthenticatedUser } from '@adapters/jwt/strategies/types/authenticated-user.type';
+import { AuthErrorCodes, Exception } from '@application/errors';
 import { JwtConfig } from '@config/jwt/config';
+import { IUserRepository, USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
 import {
   IUserSessionRepository,
   USER_SESSION_REPOSITORY_TOKEN
 } from '@domain/repositories/user-session/user-session.repository';
-import { AuthenticatedUser } from '@adapters/jwt/strategies/types/authenticated-user.type';
-import { AuthErrorCodes, Exception } from '@application/errors';
+import { JwtProvider } from '@providers/jwt/jwt.provider';
 
 type LoginInput = {
   email: string;

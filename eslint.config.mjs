@@ -2,8 +2,11 @@ import eslint from '@eslint/js';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
+import importPlugin from 'eslint-plugin-import';
+import prettierPlugin from 'eslint-plugin-prettier';
 
-export default tseslint.configs(
+export default [
   {
     ignores: ['eslint.config.mjs'],
   },
@@ -24,10 +27,48 @@ export default tseslint.configs(
     },
   },
   {
+    plugins: {
+      '@typescript-eslint': tsPlugin,
+      import: importPlugin,
+      prettier: prettierPlugin,
+    },
+    settings: {
+      'import/resolver': {
+        typescript: {
+          project: './tsconfig.json',
+        },
+        node: {
+          extensions: ['.js', '.ts'],
+        },
+      },
+    },
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-floating-promises': 'warn',
-      '@typescript-eslint/no-unsafe-argument': 'warn'
+      '@typescript-eslint/no-floating-promises': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'warn',
+      'import/order': [
+        'error',
+        {
+          groups: [
+            'builtin', 
+            'external', 
+            'internal', 
+            'parent', 
+            'sibling',
+            'index', 
+            'object',
+            'type', 
+          ],
+          'newlines-between': 'always',
+          alphabetize: { 
+            order: 'asc', 
+            caseInsensitive: true
+          },
+        },
+      ],
     },
   },
-);
+]
