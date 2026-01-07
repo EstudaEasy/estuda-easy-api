@@ -3,6 +3,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { UserModel } from '@database/typeorm/models/user/user.model';
+import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
 import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
 
 import { UserRepository } from '../user.repository';
@@ -18,6 +19,7 @@ describe('TypeOrm -> User Repository -> Find', () => {
     const module = await Test.createTestingModule({
       providers: [
         UserRepository,
+        TypeOrmUtilsService,
         {
           provide: getRepositoryToken(UserModel),
           useValue: {

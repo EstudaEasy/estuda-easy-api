@@ -1,10 +1,12 @@
 import { Injectable, Module } from '@nestjs/common';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
-import { FindOptionsWhere, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
+import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
 import { RelationsUser } from '@domain/entities/user/user.interface';
 import {
   CreateUser,
+  FilterUser,
   IUserRepository,
   UpdateUser,
   USER_REPOSITORY_TOKEN
@@ -12,13 +14,12 @@ import {
 
 import { UserModel } from '../../models/user/user.model';
 
-type WhereUser = FindOptionsWhere<UserModel> | FindOptionsWhere<UserModel>[];
-
 @Injectable()
 export class UserRepository implements IUserRepository {
   constructor(
     @InjectRepository(UserModel)
-    private readonly repository: Repository<UserModel>
+    private readonly repository: Repository<UserModel>,
+    private readonly typeOrmUtilsService: TypeOrmUtilsService
   ) {}
 
   async create(data: CreateUser): Promise<UserModel> {
@@ -26,16 +27,19 @@ export class UserRepository implements IUserRepository {
     return await this.repository.save(user);
   }
 
-  async find(where?: WhereUser, relations?: RelationsUser): Promise<{ users: UserModel[]; total: number }> {
+  async find(filters?: FilterUser, relations?: RelationsUser): Promise<{ users: UserModel[]; total: number }> {
+    const where = this.typeOrmUtilsService.buildWhere(filters);
     const [users, total] = await this.repository.findAndCount({ where, relations });
     return { users, total };
   }
 
-  async findOne(where: WhereUser, relations?: RelationsUser): Promise<UserModel | null> {
+  async findOne(filters: FilterUser, relations?: RelationsUser): Promise<UserModel | null> {
+    const where = this.typeOrmUtilsService.buildWhere(filters);
     return await this.repository.findOne({ where, relations });
   }
 
-  async update(where: WhereUser, data: UpdateUser): Promise<UserModel | null> {
+  async update(filters: FilterUser, data: UpdateUser): Promise<UserModel | null> {
+    const where = this.typeOrmUtilsService.buildWhere(filters);
     const res = await this.repository.update(where, data);
     if (res.affected && res.affected > 0) {
       return this.repository.findOne({ where });
@@ -43,7 +47,8 @@ export class UserRepository implements IUserRepository {
     return null;
   }
 
-  async delete(where: WhereUser): Promise<boolean> {
+  async delete(filters: FilterUser): Promise<boolean> {
+    const where = this.typeOrmUtilsService.buildWhere(filters);
     const res = await this.repository.delete(where);
     if (res.affected && res.affected > 0) {
       return true;
@@ -55,6 +60,7 @@ export class UserRepository implements IUserRepository {
 @Module({
   imports: [TypeOrmModule.forFeature([UserModel])],
   providers: [
+    TypeOrmUtilsService,
     {
       provide: USER_REPOSITORY_TOKEN,
       useClass: UserRepository

@@ -2,13 +2,14 @@ import { Injectable, Module } from '@nestjs/common';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
+import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
 import {
   CreateUserSession,
   IUserSessionRepository,
   RelationsUserSession,
   UpdateUserSession,
   USER_SESSION_REPOSITORY_TOKEN,
-  WhereUserSession
+  FilterUserSession
 } from '@domain/repositories/user-session/user-session.repository';
 
 import { UserSessionModel } from '../../models/user-session/user-session.model';
@@ -17,7 +18,8 @@ import { UserSessionModel } from '../../models/user-session/user-session.model';
 export class UserSessionRepository implements IUserSessionRepository {
   constructor(
     @InjectRepository(UserSessionModel)
-    private readonly repository: Repository<UserSessionModel>
+    private readonly repository: Repository<UserSessionModel>,
+    private readonly typeOrmUtilsService: TypeOrmUtilsService
   ) {}
 
   async create(data: CreateUserSession): Promise<UserSessionModel> {
@@ -26,18 +28,21 @@ export class UserSessionRepository implements IUserSessionRepository {
   }
 
   async find(
-    where?: WhereUserSession,
+    filters?: FilterUserSession,
     relations?: RelationsUserSession
   ): Promise<{ sessions: UserSessionModel[]; total: number }> {
+    const where = this.typeOrmUtilsService.buildWhere(filters);
     const [sessions, total] = await this.repository.findAndCount({ where, relations });
     return { sessions, total };
   }
 
-  async findOne(where: WhereUserSession, relations?: RelationsUserSession): Promise<UserSessionModel | null> {
+  async findOne(filters: FilterUserSession, relations?: RelationsUserSession): Promise<UserSessionModel | null> {
+    const where = this.typeOrmUtilsService.buildWhere(filters);
     return await this.repository.findOne({ where, relations });
   }
 
-  async update(where: WhereUserSession, data: UpdateUserSession): Promise<UserSessionModel | null> {
+  async update(filters: FilterUserSession, data: UpdateUserSession): Promise<UserSessionModel | null> {
+    const where = this.typeOrmUtilsService.buildWhere(filters);
     const res = await this.repository.update(where, data);
     if (res.affected && res.affected > 0) {
       return this.repository.findOne({ where });
@@ -45,7 +50,8 @@ export class UserSessionRepository implements IUserSessionRepository {
     return null;
   }
 
-  async delete(where: WhereUserSession): Promise<boolean> {
+  async delete(filters: FilterUserSession): Promise<boolean> {
+    const where = this.typeOrmUtilsService.buildWhere(filters);
     const res = await this.repository.delete(where);
     if (res.affected && res.affected > 0) {
       return true;
@@ -57,6 +63,7 @@ export class UserSessionRepository implements IUserSessionRepository {
 @Module({
   imports: [TypeOrmModule.forFeature([UserSessionModel])],
   providers: [
+    TypeOrmUtilsService,
     {
       provide: USER_SESSION_REPOSITORY_TOKEN,
       useClass: UserSessionRepository

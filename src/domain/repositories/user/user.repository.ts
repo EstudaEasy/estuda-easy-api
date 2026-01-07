@@ -1,15 +1,16 @@
 import { IUser, RelationsUser } from '@domain/entities/user/user.interface';
+import { DomainFilter } from '@shared/types';
 
 export type CreateUser = Omit<IUser, 'id' | 'role' | 'createdAt' | 'updatedAt'>;
 export type UpdateUser = Partial<Omit<CreateUser, 'email'>>;
-export type WhereUser = Partial<IUser> | Partial<IUser>[];
+export type FilterUser = DomainFilter<IUser> | DomainFilter<IUser>[];
 
-export const USER_REPOSITORY_TOKEN = 'IUserRepository';
+export const USER_REPOSITORY_TOKEN = 'UserRepository';
 
 export interface IUserRepository {
   create(data: CreateUser): Promise<IUser>;
-  find(where?: WhereUser, relations?: RelationsUser): Promise<{ users: IUser[]; total: number }>;
-  findOne(where: WhereUser, relations?: RelationsUser): Promise<IUser | null>;
-  update(where: WhereUser, data: UpdateUser): Promise<IUser | null>;
-  delete(where: WhereUser): Promise<boolean>;
+  find(filters?: FilterUser, relations?: RelationsUser): Promise<{ users: IUser[]; total: number }>;
+  findOne(filters: FilterUser, relations?: RelationsUser): Promise<IUser | null>;
+  update(filters: FilterUser, data: UpdateUser): Promise<IUser | null>;
+  delete(filters: FilterUser): Promise<boolean>;
 }

@@ -7,11 +7,11 @@ import {
   IUserRepository,
   USER_REPOSITORY_TOKEN,
   UpdateUser,
-  WhereUser
+  FilterUser
 } from '@domain/repositories/user/user.repository';
 
 type UpdateUserInput = {
-  filters: WhereUser;
+  filters: FilterUser;
   data: UpdateUser;
 };
 
