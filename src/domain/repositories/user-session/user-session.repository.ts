@@ -6,7 +6,7 @@ export type UpdateUserSession = Partial<CreateUserSession>;
 export type FilterUserSession = DomainFilter<IUserSession> | DomainFilter<IUserSession>[];
 export type RelationsUserSession = { user: boolean };
 
-export const USER_SESSION_REPOSITORY_TOKEN = 'UserSessionRepository';
+export const USER_SESSION_REPOSITORY_TOKEN = 'UserSessionRepositoryToken';
 
 export interface IUserSessionRepository {
   create(data: CreateUserSession): Promise<IUserSession>;

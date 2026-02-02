@@ -5,7 +5,7 @@ export type CreateUser = Omit<IUser, 'id' | 'role' | 'createdAt' | 'updatedAt'>;
 export type UpdateUser = Partial<Omit<CreateUser, 'email'>>;
 export type FilterUser = DomainFilter<IUser> | DomainFilter<IUser>[];
 
-export const USER_REPOSITORY_TOKEN = 'UserRepository';
+export const USER_REPOSITORY_TOKEN = 'UserRepositoryToken';
 
 export interface IUserRepository {
   create(data: CreateUser): Promise<IUser>;

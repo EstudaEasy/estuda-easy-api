@@ -3,7 +3,8 @@ import {
   Catch,
   ArgumentsHost,
   HttpStatus,
-  HttpException
+  HttpException,
+  Logger
 } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
 
@@ -12,6 +13,8 @@ import { Lang } from '@core/types';
 
 @Catch()
 export class ExceptionFilter implements NestExceptionFilter {
+  private readonly logger = new Logger(ExceptionFilter.name);
+
   constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
 
   catch(exception: unknown, host: ArgumentsHost): void {
@@ -42,6 +45,7 @@ export class ExceptionFilter implements NestExceptionFilter {
       path: httpAdapter.getRequestUrl(ctx.getRequest())
     };
 
+    this.logger.error(exception);
     httpAdapter.reply(ctx.getResponse(), responseBody, statusCode);
   }
 

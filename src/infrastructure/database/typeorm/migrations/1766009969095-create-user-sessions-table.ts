@@ -20,8 +20,8 @@ export class CreateUserSessionsTable1766009969095 implements MigrationInterface 
     `);
 
     await queryRunner.query(/*sql*/ `
-      ALTER TABLE user_sessions ADD CONSTRAINT fk_user_sessions_user_id FOREIGN KEY (user_id) 
-      REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION
+      ALTER TABLE user_sessions ADD CONSTRAINT fk_user_sessions_user_id 
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION
     `);
   }
 
