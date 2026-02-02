@@ -34,25 +34,25 @@ describe('Use Cases -> User -> Find', () => {
   it('should find users', async () => {
     userRepositoryMock.find.mockResolvedValue({ users, total });
 
-    const input = {
-      filters: { name: 'test' },
-      relations: {}
-    };
+    const result = await findUsersUseCase.execute();
 
-    const result = await findUsersUseCase.execute(input);
-
-    expect(userRepositoryMock.find).toHaveBeenCalledWith(input.filters, input.relations);
+    expect(userRepositoryMock.find).toHaveBeenCalledWith(undefined, undefined);
     expect(result.users).toEqual(users);
     expect(result.total).toBe(total);
   });
 
-  it('should find users without filters', async () => {
-    userRepositoryMock.find.mockResolvedValue({ users: [], total: 0 });
+  it('should find users with filters', async () => {
+    const filteredUsers = [users[0]];
+    userRepositoryMock.find.mockResolvedValue({ users: filteredUsers, total: 1 });
 
-    const result = await findUsersUseCase.execute();
+    const input = {
+      filters: { name: users[0].name }
+    };
 
-    expect(userRepositoryMock.find).toHaveBeenCalledWith(undefined, undefined);
-    expect(result.users).toEqual([]);
-    expect(result.total).toBe(0);
+    const result = await findUsersUseCase.execute(input);
+
+    expect(userRepositoryMock.find).toHaveBeenCalledWith(input.filters, undefined);
+    expect(result.users).toEqual(filteredUsers);
+    expect(result.total).toBe(1);
   });
 });
