@@ -3,14 +3,18 @@ import { HttpException } from '@nestjs/common';
 import { Lang } from '@core/types';
 
 import auth, { ErrorCode as AuthErrorCodes } from './auth/auth.errors';
+import group, { ErrorCode as GroupErrorCodes } from './group/group.errors';
+import groupMember, { ErrorCode as GroupMemberErrorCodes } from './group-member/group-member.errors';
 import quiz, { ErrorCode as QuizErrorCodes } from './quiz/quiz.errors';
 import quizItem, { ErrorCode as QuizItemErrorCodes } from './quiz-item/quiz-item.errors';
 import user, { ErrorCode as UserErrorCodes } from './user/user.errors';
 
-export { AuthErrorCodes, QuizErrorCodes, QuizItemErrorCodes, UserErrorCodes };
+export { AuthErrorCodes, GroupErrorCodes, GroupMemberErrorCodes, QuizErrorCodes, QuizItemErrorCodes, UserErrorCodes };
 
 export const errors = {
   ...auth,
+  ...group,
+  ...groupMember,
   ...quiz,
   ...quizItem,
   ...user
