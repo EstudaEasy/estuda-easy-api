@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class CreateQuizOptionTable1769983312635 implements MigrationInterface {
-  name = 'CreateQuizOptionTable1769983312635';
+export class CreateQuizOptionTable1770091831163 implements MigrationInterface {
+  name = 'CreateQuizOptionTable1770091831163';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(/*sql*/ `
