@@ -54,14 +54,15 @@ export default [
         'error',
         {
           groups: [
-            'builtin', 
-            'external', 
-            'internal', 
-            'parent', 
+            'builtin',
+            'external',
+            'internal',
+            'unknown',
+            'parent',
             'sibling',
-            'index', 
+            'index',
             'object',
-            'type', 
+            'type',
           ],
           'newlines-between': 'always',
           alphabetize: { 

@@ -16,7 +16,7 @@ export class QuizItemMock implements IQuizItem {
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
 
-  constructor() {
+  constructor(partial?: Partial<IQuizItem>) {
     this.id = faker.number.int({ min: 1, max: 1000 });
     this.quizId = faker.string.uuid();
     this.question = faker.lorem.sentence();
@@ -26,6 +26,7 @@ export class QuizItemMock implements IQuizItem {
     this.explanation = faker.lorem.paragraph();
     this.createdAt = faker.date.past();
     this.updatedAt = faker.date.recent();
+    Object.assign(this, partial);
   }
 
   public static getList(length: number = 2): IQuizItem[] {

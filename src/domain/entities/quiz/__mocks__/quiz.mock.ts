@@ -13,13 +13,14 @@ export class QuizMock implements IQuiz {
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
 
-  constructor() {
+  constructor(partial?: Partial<IQuiz>) {
     this.id = faker.string.uuid();
     this.title = faker.lorem.words(3);
     this.description = faker.lorem.sentence();
     this.items = QuizItemMock.getList(faker.number.int({ min: 1, max: 5 }));
     this.createdAt = faker.date.past();
     this.updatedAt = faker.date.recent();
+    Object.assign(this, partial);
   }
 
   public static getList(length: number = 2): IQuiz[] {

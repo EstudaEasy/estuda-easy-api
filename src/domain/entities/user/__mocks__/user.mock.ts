@@ -14,7 +14,7 @@ export class UserMock implements IUser {
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
 
-  constructor() {
+  constructor(partial?: Partial<IUser>) {
     this.id = faker.number.int({ min: 1, max: 1000 });
     this.name = faker.person.fullName();
     this.email = faker.internet.email();
@@ -25,6 +25,7 @@ export class UserMock implements IUser {
     this.role = faker.helpers.enumValue(UserRole);
     this.createdAt = faker.date.past();
     this.updatedAt = faker.date.recent();
+    Object.assign(this, partial);
   }
 
   public static getList(length: number = 2): IUser[] {
