@@ -41,11 +41,27 @@ export class TypeOrmUtilsService {
     return where;
   }
 
-  mapExpression<T>(expression: T | FilterExpression<T>): FindOperator<T> | T {
-    if (!this.isFilterExpression(expression)) {
+  mapExpression<T>(expression: T | FilterExpression<T>) {
+    if (expression === null || expression === undefined) {
       return expression;
     }
 
+    if (Array.isArray(expression)) {
+      return expression.map((item) => this.mapExpression(item));
+    }
+
+    if (this.isFilterExpression(expression)) {
+      return this.handleFilterExpression(expression);
+    }
+
+    if (typeof expression === 'object' && !(expression instanceof Date)) {
+      return this.buildWhere(expression);
+    }
+
+    return expression;
+  }
+
+  private handleFilterExpression<T>(expression: FilterExpression<T>): FindOperator<T> {
     const { operator, value } = expression;
 
     switch (operator) {

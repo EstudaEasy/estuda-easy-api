@@ -1,4 +1,4 @@
-import { IQuizItem } from '../quiz-item/quiz-item.interface';
+import { QuizItemEntity } from '../quiz-item/quiz-item.entity';
 
 import { IQuiz } from './quiz.interface';
 
@@ -10,7 +10,7 @@ export class QuizEntity implements IQuiz {
   id: string;
   title: string;
   description?: string;
-  items: IQuizItem[];
+  items: QuizItemEntity[];
   createdAt: Date;
   updatedAt: Date;
 }

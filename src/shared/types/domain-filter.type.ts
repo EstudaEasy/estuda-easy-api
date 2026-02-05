@@ -43,6 +43,21 @@ export type FilterExpression<T = any> =
   | IsNullExpression
   | (T extends string ? StringExpression : never);
 
+export type DomainFilterProperty<T> =
+  T extends Array<infer U>
+    ? DomainFilterProperty<NonNullable<U>>
+    : T extends Date
+      ? T | FilterExpression<T>
+      : T extends string
+        ? T | FilterExpression<T>
+        : T extends number
+          ? T | FilterExpression<T>
+          : T extends boolean
+            ? T | FilterExpression<T>
+            : T extends object
+              ? DomainFilter<T> | DomainFilter<T>[] | FilterExpression<T> | T
+              : T | FilterExpression<T>;
+
 export type DomainFilter<T> = {
-  [K in keyof T]?: T[K] | FilterExpression<T[K]>;
+  [K in keyof T]?: DomainFilterProperty<NonNullable<T[K]>>;
 };
