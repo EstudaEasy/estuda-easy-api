@@ -1,3 +1,4 @@
+import { QuizEntity } from '../quiz/quiz.entity';
 import { ResourceShareEntity } from '../resource-share/resource-share.entity';
 import { UserEntity } from '../user/user.entity';
 
@@ -12,6 +13,7 @@ export class ResourceEntity implements IResource {
   type: ResourceType;
   userId: number;
   user?: UserEntity;
+  quiz?: QuizEntity;
   shares?: ResourceShareEntity[];
   createdAt: Date;
   updatedAt: Date;

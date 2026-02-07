@@ -7,14 +7,24 @@ import group, { ErrorCode as GroupErrorCodes } from './group/group.errors';
 import groupMember, { ErrorCode as GroupMemberErrorCodes } from './group-member/group-member.errors';
 import quiz, { ErrorCode as QuizErrorCodes } from './quiz/quiz.errors';
 import quizItem, { ErrorCode as QuizItemErrorCodes } from './quiz-item/quiz-item.errors';
+import resource, { ErrorCode as ResourceErrorCodes } from './resource/resource.errors';
 import user, { ErrorCode as UserErrorCodes } from './user/user.errors';
 
-export { AuthErrorCodes, GroupErrorCodes, GroupMemberErrorCodes, QuizErrorCodes, QuizItemErrorCodes, UserErrorCodes };
+export {
+  AuthErrorCodes,
+  GroupErrorCodes,
+  GroupMemberErrorCodes,
+  QuizErrorCodes,
+  QuizItemErrorCodes,
+  ResourceErrorCodes,
+  UserErrorCodes
+};
 
 export const errors = {
   ...auth,
   ...group,
   ...groupMember,
+  ...resource,
   ...quiz,
   ...quizItem,
   ...user

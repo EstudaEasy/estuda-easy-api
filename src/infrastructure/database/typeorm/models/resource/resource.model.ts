@@ -5,12 +5,14 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm';
 
 import { IResource, ResourceType } from '@domain/entities/resource/resource.interface';
 
+import { QuizModel } from '../quiz/quiz.model';
 import { ResourceShareModel } from '../resource-share/resource-share.model';
 import { UserModel } from '../user/user.model';
 
@@ -28,6 +30,9 @@ export class ResourceModel implements IResource {
   @ManyToOne(() => UserModel, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'user_id', foreignKeyConstraintName: 'fk_resources_user' })
   user?: UserModel;
+
+  @OneToOne(() => QuizModel, (quiz) => quiz.resource)
+  quiz?: QuizModel;
 
   @OneToMany(() => ResourceShareModel, (share) => share.resource)
   shares?: ResourceShareModel[];

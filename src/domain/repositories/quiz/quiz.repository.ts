@@ -1,7 +1,7 @@
 import { IQuiz } from '@domain/entities/quiz/quiz.interface';
 import { DomainFilter } from '@shared/types';
 
-export type CreateQuiz = Omit<IQuiz, 'id' | 'items' | 'createdAt' | 'updatedAt'>;
+export type CreateQuiz = Omit<IQuiz, 'id' | 'items' | 'resourceId' | 'createdAt' | 'updatedAt'>;
 export type UpdateQuiz = Partial<CreateQuiz>;
 export type FilterQuiz = DomainFilter<IQuiz> | DomainFilter<IQuiz>[];
 export type RelationsQuiz = { items: boolean } | { items: { options: boolean } };

@@ -1,8 +1,18 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
+} from 'typeorm';
 
 import { IQuiz } from '@domain/entities/quiz/quiz.interface';
 
 import { QuizItemModel } from '../quiz-item/quiz-item.model';
+import { ResourceModel } from '../resource/resource.model';
 
 @Entity({ name: 'quizzes' })
 export class QuizModel implements IQuiz {
@@ -14,6 +24,13 @@ export class QuizModel implements IQuiz {
 
   @Column({ name: 'description', type: 'varchar', nullable: true })
   description?: string;
+
+  @Column({ name: 'resource_id', type: 'uuid' })
+  resourceId: string;
+
+  @OneToOne(() => ResourceModel, (resource) => resource.quiz, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'resource_id', foreignKeyConstraintName: 'fk_quizzes_resource' })
+  resource?: ResourceModel;
 
   @OneToMany(() => QuizItemModel, (quizItem) => quizItem.quiz)
   items: QuizItemModel[];

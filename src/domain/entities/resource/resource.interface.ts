@@ -1,3 +1,4 @@
+import { IQuiz } from '../quiz/quiz.interface';
 import { IResourceShare } from '../resource-share/resource-share.interface';
 import { IUser } from '../user/user.interface';
 
@@ -14,6 +15,7 @@ export interface IResource {
   type: ResourceType;
   userId: number;
   user?: IUser;
+  quiz?: IQuiz;
   shares?: IResourceShare[];
   createdAt: Date;
   updatedAt: Date;

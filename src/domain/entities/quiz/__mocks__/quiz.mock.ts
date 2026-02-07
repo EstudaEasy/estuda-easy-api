@@ -9,6 +9,7 @@ export class QuizMock implements IQuiz {
   public readonly id: string;
   public readonly title: string;
   public readonly description?: string;
+  public readonly resourceId: string;
   public readonly items: IQuizItem[];
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
@@ -17,6 +18,7 @@ export class QuizMock implements IQuiz {
     this.id = faker.string.uuid();
     this.title = faker.lorem.words(3);
     this.description = faker.lorem.sentence();
+    this.resourceId = faker.string.uuid();
     this.items = QuizItemMock.getList(faker.number.int({ min: 1, max: 5 }));
     this.createdAt = faker.date.past();
     this.updatedAt = faker.date.recent();
