@@ -10,7 +10,6 @@ import {
 
 import { IResourceShare, SharePermission } from '@domain/entities/resource-share/resource-share.interface';
 
-import { GroupModel } from '../group/group.model';
 import { ResourceModel } from '../resource/resource.model';
 import { UserModel } from '../user/user.model';
 
@@ -29,17 +28,10 @@ export class ResourceShareModel implements IResourceShare {
   @JoinColumn({ name: 'resource_id', foreignKeyConstraintName: 'fk_resource_shares_resource' })
   resource?: ResourceModel;
 
-  @Column({ name: 'group_id', type: 'uuid', nullable: true })
-  groupId?: string;
+  @Column({ name: 'user_id', type: 'int' })
+  userId: number;
 
-  @ManyToOne(() => GroupModel, { nullable: true, onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'group_id', foreignKeyConstraintName: 'fk_resource_shares_group' })
-  group?: GroupModel;
-
-  @Column({ name: 'user_id', type: 'int', nullable: true })
-  userId?: number;
-
-  @ManyToOne(() => UserModel, { nullable: true, onDelete: 'CASCADE' })
+  @ManyToOne(() => UserModel, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'user_id', foreignKeyConstraintName: 'fk_resource_shares_user' })
   user?: UserModel;
 

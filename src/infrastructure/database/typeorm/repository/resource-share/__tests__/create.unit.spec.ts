@@ -49,7 +49,6 @@ describe('TypeOrm -> ResourceShare Repository -> Create', () => {
     const res = await shareRepository.create({
       permission: shareMock.permission,
       resourceId: shareMock.resourceId,
-      groupId: shareMock.groupId,
       userId: shareMock.userId
     });
 

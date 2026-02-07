@@ -3,7 +3,6 @@ import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Up
 import { IGroup } from '@domain/entities/group/group.interface';
 
 import { GroupMemberModel } from '../group-member/group-member.model';
-import { ResourceShareModel } from '../resource-share/resource-share.model';
 
 @Entity({ name: 'groups' })
 export class GroupModel implements IGroup {
@@ -21,9 +20,6 @@ export class GroupModel implements IGroup {
 
   @OneToMany(() => GroupMemberModel, (member) => member.group)
   members?: GroupMemberModel[];
-
-  @OneToMany(() => ResourceShareModel, (share) => share.group)
-  resources?: ResourceShareModel[];
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })
   createdAt: Date;
