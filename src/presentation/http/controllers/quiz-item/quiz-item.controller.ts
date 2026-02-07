@@ -27,6 +27,9 @@ import { DeleteQuizItemUseCase } from '@application/use-cases/quiz-item/delete-q
 import { FindOneQuizItemUseCase } from '@application/use-cases/quiz-item/find-one-quiz-item.use-case';
 import { FindQuizItemsUseCase } from '@application/use-cases/quiz-item/find-quiz-items.use-case';
 import { UpdateQuizItemUseCase } from '@application/use-cases/quiz-item/update-quiz-item.use-case';
+import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
+import { Auth } from '@presentation/http/decorators/auth.decorator';
+import { ResourcePermission } from '@presentation/http/decorators/resource-permission.decorator';
 
 import {
   CreateQuizItemBodyDTO,
@@ -41,6 +44,7 @@ import {
   FindQuizItemParamsDTO
 } from '../../dtos/quiz-item';
 
+@Auth()
 @ApiTags('Quizzes')
 @Controller('quizzes/:quizId/items')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -54,6 +58,7 @@ export class QuizItemController {
   ) {}
 
   @Post()
+  @ResourcePermission([SharePermission.EDIT, SharePermission.ADMIN], 'quizId')
   @SerializeOptions({ type: QuizItemResponseDTO })
   @ApiOperation({ summary: 'Criar um novo item de quiz' })
   @ApiCreatedResponse({ description: 'Item criado com sucesso', type: QuizItemResponseDTO })
@@ -91,6 +96,7 @@ export class QuizItemController {
   }
 
   @Patch(':quizItemId')
+  @ResourcePermission([SharePermission.EDIT, SharePermission.ADMIN], 'quizId')
   @SerializeOptions({ type: QuizItemResponseDTO })
   @ApiOperation({
     summary: 'Atualizar um item de quiz',
@@ -109,6 +115,7 @@ export class QuizItemController {
   }
 
   @Delete(':quizItemId')
+  @ResourcePermission([SharePermission.EDIT, SharePermission.ADMIN], 'quizId')
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Deletar um item de quiz' })
   @ApiNoContentResponse({ description: 'Item deletado com sucesso' })

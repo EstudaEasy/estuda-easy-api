@@ -27,6 +27,10 @@ import { DeleteQuizUseCase } from '@application/use-cases/quiz/delete-quiz.use-c
 import { FindOneQuizUseCase } from '@application/use-cases/quiz/find-one-quiz.use-case';
 import { FindQuizzesUseCase } from '@application/use-cases/quiz/find-quizzes.use-case';
 import { UpdateQuizUseCase } from '@application/use-cases/quiz/update-quiz.use-case';
+import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
+import { Auth } from '@presentation/http/decorators/auth.decorator';
+import { ResourcePermission } from '@presentation/http/decorators/resource-permission.decorator';
+import { User } from '@presentation/http/decorators/user.decorator';
 
 import {
   CreateQuizBodyDTO,
@@ -39,6 +43,7 @@ import {
   UpdateQuizBodyDTO
 } from '../../dtos/quiz';
 
+@Auth()
 @ApiTags('Quizzes')
 @Controller('quizzes')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -55,17 +60,28 @@ export class QuizController {
   @SerializeOptions({ type: QuizResponseDTO })
   @ApiOperation({ summary: 'Criar um novo quiz' })
   @ApiCreatedResponse({ description: 'Quiz criado com sucesso', type: QuizResponseDTO })
-  async create(@Body() data: CreateQuizBodyDTO): Promise<QuizResponseDTO> {
-    return await this.createQuizUseCase.execute({ data });
+  async create(@User('id') userId: number, @Body() data: CreateQuizBodyDTO): Promise<QuizResponseDTO> {
+    return await this.createQuizUseCase.execute({ data, userId });
   }
 
   @Get()
   @SerializeOptions({ type: FindQuizResponseDTO })
   @ApiOperation({ summary: 'Buscar quizzes' })
   @ApiOkResponse({ description: 'Quizzes retornados com sucesso', type: FindQuizResponseDTO })
-  async find(@Query() filters: FindQuizQueryDTO): Promise<FindQuizResponseDTO> {
+  async find(@User('id') userId: number, @Query() filters: FindQuizQueryDTO): Promise<FindQuizResponseDTO> {
     return await this.findQuizzesUseCase.execute({
-      filters,
+      filters: { ...filters, resource: { userId } },
+      relations: { items: { options: true } }
+    });
+  }
+
+  @Get('shared')
+  @SerializeOptions({ type: FindQuizResponseDTO })
+  @ApiOperation({ summary: 'Buscar quizzes compartilhados com o usuário' })
+  @ApiOkResponse({ description: 'Quizzes retornados com sucesso', type: FindQuizResponseDTO })
+  async findShared(@User('id') userId: number, @Query() filters: FindQuizQueryDTO): Promise<FindQuizResponseDTO> {
+    return await this.findQuizzesUseCase.execute({
+      filters: { ...filters, resource: { shares: { userId } } },
       relations: { items: { options: true } }
     });
   }
@@ -83,6 +99,7 @@ export class QuizController {
   }
 
   @Patch(':quizId')
+  @ResourcePermission([SharePermission.EDIT, SharePermission.ADMIN], 'quizId')
   @SerializeOptions({ type: QuizResponseDTO })
   @ApiOperation({ summary: 'Atualizar um quiz' })
   @ApiOkResponse({ description: 'Quiz atualizado com sucesso', type: QuizResponseDTO })
@@ -92,6 +109,7 @@ export class QuizController {
   }
 
   @Delete(':quizId')
+  @ResourcePermission([], 'quizId')
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Deletar um quiz' })
   @ApiNoContentResponse({ description: 'Quiz deletado com sucesso' })
