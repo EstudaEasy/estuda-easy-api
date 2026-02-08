@@ -28,7 +28,7 @@ export class ResourceModel implements IResource {
   userId: number;
 
   @ManyToOne(() => UserModel, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'user_id', foreignKeyConstraintName: 'fk_resources_user' })
+  @JoinColumn({ name: 'user_id', foreignKeyConstraintName: 'fk_resources_users' })
   user?: UserModel;
 
   @OneToOne(() => QuizModel, (quiz) => quiz.resource)

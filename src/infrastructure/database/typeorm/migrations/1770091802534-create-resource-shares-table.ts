@@ -21,23 +21,23 @@ export class CreateResourceSharesTable1770091802534 implements MigrationInterfac
     `);
 
     await queryRunner.query(/*sql*/ `
-      ALTER TABLE resource_shares ADD CONSTRAINT fk_resource_shares_resource
+      ALTER TABLE resource_shares ADD CONSTRAINT fk_resource_shares_resources
       FOREIGN KEY (resource_id) REFERENCES resources(id) ON DELETE CASCADE ON UPDATE NO ACTION;
     `);
 
     await queryRunner.query(/*sql*/ `
-      ALTER TABLE resource_shares ADD CONSTRAINT fk_resource_shares_user
+      ALTER TABLE resource_shares ADD CONSTRAINT fk_resource_shares_users
       FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION;
     `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(/*sql*/ `
-      ALTER TABLE resource_shares DROP CONSTRAINT fk_resource_shares_user;
+      ALTER TABLE resource_shares DROP CONSTRAINT fk_resource_shares_users;
     `);
 
     await queryRunner.query(/*sql*/ `
-      ALTER TABLE resource_shares DROP CONSTRAINT fk_resource_shares_resource;
+      ALTER TABLE resource_shares DROP CONSTRAINT fk_resource_shares_resources;
     `);
 
     await queryRunner.query(/*sql*/ `

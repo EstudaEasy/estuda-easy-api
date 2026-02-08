@@ -14,7 +14,7 @@ export class UserSessionModel implements IUserSession {
   userId: number;
 
   @ManyToOne(() => UserModel, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'user_id', foreignKeyConstraintName: 'fk_user_sessions_user_id' })
+  @JoinColumn({ name: 'user_id', foreignKeyConstraintName: 'fk_user_sessions_users' })
   user?: UserModel;
 
   @Column({ name: 'ip_address', type: 'inet' })

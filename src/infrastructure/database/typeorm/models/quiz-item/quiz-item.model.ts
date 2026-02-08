@@ -23,7 +23,7 @@ export class QuizItemModel implements IQuizItem {
   quizId: string;
 
   @ManyToOne(() => QuizModel, (quiz) => quiz.items, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'quiz_id', foreignKeyConstraintName: 'fk_quiz_items_quiz_id' })
+  @JoinColumn({ name: 'quiz_id', foreignKeyConstraintName: 'fk_quiz_items_quizzes' })
   quiz?: QuizModel;
 
   @Column({ name: 'question', type: 'varchar' })
