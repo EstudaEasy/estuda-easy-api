@@ -1,9 +1,10 @@
+import { IDeck } from '../deck/deck.interface';
 import { IQuiz } from '../quiz/quiz.interface';
 import { IResourceShare } from '../resource-share/resource-share.interface';
 import { IUser } from '../user/user.interface';
 
 export enum ResourceType {
-  COLLECTION = 'collection',
+  DECK = 'deck',
   DIARY = 'diary',
   QUIZ = 'quiz',
   TASK = 'task',
@@ -15,6 +16,7 @@ export interface IResource {
   type: ResourceType;
   userId: number;
   user?: IUser;
+  deck?: IDeck;
   quiz?: IQuiz;
   shares?: IResourceShare[];
   createdAt: Date;
