@@ -5,7 +5,7 @@ export class CreateResourcesTable1770091793247 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(/*sql*/ `
-      CREATE TYPE resources_type_enum AS ENUM('collection', 'diary', 'quiz', 'task', 'whiteboard')
+      CREATE TYPE resources_type_enum AS ENUM('deck', 'diary', 'quiz', 'task', 'whiteboard')
     `);
 
     await queryRunner.query(/*sql*/ `
@@ -20,14 +20,14 @@ export class CreateResourcesTable1770091793247 implements MigrationInterface {
     `);
 
     await queryRunner.query(/*sql*/ `
-      ALTER TABLE resources ADD CONSTRAINT fk_resources_user
+      ALTER TABLE resources ADD CONSTRAINT fk_resources_users
       FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION;
     `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(/*sql*/ `
-      ALTER TABLE resources DROP CONSTRAINT fk_resources_user;
+      ALTER TABLE resources DROP CONSTRAINT fk_resources_users;
     `);
 
     await queryRunner.query(/*sql*/ `

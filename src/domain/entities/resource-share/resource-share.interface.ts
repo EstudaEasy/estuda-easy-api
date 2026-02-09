@@ -10,7 +10,7 @@ export enum SharePermission {
 export interface IResourceShare {
   id: number;
   permission: SharePermission;
-  resourceId: number;
+  resourceId: string;
   resource?: IResource;
   userId: number;
   user?: IUser;

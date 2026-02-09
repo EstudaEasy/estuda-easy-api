@@ -13,7 +13,7 @@ export class QuizOptionModel implements IQuizOption {
   quizItemId: number;
 
   @ManyToOne(() => QuizItemModel, (quizItem) => quizItem.options, { onDelete: 'CASCADE', orphanedRowAction: 'delete' })
-  @JoinColumn({ name: 'quiz_item_id', foreignKeyConstraintName: 'fk_quiz_options_quiz_item_id' })
+  @JoinColumn({ name: 'quiz_item_id', foreignKeyConstraintName: 'fk_quiz_options_quiz_items' })
   quizItem?: QuizItemModel;
 
   @Column({ name: 'text', type: 'varchar' })

@@ -19,14 +19,14 @@ export class CreateQuizItemTable1770091820312 implements MigrationInterface {
     `);
 
     await queryRunner.query(/*sql*/ `
-      ALTER TABLE quiz_items ADD CONSTRAINT fk_quiz_items_quiz_id 
+      ALTER TABLE quiz_items ADD CONSTRAINT fk_quiz_items_quizzes 
       FOREIGN KEY (quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE ON UPDATE NO ACTION;
     `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(/*sql*/ `
-      ALTER TABLE quiz_items DROP CONSTRAINT fk_quiz_items_quiz_id;
+      ALTER TABLE quiz_items DROP CONSTRAINT fk_quiz_items_quizzes;
     `);
 
     await queryRunner.query(/*sql*/ `

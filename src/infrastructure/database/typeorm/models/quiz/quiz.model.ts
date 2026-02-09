@@ -29,7 +29,7 @@ export class QuizModel implements IQuiz {
   resourceId: string;
 
   @OneToOne(() => ResourceModel, (resource) => resource.quiz, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'resource_id', foreignKeyConstraintName: 'fk_quizzes_resource' })
+  @JoinColumn({ name: 'resource_id', foreignKeyConstraintName: 'fk_quizzes_resources' })
   resource?: ResourceModel;
 
   @OneToMany(() => QuizItemModel, (quizItem) => quizItem.quiz)

@@ -27,14 +27,14 @@ export class GroupMemberModel implements IGroupMember {
   groupId: string;
 
   @ManyToOne(() => GroupModel, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'group_id', foreignKeyConstraintName: 'fk_group_members_group' })
+  @JoinColumn({ name: 'group_id', foreignKeyConstraintName: 'fk_group_members_groups' })
   group?: GroupModel;
 
   @Column({ name: 'user_id', type: 'int' })
   userId: number;
 
   @ManyToOne(() => UserModel, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'user_id', foreignKeyConstraintName: 'fk_group_members_user' })
+  @JoinColumn({ name: 'user_id', foreignKeyConstraintName: 'fk_group_members_users' })
   user?: UserModel;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })

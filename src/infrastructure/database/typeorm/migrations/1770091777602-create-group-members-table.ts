@@ -22,23 +22,23 @@ export class CreateGroupMembersTable1770091777602 implements MigrationInterface 
     `);
 
     await queryRunner.query(/*sql*/ `
-      ALTER TABLE group_members ADD CONSTRAINT fk_group_members_group
+      ALTER TABLE group_members ADD CONSTRAINT fk_group_members_groups
       FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE ON UPDATE NO ACTION;
     `);
 
     await queryRunner.query(/*sql*/ `
-      ALTER TABLE group_members ADD CONSTRAINT fk_group_members_user
+      ALTER TABLE group_members ADD CONSTRAINT fk_group_members_users
       FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION;
     `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(/*sql*/ `
-      ALTER TABLE group_members DROP CONSTRAINT fk_group_members_user;
+      ALTER TABLE group_members DROP CONSTRAINT fk_group_members_users;
     `);
 
     await queryRunner.query(/*sql*/ `
-      ALTER TABLE group_members DROP CONSTRAINT fk_group_members_group;
+      ALTER TABLE group_members DROP CONSTRAINT fk_group_members_groups;
     `);
 
     await queryRunner.query(/*sql*/ `

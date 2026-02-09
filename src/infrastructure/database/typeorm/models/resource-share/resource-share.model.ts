@@ -21,18 +21,18 @@ export class ResourceShareModel implements IResourceShare {
   @Column({ type: 'enum', enum: SharePermission, name: 'permission', enumName: 'share_permission_enum' })
   permission: SharePermission;
 
-  @Column({ name: 'resource_id', type: 'int' })
-  resourceId: number;
+  @Column({ name: 'resource_id', type: 'uuid' })
+  resourceId: string;
 
   @ManyToOne(() => ResourceModel, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'resource_id', foreignKeyConstraintName: 'fk_resource_shares_resource' })
+  @JoinColumn({ name: 'resource_id', foreignKeyConstraintName: 'fk_resource_shares_resources' })
   resource?: ResourceModel;
 
   @Column({ name: 'user_id', type: 'int' })
   userId: number;
 
   @ManyToOne(() => UserModel, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'user_id', foreignKeyConstraintName: 'fk_resource_shares_user' })
+  @JoinColumn({ name: 'user_id', foreignKeyConstraintName: 'fk_resource_shares_users' })
   user?: UserModel;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })

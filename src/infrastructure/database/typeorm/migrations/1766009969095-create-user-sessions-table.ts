@@ -20,14 +20,14 @@ export class CreateUserSessionsTable1766009969095 implements MigrationInterface 
     `);
 
     await queryRunner.query(/*sql*/ `
-      ALTER TABLE user_sessions ADD CONSTRAINT fk_user_sessions_user_id 
+      ALTER TABLE user_sessions ADD CONSTRAINT fk_user_sessions_users 
       FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION
     `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(/*sql*/ `
-      ALTER TABLE user_sessions DROP CONSTRAINT fk_user_sessions_user_id
+      ALTER TABLE user_sessions DROP CONSTRAINT fk_user_sessions_users
     `);
 
     await queryRunner.query(/*sql*/ `

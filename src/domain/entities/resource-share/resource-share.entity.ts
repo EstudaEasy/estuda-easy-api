@@ -10,7 +10,7 @@ export class ResourceShareEntity implements IResourceShare {
 
   id: number;
   permission: SharePermission;
-  resourceId: number;
+  resourceId: string;
   resource?: ResourceEntity;
   userId: number;
   user?: UserEntity;
