@@ -5,7 +5,7 @@ export class CreateResourcesTable1770091793247 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(/*sql*/ `
-      CREATE TYPE resources_type_enum AS ENUM('collection', 'diary', 'quiz', 'task', 'whiteboard')
+      CREATE TYPE resources_type_enum AS ENUM('deck', 'diary', 'quiz', 'task', 'whiteboard')
     `);
 
     await queryRunner.query(/*sql*/ `

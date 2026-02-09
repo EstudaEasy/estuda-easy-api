@@ -12,6 +12,7 @@ import {
 
 import { IResource, ResourceType } from '@domain/entities/resource/resource.interface';
 
+import { DeckModel } from '../deck/deck.model';
 import { QuizModel } from '../quiz/quiz.model';
 import { ResourceShareModel } from '../resource-share/resource-share.model';
 import { UserModel } from '../user/user.model';
@@ -30,6 +31,9 @@ export class ResourceModel implements IResource {
   @ManyToOne(() => UserModel, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'user_id', foreignKeyConstraintName: 'fk_resources_users' })
   user?: UserModel;
+
+  @OneToOne(() => DeckModel, (deck) => deck.resource)
+  deck?: DeckModel;
 
   @OneToOne(() => QuizModel, (quiz) => quiz.resource)
   quiz?: QuizModel;
