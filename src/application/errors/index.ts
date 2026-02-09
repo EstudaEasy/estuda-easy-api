@@ -3,6 +3,8 @@ import { HttpException } from '@nestjs/common';
 import { Lang } from '@core/types';
 
 import auth, { ErrorCode as AuthErrorCodes } from './auth/auth.errors';
+import deck, { ErrorCode as DeckErrorCodes } from './deck/deck.errors';
+import flashcard, { ErrorCode as FlashcardErrorCodes } from './flashcard/flashcard.errors';
 import group, { ErrorCode as GroupErrorCodes } from './group/group.errors';
 import groupMember, { ErrorCode as GroupMemberErrorCodes } from './group-member/group-member.errors';
 import quiz, { ErrorCode as QuizErrorCodes } from './quiz/quiz.errors';
@@ -12,6 +14,8 @@ import user, { ErrorCode as UserErrorCodes } from './user/user.errors';
 
 export {
   AuthErrorCodes,
+  DeckErrorCodes,
+  FlashcardErrorCodes,
   GroupErrorCodes,
   GroupMemberErrorCodes,
   QuizErrorCodes,
@@ -22,6 +26,8 @@ export {
 
 export const errors = {
   ...auth,
+  ...deck,
+  ...flashcard,
   ...group,
   ...groupMember,
   ...resource,
