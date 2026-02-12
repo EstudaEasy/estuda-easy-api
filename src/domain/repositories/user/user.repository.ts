@@ -1,9 +1,10 @@
-import { IUser, RelationsUser } from '@domain/entities/user/user.interface';
+import { IUser } from '@domain/entities/user/user.interface';
 import { DomainFilter } from '@shared/types';
 
 export type CreateUser = Omit<IUser, 'id' | 'role' | 'createdAt' | 'updatedAt'>;
 export type UpdateUser = Partial<Omit<CreateUser, 'email'>>;
 export type FilterUser = DomainFilter<IUser> | DomainFilter<IUser>[];
+export type RelationsUser = object;
 
 export const USER_REPOSITORY_TOKEN = 'UserRepositoryToken';
 

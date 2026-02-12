@@ -10,6 +10,7 @@ import groupMember, { ErrorCode as GroupMemberErrorCodes } from './group-member/
 import quiz, { ErrorCode as QuizErrorCodes } from './quiz/quiz.errors';
 import quizItem, { ErrorCode as QuizItemErrorCodes } from './quiz-item/quiz-item.errors';
 import resource, { ErrorCode as ResourceErrorCodes } from './resource/resource.errors';
+import task, { ErrorCode as TaskErrorCodes } from './task/task.errors';
 import user, { ErrorCode as UserErrorCodes } from './user/user.errors';
 
 export {
@@ -21,6 +22,7 @@ export {
   QuizErrorCodes,
   QuizItemErrorCodes,
   ResourceErrorCodes,
+  TaskErrorCodes,
   UserErrorCodes
 };
 
@@ -33,6 +35,7 @@ export const errors = {
   ...resource,
   ...quiz,
   ...quizItem,
+  ...task,
   ...user
 };
 
