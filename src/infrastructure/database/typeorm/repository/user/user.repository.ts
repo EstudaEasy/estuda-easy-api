@@ -3,12 +3,12 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
-import { RelationsUser } from '@domain/entities/user/user.interface';
 import {
   CreateUser,
   FilterUser,
   IUserRepository,
   UpdateUser,
+  RelationsUser,
   USER_REPOSITORY_TOKEN
 } from '@domain/repositories/user/user.repository';
 

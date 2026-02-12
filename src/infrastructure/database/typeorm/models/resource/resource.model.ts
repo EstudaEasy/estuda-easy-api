@@ -15,6 +15,7 @@ import { IResource, ResourceType } from '@domain/entities/resource/resource.inte
 import { DeckModel } from '../deck/deck.model';
 import { QuizModel } from '../quiz/quiz.model';
 import { ResourceShareModel } from '../resource-share/resource-share.model';
+import { TaskModel } from '../task/task.model';
 import { UserModel } from '../user/user.model';
 
 @Entity({ name: 'resources' })
@@ -37,6 +38,9 @@ export class ResourceModel implements IResource {
 
   @OneToOne(() => QuizModel, (quiz) => quiz.resource)
   quiz?: QuizModel;
+
+  @OneToOne(() => TaskModel, (task) => task.resource)
+  task?: TaskModel;
 
   @OneToMany(() => ResourceShareModel, (share) => share.resource)
   shares?: ResourceShareModel[];
