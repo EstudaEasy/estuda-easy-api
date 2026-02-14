@@ -3,6 +3,7 @@ import { IQuiz } from '../quiz/quiz.interface';
 import { IResourceShare } from '../resource-share/resource-share.interface';
 import { ITask } from '../task/task.interface';
 import { IUser } from '../user/user.interface';
+import { IWhiteboard } from '../whiteboard/whiteboard.interface';
 
 export enum ResourceType {
   DECK = 'deck',
@@ -20,6 +21,7 @@ export interface IResource {
   deck?: IDeck;
   quiz?: IQuiz;
   task?: ITask;
+  whiteboard?: IWhiteboard;
   shares?: IResourceShare[];
   createdAt: Date;
   updatedAt: Date;
