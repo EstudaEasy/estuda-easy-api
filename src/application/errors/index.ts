@@ -12,7 +12,6 @@ import quizItem, { ErrorCode as QuizItemErrorCodes } from './quiz-item/quiz-item
 import resource, { ErrorCode as ResourceErrorCodes } from './resource/resource.errors';
 import task, { ErrorCode as TaskErrorCodes } from './task/task.errors';
 import user, { ErrorCode as UserErrorCodes } from './user/user.errors';
-import whiteboard, { ErrorCode as WhiteboardErrorCodes } from './whiteboard/whiteboard.errors';
 
 export {
   AuthErrorCodes,
@@ -24,8 +23,7 @@ export {
   QuizItemErrorCodes,
   ResourceErrorCodes,
   TaskErrorCodes,
-  UserErrorCodes,
-  WhiteboardErrorCodes
+  UserErrorCodes
 };
 
 export const errors = {
@@ -38,7 +36,6 @@ export const errors = {
   ...quiz,
   ...quizItem,
   ...task,
-  ...whiteboard,
   ...user
 };
 

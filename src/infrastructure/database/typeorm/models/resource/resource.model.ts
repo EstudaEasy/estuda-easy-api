@@ -17,7 +17,6 @@ import { QuizModel } from '../quiz/quiz.model';
 import { ResourceShareModel } from '../resource-share/resource-share.model';
 import { TaskModel } from '../task/task.model';
 import { UserModel } from '../user/user.model';
-import { WhiteboardModel } from '../whiteboard/whiteboard.model';
 
 @Entity({ name: 'resources' })
 export class ResourceModel implements IResource {
@@ -42,9 +41,6 @@ export class ResourceModel implements IResource {
 
   @OneToOne(() => TaskModel, (task) => task.resource)
   task?: TaskModel;
-
-  @OneToOne(() => WhiteboardModel, (whiteboard) => whiteboard.resource)
-  whiteboard?: WhiteboardModel;
 
   @OneToMany(() => ResourceShareModel, (share) => share.resource)
   shares?: ResourceShareModel[];
