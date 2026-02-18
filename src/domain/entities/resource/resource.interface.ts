@@ -1,4 +1,5 @@
 import { IDeck } from '../deck/deck.interface';
+import { IDiary } from '../diary/diary.interface';
 import { IQuiz } from '../quiz/quiz.interface';
 import { IResourceShare } from '../resource-share/resource-share.interface';
 import { ITask } from '../task/task.interface';
@@ -19,6 +20,7 @@ export interface IResource {
   userId: number;
   user?: IUser;
   deck?: IDeck;
+  diary?: IDiary;
   quiz?: IQuiz;
   task?: ITask;
   whiteboard?: IWhiteboard;
