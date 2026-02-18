@@ -13,6 +13,7 @@ import {
 import { IResource, ResourceType } from '@domain/entities/resource/resource.interface';
 
 import { DeckModel } from '../deck/deck.model';
+import { DiaryModel } from '../diary/diary.model';
 import { QuizModel } from '../quiz/quiz.model';
 import { ResourceShareModel } from '../resource-share/resource-share.model';
 import { TaskModel } from '../task/task.model';
@@ -36,6 +37,9 @@ export class ResourceModel implements IResource {
 
   @OneToOne(() => DeckModel, (deck) => deck.resource)
   deck?: DeckModel;
+
+  @OneToOne(() => DiaryModel, (diary) => diary.resource)
+  diary?: DiaryModel;
 
   @OneToOne(() => QuizModel, (quiz) => quiz.resource)
   quiz?: QuizModel;
