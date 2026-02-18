@@ -4,6 +4,7 @@ import { Lang } from '@core/types';
 
 import auth, { ErrorCode as AuthErrorCodes } from './auth/auth.errors';
 import deck, { ErrorCode as DeckErrorCodes } from './deck/deck.errors';
+import diary, { ErrorCode as DiaryErrorCodes } from './diary/diary.errors';
 import flashcard, { ErrorCode as FlashcardErrorCodes } from './flashcard/flashcard.errors';
 import group, { ErrorCode as GroupErrorCodes } from './group/group.errors';
 import groupMember, { ErrorCode as GroupMemberErrorCodes } from './group-member/group-member.errors';
@@ -17,6 +18,7 @@ import whiteboard, { ErrorCode as WhiteboardErrorCodes } from './whiteboard/whit
 export {
   AuthErrorCodes,
   DeckErrorCodes,
+  DiaryErrorCodes,
   FlashcardErrorCodes,
   GroupErrorCodes,
   GroupMemberErrorCodes,
@@ -31,6 +33,7 @@ export {
 export const errors = {
   ...auth,
   ...deck,
+  ...diary,
   ...flashcard,
   ...group,
   ...groupMember,
