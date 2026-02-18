@@ -9,13 +9,13 @@ import {
   IGroupMemberRepository
 } from '@domain/repositories/group-member/group-member.repository';
 
-type JoinGroupInput = {
+type AddGroupMemberInput = {
   inviteCode: string;
   userId: number;
 };
 
 @Injectable()
-export class JoinGroupUseCase {
+export class AddGroupMemberUseCase {
   constructor(
     @Inject(GROUP_REPOSITORY_TOKEN)
     private readonly groupRepository: IGroupRepository,
@@ -23,7 +23,7 @@ export class JoinGroupUseCase {
     private readonly groupMemberRepository: IGroupMemberRepository
   ) {}
 
-  async execute(input: JoinGroupInput): Promise<GroupMemberEntity> {
+  async execute(input: AddGroupMemberInput): Promise<GroupMemberEntity> {
     const { inviteCode, userId } = input;
 
     const group = await this.groupRepository.findOne({ inviteCode });

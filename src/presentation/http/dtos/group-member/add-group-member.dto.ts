@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString, Length } from 'class-validator';
 
-export class JoinGroupBodyDTO {
+export class AddGroupMemberBodyDTO {
   @ApiProperty({
     description: 'Código de convite do grupo',
     example: 'ABC12345',

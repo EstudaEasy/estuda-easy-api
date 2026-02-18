@@ -8,6 +8,7 @@ import {
   HttpStatus,
   Param,
   Patch,
+  Post,
   Query,
   SerializeOptions,
   UseInterceptors
@@ -18,9 +19,12 @@ import {
   ApiOkResponse,
   ApiNotFoundResponse,
   ApiNoContentResponse,
-  ApiForbiddenResponse
+  ApiForbiddenResponse,
+  ApiCreatedResponse,
+  ApiConflictResponse
 } from '@nestjs/swagger';
 
+import { AddGroupMemberUseCase } from '@application/use-cases/group-member/add-group-member.use-case';
 import { ChangeMemberRoleUseCase } from '@application/use-cases/group-member/change-member-role.use-case';
 import { FindGroupMembersUseCase } from '@application/use-cases/group-member/find-group-members.use-case';
 import { FindOneGroupMemberUseCase } from '@application/use-cases/group-member/find-one-group-member.use-case';
@@ -29,6 +33,7 @@ import { Auth } from '@presentation/http/decorators/auth.decorator';
 import { User } from '@presentation/http/decorators/user.decorator';
 
 import {
+  AddGroupMemberBodyDTO,
   ChangeMemberRoleBodyDTO,
   ChangeMemberRoleParamsDTO,
   FindGroupMembersParamsDTO,
@@ -45,11 +50,22 @@ import {
 @UseInterceptors(ClassSerializerInterceptor)
 export class GroupMemberController {
   constructor(
+    private readonly addGroupMemberUseCase: AddGroupMemberUseCase,
     private readonly findGroupMembersUseCase: FindGroupMembersUseCase,
     private readonly findOneGroupMemberUseCase: FindOneGroupMemberUseCase,
     private readonly changeMemberRoleUseCase: ChangeMemberRoleUseCase,
     private readonly removeGroupMemberUseCase: RemoveGroupMemberUseCase
   ) {}
+
+  @Post()
+  @SerializeOptions({ type: GroupMemberResponseDTO })
+  @ApiOperation({ summary: 'Adicionar membro de grupo através do código de convite' })
+  @ApiCreatedResponse({ description: 'Membro adicionado no grupo com sucesso', type: GroupMemberResponseDTO })
+  @ApiNotFoundResponse({ description: 'Código de convite inválido' })
+  @ApiConflictResponse({ description: 'Usuário já é membro do grupo' })
+  async add(@User('id') userId: number, @Body() data: AddGroupMemberBodyDTO): Promise<GroupMemberResponseDTO> {
+    return await this.addGroupMemberUseCase.execute({ inviteCode: data.inviteCode, userId });
+  }
 
   @Get()
   @SerializeOptions({ type: FindGroupMembersResponseDTO })

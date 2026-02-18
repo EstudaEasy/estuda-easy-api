@@ -7,10 +7,10 @@ import { GroupMemberRole } from '@domain/entities/group-member/group-member.inte
 import { GROUP_REPOSITORY_TOKEN } from '@domain/repositories/group/group.repository';
 import { GROUP_MEMBER_REPOSITORY_TOKEN } from '@domain/repositories/group-member/group-member.repository';
 
-import { JoinGroupUseCase } from '../join-group.use-case';
+import { AddGroupMemberUseCase } from '../add-group-member.use-case';
 
-describe('Use Cases -> Group -> Join', () => {
-  let joinGroupUseCase: JoinGroupUseCase;
+describe('Use Cases -> Group Member -> Add', () => {
+  let addGroupMemberUseCase: AddGroupMemberUseCase;
 
   const group = new GroupMock();
   const userId = 1;
@@ -33,7 +33,7 @@ describe('Use Cases -> Group -> Join', () => {
   beforeAll(async () => {
     const module = await Test.createTestingModule({
       providers: [
-        JoinGroupUseCase,
+        AddGroupMemberUseCase,
         {
           provide: GROUP_REPOSITORY_TOKEN,
           useValue: groupRepositoryMock
@@ -45,7 +45,7 @@ describe('Use Cases -> Group -> Join', () => {
       ]
     }).compile();
 
-    joinGroupUseCase = module.get<JoinGroupUseCase>(JoinGroupUseCase);
+    addGroupMemberUseCase = module.get<AddGroupMemberUseCase>(AddGroupMemberUseCase);
   });
 
   afterEach(() => jest.clearAllMocks());
@@ -60,7 +60,7 @@ describe('Use Cases -> Group -> Join', () => {
       userId
     };
 
-    const result = await joinGroupUseCase.execute(input);
+    const result = await addGroupMemberUseCase.execute(input);
 
     expect(groupRepositoryMock.findOne).toHaveBeenCalledWith({ inviteCode: input.inviteCode });
     expect(groupMemberRepositoryMock.findOne).toHaveBeenCalledWith({ groupId: group.id, userId });
@@ -80,7 +80,7 @@ describe('Use Cases -> Group -> Join', () => {
       userId
     };
 
-    await expect(joinGroupUseCase.execute(input)).rejects.toThrow(new Exception(GroupErrorCodes.NOT_FOUND));
+    await expect(addGroupMemberUseCase.execute(input)).rejects.toThrow(new Exception(GroupErrorCodes.NOT_FOUND));
     expect(groupMemberRepositoryMock.findOne).not.toHaveBeenCalled();
     expect(groupMemberRepositoryMock.create).not.toHaveBeenCalled();
   });
@@ -100,7 +100,9 @@ describe('Use Cases -> Group -> Join', () => {
       userId
     };
 
-    await expect(joinGroupUseCase.execute(input)).rejects.toThrow(new Exception(GroupMemberErrorCodes.ALREADY_MEMBER));
+    await expect(addGroupMemberUseCase.execute(input)).rejects.toThrow(
+      new Exception(GroupMemberErrorCodes.ALREADY_MEMBER)
+    );
     expect(groupMemberRepositoryMock.create).not.toHaveBeenCalled();
   });
 });

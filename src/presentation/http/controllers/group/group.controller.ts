@@ -20,7 +20,6 @@ import {
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiNoContentResponse,
-  ApiConflictResponse,
   ApiForbiddenResponse
 } from '@nestjs/swagger';
 
@@ -28,7 +27,6 @@ import { CreateGroupUseCase } from '@application/use-cases/group/create-group.us
 import { DeleteGroupUseCase } from '@application/use-cases/group/delete-group.use-case';
 import { FindGroupsUseCase } from '@application/use-cases/group/find-groups.use-case';
 import { FindOneGroupUseCase } from '@application/use-cases/group/find-one-group.use-case';
-import { JoinGroupUseCase } from '@application/use-cases/group/join-group.use-case';
 import { ResetGroupInviteCodeUseCase } from '@application/use-cases/group/reset-group-invite-code.use-case';
 import { UpdateGroupUseCase } from '@application/use-cases/group/update-group.use-case';
 import { Auth } from '@presentation/http/decorators/auth.decorator';
@@ -41,12 +39,10 @@ import {
   FindGroupResponseDTO,
   FindOneGroupParamsDTO,
   GroupResponseDTO,
-  JoinGroupBodyDTO,
   ResetGroupInviteCodeParamsDTO,
   UpdateGroupBodyDTO,
   UpdateGroupParamsDTO
 } from '../../dtos/group';
-import { GroupMemberResponseDTO } from '../../dtos/group-member';
 
 @Auth()
 @ApiTags('Grupos')
@@ -59,8 +55,7 @@ export class GroupController {
     private readonly findOneGroupUseCase: FindOneGroupUseCase,
     private readonly updateGroupUseCase: UpdateGroupUseCase,
     private readonly deleteGroupUseCase: DeleteGroupUseCase,
-    private readonly resetGroupInviteCodeUseCase: ResetGroupInviteCodeUseCase,
-    private readonly joinGroupUseCase: JoinGroupUseCase
+    private readonly resetGroupInviteCodeUseCase: ResetGroupInviteCodeUseCase
   ) {}
 
   @Post()
@@ -113,16 +108,6 @@ export class GroupController {
     @Param() params: ResetGroupInviteCodeParamsDTO
   ): Promise<GroupResponseDTO> {
     return await this.resetGroupInviteCodeUseCase.execute({ filters: { id: params.groupId }, userId });
-  }
-
-  @Post('join')
-  @SerializeOptions({ type: GroupMemberResponseDTO })
-  @ApiOperation({ summary: 'Entrar em um grupo através do código de convite' })
-  @ApiCreatedResponse({ description: 'Entrou no grupo com sucesso', type: GroupMemberResponseDTO })
-  @ApiNotFoundResponse({ description: 'Código de convite inválido' })
-  @ApiConflictResponse({ description: 'Usuário já é membro do grupo' })
-  async join(@User('id') userId: number, @Body() data: JoinGroupBodyDTO): Promise<GroupMemberResponseDTO> {
-    return await this.joinGroupUseCase.execute({ inviteCode: data.inviteCode, userId });
   }
 
   @Delete(':groupId')
