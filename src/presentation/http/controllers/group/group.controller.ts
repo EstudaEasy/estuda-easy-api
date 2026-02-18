@@ -71,6 +71,16 @@ export class GroupController {
     return await this.createGroupUseCase.execute({ data, userId });
   }
 
+  @Post('join')
+  @SerializeOptions({ type: GroupMemberResponseDTO })
+  @ApiOperation({ summary: 'Entrar em um grupo através do código de convite' })
+  @ApiCreatedResponse({ description: 'Entrou no grupo com sucesso', type: GroupMemberResponseDTO })
+  @ApiNotFoundResponse({ description: 'Código de convite inválido' })
+  @ApiConflictResponse({ description: 'Usuário já é membro do grupo' })
+  async join(@User('id') userId: number, @Body() data: JoinGroupBodyDTO): Promise<GroupMemberResponseDTO> {
+    return await this.joinGroupUseCase.execute({ inviteCode: data.inviteCode, userId });
+  }
+
   @Get()
   @SerializeOptions({ type: FindGroupResponseDTO })
   @ApiOperation({ summary: 'Buscar grupos do usuário' })
@@ -113,16 +123,6 @@ export class GroupController {
     @Param() params: ResetGroupInviteCodeParamsDTO
   ): Promise<GroupResponseDTO> {
     return await this.resetGroupInviteCodeUseCase.execute({ filters: { id: params.groupId }, userId });
-  }
-
-  @Post('join')
-  @SerializeOptions({ type: GroupMemberResponseDTO })
-  @ApiOperation({ summary: 'Entrar em um grupo através do código de convite' })
-  @ApiCreatedResponse({ description: 'Entrou no grupo com sucesso', type: GroupMemberResponseDTO })
-  @ApiNotFoundResponse({ description: 'Código de convite inválido' })
-  @ApiConflictResponse({ description: 'Usuário já é membro do grupo' })
-  async join(@User('id') userId: number, @Body() data: JoinGroupBodyDTO): Promise<GroupMemberResponseDTO> {
-    return await this.joinGroupUseCase.execute({ inviteCode: data.inviteCode, userId });
   }
 
   @Delete(':groupId')

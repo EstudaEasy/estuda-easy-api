@@ -19,8 +19,8 @@ import { UpdateGroupUseCase } from './update-group.use-case';
     FindOneGroupUseCase,
     UpdateGroupUseCase,
     DeleteGroupUseCase,
-    ResetGroupInviteCodeUseCase,
-    JoinGroupUseCase
+    JoinGroupUseCase,
+    ResetGroupInviteCodeUseCase
   ],
   exports: [
     CreateGroupUseCase,
@@ -28,8 +28,8 @@ import { UpdateGroupUseCase } from './update-group.use-case';
     FindOneGroupUseCase,
     UpdateGroupUseCase,
     DeleteGroupUseCase,
-    ResetGroupInviteCodeUseCase,
-    JoinGroupUseCase
+    JoinGroupUseCase,
+    ResetGroupInviteCodeUseCase
   ]
 })
 export class GroupUseCasesModule {}
