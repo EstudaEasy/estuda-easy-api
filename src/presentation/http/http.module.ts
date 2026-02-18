@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 
 import { AuthModule } from './controllers/auth/auth.module';
+import { DeckModule } from './controllers/deck/deck.module';
+import { FlashcardModule } from './controllers/flashcard/flashcard.module';
 import { GroupModule } from './controllers/group/group.module';
 import { GroupMemberModule } from './controllers/group-member/group-member.module';
 import { QuizModule } from './controllers/quiz/quiz.module';
@@ -12,6 +14,8 @@ import { WhiteboardModule } from './controllers/whiteboard/whiteboard.module';
 @Module({
   imports: [
     AuthModule,
+    DeckModule,
+    FlashcardModule,
     GroupModule,
     GroupMemberModule,
     QuizModule,
