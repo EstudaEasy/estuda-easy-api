@@ -27,7 +27,6 @@ import { DeleteFlashcardUseCase } from '@application/use-cases/flashcard/delete-
 import { FindFlashcardsUseCase } from '@application/use-cases/flashcard/find-flashcards.use-case';
 import { FindOneFlashcardUseCase } from '@application/use-cases/flashcard/find-one-flashcard.use-case';
 import { UpdateFlashcardUseCase } from '@application/use-cases/flashcard/update-flashcard.use-case';
-import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
 import { Auth } from '@presentation/http/decorators/auth.decorator';
 import { ResourcePermission } from '@presentation/http/decorators/resource-permission.decorator';
 
@@ -58,7 +57,7 @@ export class FlashcardController {
   ) {}
 
   @Post()
-  @ResourcePermission([SharePermission.EDIT, SharePermission.ADMIN], 'deckId')
+  @ResourcePermission({ param: 'deckId', type: 'deck', permissions: ['edit', 'admin'] })
   @SerializeOptions({ type: FlashcardResponseDTO })
   @ApiOperation({ summary: 'Criar um novo flashcard' })
   @ApiCreatedResponse({ description: 'Flashcard criado com sucesso', type: FlashcardResponseDTO })
@@ -94,7 +93,7 @@ export class FlashcardController {
   }
 
   @Patch(':flashcardId')
-  @ResourcePermission([SharePermission.EDIT, SharePermission.ADMIN], 'deckId')
+  @ResourcePermission({ param: 'deckId', type: 'deck', permissions: ['edit', 'admin'] })
   @SerializeOptions({ type: FlashcardResponseDTO })
   @ApiOperation({ summary: 'Atualizar um flashcard' })
   @ApiOkResponse({ description: 'Flashcard atualizado com sucesso', type: FlashcardResponseDTO })
@@ -110,7 +109,7 @@ export class FlashcardController {
   }
 
   @Delete(':flashcardId')
-  @ResourcePermission([SharePermission.EDIT, SharePermission.ADMIN], 'deckId')
+  @ResourcePermission({ param: 'deckId', type: 'deck', permissions: ['edit', 'admin'] })
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Deletar um flashcard' })
   @ApiNoContentResponse({ description: 'Flashcard deletado com sucesso' })

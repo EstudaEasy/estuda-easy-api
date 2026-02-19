@@ -37,54 +37,61 @@ describe('Services -> Resource -> Permission', () => {
 
   describe('verifyOrThrow', () => {
     it('should pass when user is the owner', async () => {
-      resourceRepositoryMock.findOne.mockResolvedValue(resource);
+      const ownerResource = new ResourceMock({ userId: user.id });
+      resourceRepositoryMock.findOne.mockResolvedValue(ownerResource);
 
       await expect(
-        resourcePermissionService.verifyOrThrow(resource.id, user.id, [SharePermission.READ])
+        resourcePermissionService.verifyOrThrow(ownerResource.id, user.id, ownerResource.type, [SharePermission.READ])
       ).resolves.toBeUndefined();
 
-      expect(resourceRepositoryMock.findOne).toHaveBeenCalledWith([
-        { id: resource.id, userId: user.id },
-        {
-          id: resource.id,
-          shares: { userId: user.id, permission: { operator: FilterOperator.IN, value: [SharePermission.READ] } }
-        }
-      ]);
+      expect(resourceRepositoryMock.findOne).toHaveBeenCalledTimes(1);
+      expect(resourceRepositoryMock.findOne).toHaveBeenCalledWith({ [ownerResource.type]: { id: ownerResource.id } });
     });
 
     it('should pass when user has shared permission', async () => {
-      resourceRepositoryMock.findOne.mockResolvedValue(resource);
-
       const permissions = [SharePermission.EDIT, SharePermission.ADMIN];
+      resourceRepositoryMock.findOne.mockResolvedValueOnce(resource).mockResolvedValueOnce(resource);
 
-      await expect(resourcePermissionService.verifyOrThrow(resource.id, user.id, permissions)).resolves.toBeUndefined();
+      await expect(
+        resourcePermissionService.verifyOrThrow(resource.id, user.id, resource.type, permissions)
+      ).resolves.toBeUndefined();
 
-      expect(resourceRepositoryMock.findOne).toHaveBeenCalledWith([
-        { id: resource.id, userId: user.id },
-        {
-          id: resource.id,
-          shares: { userId: user.id, permission: { operator: FilterOperator.IN, value: permissions } }
-        }
-      ]);
+      expect(resourceRepositoryMock.findOne).toHaveBeenCalledTimes(2);
+      expect(resourceRepositoryMock.findOne).toHaveBeenNthCalledWith(1, { [resource.type]: { id: resource.id } });
+      expect(resourceRepositoryMock.findOne).toHaveBeenNthCalledWith(2, {
+        id: resource.id,
+        shares: { userId: user.id, permission: { operator: FilterOperator.IN, value: permissions } }
+      });
     });
 
     it('should throw when user has no permission', async () => {
-      resourceRepositoryMock.findOne.mockResolvedValue(null);
+      resourceRepositoryMock.findOne.mockResolvedValueOnce(resource).mockResolvedValueOnce(null);
 
       await expect(
-        resourcePermissionService.verifyOrThrow(resource.id, user.id, [SharePermission.READ])
+        resourcePermissionService.verifyOrThrow(resource.id, user.id, resource.type, [SharePermission.READ])
       ).rejects.toThrow(new Exception(ResourceErrorCodes.INSUFFICIENT_PERMISSIONS));
+
+      expect(resourceRepositoryMock.findOne).toHaveBeenCalledTimes(2);
+      expect(resourceRepositoryMock.findOne).toHaveBeenNthCalledWith(1, { [resource.type]: { id: resource.id } });
+      expect(resourceRepositoryMock.findOne).toHaveBeenNthCalledWith(2, {
+        id: resource.id,
+        shares: { userId: user.id, permission: { operator: FilterOperator.IN, value: [SharePermission.READ] } }
+      });
     });
 
-    it('should pass with empty permissions array (owner only)', async () => {
-      resourceRepositoryMock.findOne.mockResolvedValue(resource);
+    it('should pass with empty permissions array', async () => {
+      resourceRepositoryMock.findOne.mockResolvedValue(resource).mockResolvedValueOnce(resource);
 
-      await expect(resourcePermissionService.verifyOrThrow(resource.id, user.id, [])).resolves.toBeUndefined();
+      await expect(
+        resourcePermissionService.verifyOrThrow(resource.id, user.id, resource.type, [])
+      ).resolves.toBeUndefined();
 
-      expect(resourceRepositoryMock.findOne).toHaveBeenCalledWith([
-        { id: resource.id, userId: user.id },
-        { id: resource.id, shares: { userId: user.id, permission: { operator: FilterOperator.IN, value: [] } } }
-      ]);
+      expect(resourceRepositoryMock.findOne).toHaveBeenCalledTimes(2);
+      expect(resourceRepositoryMock.findOne).toHaveBeenCalledWith({ [resource.type]: { id: resource.id } });
+      expect(resourceRepositoryMock.findOne).toHaveBeenCalledWith({
+        id: resource.id,
+        shares: { userId: user.id, permission: undefined }
+      });
     });
   });
 });

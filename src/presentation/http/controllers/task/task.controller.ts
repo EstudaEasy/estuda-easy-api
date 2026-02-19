@@ -27,7 +27,6 @@ import { DeleteTaskUseCase } from '@application/use-cases/task/delete-task.use-c
 import { FindOneTaskUseCase } from '@application/use-cases/task/find-one-task.use-case';
 import { FindTasksUseCase } from '@application/use-cases/task/find-tasks.use-case';
 import { UpdateTaskUseCase } from '@application/use-cases/task/update-task.use-case';
-import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
 import { Auth } from '@presentation/http/decorators/auth.decorator';
 import { ResourcePermission } from '@presentation/http/decorators/resource-permission.decorator';
 import { User } from '@presentation/http/decorators/user.decorator';
@@ -99,7 +98,7 @@ export class TaskController {
   }
 
   @Patch(':taskId')
-  @ResourcePermission([SharePermission.EDIT, SharePermission.ADMIN], 'taskId')
+  @ResourcePermission({ param: 'taskId', type: 'task', permissions: ['edit', 'admin'] })
   @SerializeOptions({ type: TaskResponseDTO })
   @ApiOperation({ summary: 'Atualizar uma tarefa' })
   @ApiOkResponse({ description: 'Tarefa atualizada com sucesso', type: TaskResponseDTO })
@@ -109,7 +108,7 @@ export class TaskController {
   }
 
   @Delete(':taskId')
-  @ResourcePermission([], 'taskId')
+  @ResourcePermission({ param: 'taskId', type: 'task' })
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Deletar uma tarefa' })
   @ApiNoContentResponse({ description: 'Tarefa deletada com sucesso' })

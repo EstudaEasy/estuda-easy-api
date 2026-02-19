@@ -27,7 +27,6 @@ import { DeleteWhiteboardUseCase } from '@application/use-cases/whiteboard/delet
 import { FindOneWhiteboardUseCase } from '@application/use-cases/whiteboard/find-one-whiteboard.use-case';
 import { FindWhiteboardsUseCase } from '@application/use-cases/whiteboard/find-whiteboards.use-case';
 import { UpdateWhiteboardUseCase } from '@application/use-cases/whiteboard/update-whiteboard.use-case';
-import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
 import { Auth } from '@presentation/http/decorators/auth.decorator';
 import { ResourcePermission } from '@presentation/http/decorators/resource-permission.decorator';
 import { User } from '@presentation/http/decorators/user.decorator';
@@ -99,7 +98,7 @@ export class WhiteboardController {
   }
 
   @Patch(':whiteboardId')
-  @ResourcePermission([SharePermission.EDIT, SharePermission.ADMIN], 'whiteboardId')
+  @ResourcePermission({ param: 'whiteboardId', type: 'whiteboard', permissions: ['edit', 'admin'] })
   @SerializeOptions({ type: WhiteboardResponseDTO })
   @ApiOperation({ summary: 'Atualizar um whiteboard' })
   @ApiOkResponse({ description: 'Whiteboard atualizado com sucesso', type: WhiteboardResponseDTO })
@@ -112,7 +111,7 @@ export class WhiteboardController {
   }
 
   @Delete(':whiteboardId')
-  @ResourcePermission([], 'whiteboardId')
+  @ResourcePermission({ param: 'whiteboardId', type: 'whiteboard' })
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Deletar um whiteboard' })
   @ApiNoContentResponse({ description: 'Whiteboard deletado com sucesso' })

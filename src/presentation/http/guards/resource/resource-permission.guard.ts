@@ -3,6 +3,8 @@ import { ModuleRef, Reflector } from '@nestjs/core';
 
 import { AuthenticatedUser } from '@adapters/jwt/strategies/types/authenticated-user.type';
 import { ResourcePermissionService } from '@application/services/resource/resource-permission.service';
+import { ResourceType } from '@domain/entities/resource/resource.interface';
+import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
 import {
   RESOURCE_PERMISSION_KEY,
   ResourcePermissionMetadata
@@ -40,14 +42,20 @@ export class ResourcePermissionGuard implements CanActivate {
     }
 
     const params = request.params;
-    const resourceId = params[metadata.param] as string;
+    const entityId = params[metadata.param] as string;
 
-    if (!resourceId) {
+    if (!entityId) {
       this.logger.warn(`ResourcePermissionGuard: Param '${metadata.param}' not found in route.`);
       return false;
     }
 
-    await this.permissionService.verifyOrThrow(resourceId, user.id, metadata.permissions);
+    await this.permissionService.verifyOrThrow(
+      entityId,
+      user.id,
+      metadata.type as ResourceType,
+      metadata.permissions as SharePermission[]
+    );
+
     return true;
   }
 }

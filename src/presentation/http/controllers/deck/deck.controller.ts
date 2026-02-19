@@ -27,7 +27,6 @@ import { DeleteDeckUseCase } from '@application/use-cases/deck/delete-deck.use-c
 import { FindDecksUseCase } from '@application/use-cases/deck/find-decks.use-case';
 import { FindOneDeckUseCase } from '@application/use-cases/deck/find-one-deck.use-case';
 import { UpdateDeckUseCase } from '@application/use-cases/deck/update-deck.use-case';
-import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
 import { Auth } from '@presentation/http/decorators/auth.decorator';
 import { ResourcePermission } from '@presentation/http/decorators/resource-permission.decorator';
 import { User } from '@presentation/http/decorators/user.decorator';
@@ -99,7 +98,7 @@ export class DeckController {
   }
 
   @Patch(':deckId')
-  @ResourcePermission([SharePermission.EDIT, SharePermission.ADMIN], 'deckId')
+  @ResourcePermission({ param: 'deckId', type: 'deck', permissions: ['edit', 'admin'] })
   @SerializeOptions({ type: DeckResponseDTO })
   @ApiOperation({ summary: 'Atualizar um deck' })
   @ApiOkResponse({ description: 'Deck atualizado com sucesso', type: DeckResponseDTO })
@@ -109,7 +108,7 @@ export class DeckController {
   }
 
   @Delete(':deckId')
-  @ResourcePermission([], 'deckId')
+  @ResourcePermission({ param: 'deckId', type: 'deck' })
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Deletar um deck' })
   @ApiNoContentResponse({ description: 'Deck deletado com sucesso' })

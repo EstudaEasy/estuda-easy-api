@@ -27,7 +27,6 @@ import { DeleteDiaryUseCase } from '@application/use-cases/diary/delete-diary.us
 import { FindDiariesUseCase } from '@application/use-cases/diary/find-diaries.use-case';
 import { FindOneDiaryUseCase } from '@application/use-cases/diary/find-one-diary.use-case';
 import { UpdateDiaryUseCase } from '@application/use-cases/diary/update-diary.use-case';
-import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
 import { Auth } from '@presentation/http/decorators/auth.decorator';
 import { ResourcePermission } from '@presentation/http/decorators/resource-permission.decorator';
 import { User } from '@presentation/http/decorators/user.decorator';
@@ -99,7 +98,7 @@ export class DiaryController {
   }
 
   @Patch(':diaryId')
-  @ResourcePermission([SharePermission.EDIT, SharePermission.ADMIN], 'diaryId')
+  @ResourcePermission({ param: 'diaryId', type: 'diary', permissions: ['edit', 'admin'] })
   @SerializeOptions({ type: DiaryResponseDTO })
   @ApiOperation({ summary: 'Atualizar um diário' })
   @ApiOkResponse({ description: 'Diário atualizado com sucesso', type: DiaryResponseDTO })
@@ -109,7 +108,7 @@ export class DiaryController {
   }
 
   @Delete(':diaryId')
-  @ResourcePermission([], 'diaryId')
+  @ResourcePermission({ param: 'diaryId', type: 'diary' })
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Deletar um diário' })
   @ApiNoContentResponse({ description: 'Diário deletado com sucesso' })

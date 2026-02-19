@@ -27,7 +27,6 @@ import { DeleteQuizUseCase } from '@application/use-cases/quiz/delete-quiz.use-c
 import { FindOneQuizUseCase } from '@application/use-cases/quiz/find-one-quiz.use-case';
 import { FindQuizzesUseCase } from '@application/use-cases/quiz/find-quizzes.use-case';
 import { UpdateQuizUseCase } from '@application/use-cases/quiz/update-quiz.use-case';
-import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
 import { Auth } from '@presentation/http/decorators/auth.decorator';
 import { ResourcePermission } from '@presentation/http/decorators/resource-permission.decorator';
 import { User } from '@presentation/http/decorators/user.decorator';
@@ -99,7 +98,7 @@ export class QuizController {
   }
 
   @Patch(':quizId')
-  @ResourcePermission([SharePermission.EDIT, SharePermission.ADMIN], 'quizId')
+  @ResourcePermission({ param: 'quizId', type: 'quiz', permissions: ['edit', 'admin'] })
   @SerializeOptions({ type: QuizResponseDTO })
   @ApiOperation({ summary: 'Atualizar um quiz' })
   @ApiOkResponse({ description: 'Quiz atualizado com sucesso', type: QuizResponseDTO })
@@ -109,7 +108,7 @@ export class QuizController {
   }
 
   @Delete(':quizId')
-  @ResourcePermission([], 'quizId')
+  @ResourcePermission({ param: 'quizId', type: 'quiz' })
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Deletar um quiz' })
   @ApiNoContentResponse({ description: 'Quiz deletado com sucesso' })

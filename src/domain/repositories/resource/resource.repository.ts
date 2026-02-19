@@ -4,7 +4,15 @@ import { DomainFilter } from '@shared/types';
 export type CreateResource = Pick<IResource, 'type' | 'userId'>;
 export type UpdateResource = Partial<CreateResource>;
 export type FilterResource = DomainFilter<IResource> | DomainFilter<IResource>[];
-export type RelationsResource = { user?: boolean; quiz?: boolean; shares?: boolean };
+export type RelationsResource = {
+  user?: boolean;
+  deck?: boolean;
+  diary?: boolean;
+  quiz?: boolean;
+  task?: boolean;
+  whiteboard?: boolean;
+  shares?: boolean;
+};
 
 export const RESOURCE_REPOSITORY_TOKEN = 'ResourceRepositoryToken';
 
