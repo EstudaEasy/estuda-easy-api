@@ -40,7 +40,7 @@ export class LoginUseCase {
     const { email, password, ipAddress } = input;
 
     const user = await this.userRepository.findOne({ email });
-    const isPasswordValid = user ? compare(password, user?.password ?? '') : false;
+    const isPasswordValid = user ? await compare(password, user?.password ?? '') : false;
 
     if (!user || !isPasswordValid) {
       throw new Exception(AuthErrorCodes.INVALID_CREDENTIALS);

@@ -5,7 +5,9 @@ import { MapErrors } from '../types';
 export enum ErrorCode {
   INVALID_CREDENTIALS = 'AuthInvalidCredentialsError',
   REFRESH_TOKEN_NOT_FOUND = 'AuthRefreshTokenNotFoundError',
-  INVALID_REFRESH_TOKEN = 'AuthInvalidRefreshTokenError'
+  INVALID_REFRESH_TOKEN = 'AuthInvalidRefreshTokenError',
+  INVALID_PASSWORD_RESET_TOKEN = 'AuthInvalidPasswordResetTokenError',
+  PASSWORD_CONFIRMATION_MISMATCH = 'AuthPasswordConfirmationMismatchError'
 }
 
 const errors: MapErrors<ErrorCode> = {
@@ -32,6 +34,22 @@ const errors: MapErrors<ErrorCode> = {
       es_ES: 'Token de actualización inválido'
     },
     status: HttpStatus.UNAUTHORIZED
+  },
+  [ErrorCode.INVALID_PASSWORD_RESET_TOKEN]: {
+    message: {
+      pt_BR: 'Token de redefinição de senha inválido',
+      en_US: 'Invalid password reset token',
+      es_ES: 'Token de restablecimiento de contraseña inválido'
+    },
+    status: HttpStatus.UNAUTHORIZED
+  },
+  [ErrorCode.PASSWORD_CONFIRMATION_MISMATCH]: {
+    message: {
+      pt_BR: 'Confirmação de senha não confere',
+      en_US: 'Password confirmation does not match',
+      es_ES: 'La confirmación de contraseña no coincide'
+    },
+    status: HttpStatus.BAD_REQUEST
   }
 };
 
