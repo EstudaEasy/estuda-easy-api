@@ -7,7 +7,7 @@ import {
   GROUP_MEMBER_REPOSITORY_TOKEN,
   IGroupMemberRepository
 } from '@domain/repositories/group-member/group-member.repository';
-import { Nanoid } from '@shared/utils/nanoid';
+import { Nanoid } from '@shared/utils';
 
 export interface CreateGroupInput {
   data: Omit<CreateGroup, 'inviteCode'>;
