@@ -3,7 +3,14 @@ import { ISendMailOptions } from '@nestjs-modules/mailer';
 export default (userName: string, token: string, expiresInMinutes: number): ISendMailOptions => {
   return {
     subject: 'Redefinição de Senha - EstudaEasy',
-    attachments: [{ cid: 'logo', filename: 'logo.png', path: 'assets/images/logo.png' }],
+    attachments: [
+      {
+        cid: 'logo',
+        filename: 'logo.png',
+        contentDisposition: 'inline',
+        path: 'assets/images/logo.png'
+      }
+    ],
     html: /*html*/ `
     <!doctype html>
     <html>
@@ -116,7 +123,7 @@ export default (userName: string, token: string, expiresInMinutes: number): ISen
             <p>Recebemos uma solicitação de redefinição de senha para sua conta.</p>
             <p>Clique no botão abaixo para redefinir sua senha:</p>
             <div class="button-container">
-              <a href="${process.env.BASE_URL_CLIENT}/forgot-password/${token}" class="btn">
+              <a href="${process.env.BASE_URL_CLIENT}/forgot-password/${token}" class="btn" style="color: #ffffff;">
                 Redefinir a senha
               </a>
             </div>
