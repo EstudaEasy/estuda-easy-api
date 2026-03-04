@@ -98,7 +98,7 @@ export class DeckController {
   }
 
   @Patch(':deckId')
-  @ResourcePermission({ param: 'deckId', type: 'deck', permissions: ['edit', 'admin'] })
+  @ResourcePermission({ param: 'deckId', type: 'deck', permissions: ['edit'] })
   @SerializeOptions({ type: DeckResponseDTO })
   @ApiOperation({ summary: 'Atualizar um deck' })
   @ApiOkResponse({ description: 'Deck atualizado com sucesso', type: DeckResponseDTO })

@@ -98,7 +98,7 @@ export class WhiteboardController {
   }
 
   @Patch(':whiteboardId')
-  @ResourcePermission({ param: 'whiteboardId', type: 'whiteboard', permissions: ['edit', 'admin'] })
+  @ResourcePermission({ param: 'whiteboardId', type: 'whiteboard', permissions: ['edit'] })
   @SerializeOptions({ type: WhiteboardResponseDTO })
   @ApiOperation({ summary: 'Atualizar um whiteboard' })
   @ApiOkResponse({ description: 'Whiteboard atualizado com sucesso', type: WhiteboardResponseDTO })

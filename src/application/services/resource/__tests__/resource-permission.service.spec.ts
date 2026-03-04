@@ -49,7 +49,7 @@ describe('Services -> Resource -> Permission', () => {
     });
 
     it('should pass when user has shared permission', async () => {
-      const permissions = [SharePermission.EDIT, SharePermission.ADMIN];
+      const permissions = [SharePermission.EDIT];
       resourceRepositoryMock.findOne.mockResolvedValueOnce(resource).mockResolvedValueOnce(resource);
 
       await expect(

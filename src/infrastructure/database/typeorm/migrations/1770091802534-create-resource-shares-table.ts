@@ -5,7 +5,7 @@ export class CreateResourceSharesTable1770091802534 implements MigrationInterfac
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(/*sql*/ `
-      CREATE TYPE share_permission_enum AS ENUM('read', 'edit', 'admin')
+      CREATE TYPE share_permission_enum AS ENUM('read', 'edit')
     `);
 
     await queryRunner.query(/*sql*/ `

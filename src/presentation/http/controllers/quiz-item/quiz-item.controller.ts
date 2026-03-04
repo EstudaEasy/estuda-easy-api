@@ -57,7 +57,7 @@ export class QuizItemController {
   ) {}
 
   @Post()
-  @ResourcePermission({ param: 'quizId', type: 'quiz', permissions: ['edit', 'admin'] })
+  @ResourcePermission({ param: 'quizId', type: 'quiz', permissions: ['edit'] })
   @SerializeOptions({ type: QuizItemResponseDTO })
   @ApiOperation({ summary: 'Criar um novo item de quiz' })
   @ApiCreatedResponse({ description: 'Item criado com sucesso', type: QuizItemResponseDTO })
@@ -95,7 +95,7 @@ export class QuizItemController {
   }
 
   @Patch(':quizItemId')
-  @ResourcePermission({ param: 'quizId', type: 'quiz', permissions: ['edit', 'admin'] })
+  @ResourcePermission({ param: 'quizId', type: 'quiz', permissions: ['edit'] })
   @SerializeOptions({ type: QuizItemResponseDTO })
   @ApiOperation({
     summary: 'Atualizar um item de quiz',
@@ -114,7 +114,7 @@ export class QuizItemController {
   }
 
   @Delete(':quizItemId')
-  @ResourcePermission({ param: 'quizId', type: 'quiz', permissions: ['edit', 'admin'] })
+  @ResourcePermission({ param: 'quizId', type: 'quiz', permissions: ['edit'] })
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Deletar um item de quiz' })
   @ApiNoContentResponse({ description: 'Item deletado com sucesso' })

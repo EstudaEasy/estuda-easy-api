@@ -98,7 +98,7 @@ export class QuizController {
   }
 
   @Patch(':quizId')
-  @ResourcePermission({ param: 'quizId', type: 'quiz', permissions: ['edit', 'admin'] })
+  @ResourcePermission({ param: 'quizId', type: 'quiz', permissions: ['edit'] })
   @SerializeOptions({ type: QuizResponseDTO })
   @ApiOperation({ summary: 'Atualizar um quiz' })
   @ApiOkResponse({ description: 'Quiz atualizado com sucesso', type: QuizResponseDTO })

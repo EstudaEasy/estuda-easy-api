@@ -3,8 +3,7 @@ import { IUser } from '../user/user.interface';
 
 export enum SharePermission {
   READ = 'read',
-  EDIT = 'edit',
-  ADMIN = 'admin'
+  EDIT = 'edit'
 }
 
 export interface IResourceShare {

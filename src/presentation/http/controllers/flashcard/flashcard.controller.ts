@@ -57,7 +57,7 @@ export class FlashcardController {
   ) {}
 
   @Post()
-  @ResourcePermission({ param: 'deckId', type: 'deck', permissions: ['edit', 'admin'] })
+  @ResourcePermission({ param: 'deckId', type: 'deck', permissions: ['edit'] })
   @SerializeOptions({ type: FlashcardResponseDTO })
   @ApiOperation({ summary: 'Criar um novo flashcard' })
   @ApiCreatedResponse({ description: 'Flashcard criado com sucesso', type: FlashcardResponseDTO })
@@ -93,7 +93,7 @@ export class FlashcardController {
   }
 
   @Patch(':flashcardId')
-  @ResourcePermission({ param: 'deckId', type: 'deck', permissions: ['edit', 'admin'] })
+  @ResourcePermission({ param: 'deckId', type: 'deck', permissions: ['edit'] })
   @SerializeOptions({ type: FlashcardResponseDTO })
   @ApiOperation({ summary: 'Atualizar um flashcard' })
   @ApiOkResponse({ description: 'Flashcard atualizado com sucesso', type: FlashcardResponseDTO })
@@ -109,7 +109,7 @@ export class FlashcardController {
   }
 
   @Delete(':flashcardId')
-  @ResourcePermission({ param: 'deckId', type: 'deck', permissions: ['edit', 'admin'] })
+  @ResourcePermission({ param: 'deckId', type: 'deck', permissions: ['edit'] })
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Deletar um flashcard' })
   @ApiNoContentResponse({ description: 'Flashcard deletado com sucesso' })

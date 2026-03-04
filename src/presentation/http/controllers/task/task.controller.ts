@@ -98,7 +98,7 @@ export class TaskController {
   }
 
   @Patch(':taskId')
-  @ResourcePermission({ param: 'taskId', type: 'task', permissions: ['edit', 'admin'] })
+  @ResourcePermission({ param: 'taskId', type: 'task', permissions: ['edit'] })
   @SerializeOptions({ type: TaskResponseDTO })
   @ApiOperation({ summary: 'Atualizar uma tarefa' })
   @ApiOkResponse({ description: 'Tarefa atualizada com sucesso', type: TaskResponseDTO })

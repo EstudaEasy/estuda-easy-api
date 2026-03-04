@@ -98,7 +98,7 @@ export class DiaryController {
   }
 
   @Patch(':diaryId')
-  @ResourcePermission({ param: 'diaryId', type: 'diary', permissions: ['edit', 'admin'] })
+  @ResourcePermission({ param: 'diaryId', type: 'diary', permissions: ['edit'] })
   @SerializeOptions({ type: DiaryResponseDTO })
   @ApiOperation({ summary: 'Atualizar um diário' })
   @ApiOkResponse({ description: 'Diário atualizado com sucesso', type: DiaryResponseDTO })
