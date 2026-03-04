@@ -1,34 +1,31 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude, Expose } from 'class-transformer';
 
+import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
+
 @Exclude()
-export class WhiteboardResponseDTO {
+export class ResourceShareLinkResponseDTO {
   @ApiProperty({
-    description: 'ID único do whiteboard',
+    description: 'ID único do link de compartilhamento',
     example: '550e8400-e29b-41d4-a716-446655440000'
   })
   @Expose()
   id: string;
 
   @ApiProperty({
-    description: 'Título do whiteboard',
-    example: 'Brainstorming de Projeto'
-  })
-  @Expose()
-  title: string;
-
-  @ApiProperty({
-    description: 'Dados do whiteboard em formato JSON'
-  })
-  @Expose()
-  content: any;
-
-  @ApiProperty({
-    description: 'ID do recurso associado ao quiz',
+    description: 'ID do recurso associado ao link',
     example: '550e8400-e29b-41d4-a716-446655440000'
   })
   @Expose()
   resourceId: string;
+
+  @ApiProperty({
+    description: 'Permissão concedida ao acessar o link',
+    enum: SharePermission,
+    example: SharePermission.READ
+  })
+  @Expose()
+  permission: SharePermission;
 
   @ApiProperty({
     description: 'Data de criação do registro',
