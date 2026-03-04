@@ -27,6 +27,20 @@ export class QuizResponseDTO {
   description?: string;
 
   @ApiPropertyOptional({
+    description: 'Ícone do quiz',
+    example: 'book svg'
+  })
+  @Expose()
+  icon?: string;
+
+  @ApiPropertyOptional({
+    description: 'Cor do quiz (hex)',
+    example: '#FF0000'
+  })
+  @Expose()
+  color?: string;
+
+  @ApiPropertyOptional({
     description: 'Itens do quiz',
     type: [QuizItemResponseDTO]
   })

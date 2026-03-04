@@ -25,6 +25,12 @@ export class QuizModel implements IQuiz {
   @Column({ name: 'description', type: 'varchar', nullable: true })
   description?: string;
 
+  @Column({ name: 'icon', type: 'varchar', nullable: true })
+  icon?: string;
+
+  @Column({ name: 'color', type: 'varchar', nullable: true })
+  color?: string;
+
   @Column({ name: 'resource_id', type: 'uuid' })
   resourceId: string;
 

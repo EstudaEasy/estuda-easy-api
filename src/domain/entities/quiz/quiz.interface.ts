@@ -5,6 +5,8 @@ export interface IQuiz {
   id: string;
   title: string;
   description?: string;
+  icon?: string;
+  color?: string;
   resourceId: string;
   resource?: IResource;
   items: IQuizItem[];

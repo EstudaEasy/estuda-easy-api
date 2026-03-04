@@ -11,6 +11,8 @@ export class QuizEntity implements IQuiz {
   id: string;
   title: string;
   description?: string;
+  icon?: string;
+  color?: string;
   resourceId: string;
   resource?: ResourceEntity;
   items: QuizItemEntity[];

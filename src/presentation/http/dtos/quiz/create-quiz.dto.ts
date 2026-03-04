@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsNotEmpty, IsOptional, IsString, Length } from 'class-validator';
+import { IsHexColor, IsNotEmpty, IsOptional, IsString, Length } from 'class-validator';
 
 export class CreateQuizBodyDTO {
   @ApiProperty({
@@ -22,4 +22,20 @@ export class CreateQuizBodyDTO {
   @IsString()
   @Length(0, 255)
   description?: string;
+
+  @ApiPropertyOptional({
+    description: 'Ícone do quiz',
+    example: 'book svg'
+  })
+  @IsOptional()
+  @IsString()
+  icon?: string;
+
+  @ApiPropertyOptional({
+    description: 'Cor do quiz (hex)',
+    example: '#FF0000'
+  })
+  @IsOptional()
+  @IsHexColor()
+  color?: string;
 }

@@ -9,6 +9,8 @@ export class CreateQuizTable1770091816598 implements MigrationInterface {
         id UUID NOT NULL DEFAULT uuid_generate_v4(),
         title VARCHAR NOT NULL,
         description VARCHAR,
+        icon VARCHAR,
+        color VARCHAR,
         resource_id UUID NOT NULL,
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
