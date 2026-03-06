@@ -27,6 +27,7 @@
     "schema:drop": "npm run typeorm schema:drop"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1003.0",
     "@nestjs-modules/mailer": "^2.0.2",
     "@nestjs/cache-manager": "^3.1.0",
     "@nestjs/common": "^11.0.1",
@@ -65,6 +66,7 @@
     "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
+    "@types/multer": "^2.1.0",
     "@types/node": "^22.10.7",
     "@types/nodemailer": "^7.0.10",
     "@types/passport-jwt": "^4.0.1",
