@@ -14,7 +14,7 @@ describe('Providers -> S3 -> Upload File', () => {
   };
 
   const configServiceMock = {
-    get: jest.fn().mockReturnValue(bucketName)
+    getOrThrow: jest.fn().mockReturnValue(bucketName)
   };
 
   beforeAll(async () => {

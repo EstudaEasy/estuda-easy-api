@@ -13,7 +13,7 @@ describe('Providers -> S3 -> Delete File', () => {
   };
 
   const configServiceMock = {
-    get: jest.fn().mockReturnValue('test-bucket')
+    getOrThrow: jest.fn().mockReturnValue('test-bucket')
   };
 
   beforeAll(async () => {
@@ -37,9 +37,10 @@ describe('Providers -> S3 -> Delete File', () => {
   afterEach(() => jest.clearAllMocks());
 
   it('should delete file successfully', async () => {
+    const url = 'https://test-bucket.s3.amazonaws.com/test/file.jpg';
     const key = 'test/file.jpg';
 
-    await s3Provider.deleteFile(key);
+    await s3Provider.deleteFile(url);
 
     expect(s3ClientMock.send).toHaveBeenCalledTimes(1);
     expect(s3ClientMock.send).toHaveBeenCalledWith(
