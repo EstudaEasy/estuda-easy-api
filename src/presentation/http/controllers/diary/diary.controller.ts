@@ -3,33 +3,46 @@ import {
   ClassSerializerInterceptor,
   Controller,
   Delete,
+  FileTypeValidator,
   Get,
   HttpCode,
   HttpStatus,
+  MaxFileSizeValidator,
   Param,
+  ParseFilePipe,
   Patch,
   Post,
   Query,
   SerializeOptions,
+  UploadedFile,
   UseInterceptors
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import {
   ApiTags,
   ApiOperation,
   ApiOkResponse,
   ApiCreatedResponse,
   ApiNotFoundResponse,
-  ApiNoContentResponse
+  ApiNoContentResponse,
+  ApiConsumes,
+  ApiBody
 } from '@nestjs/swagger';
 
 import { CreateDiaryUseCase } from '@application/use-cases/diary/create-diary.use-case';
 import { DeleteDiaryUseCase } from '@application/use-cases/diary/delete-diary.use-case';
 import { FindDiariesUseCase } from '@application/use-cases/diary/find-diaries.use-case';
 import { FindOneDiaryUseCase } from '@application/use-cases/diary/find-one-diary.use-case';
+import { UpdateDiaryAudioUseCase } from '@application/use-cases/diary/update-diary-audio.use-case';
 import { UpdateDiaryUseCase } from '@application/use-cases/diary/update-diary.use-case';
 import { Auth } from '@presentation/http/decorators/auth.decorator';
 import { ResourcePermission } from '@presentation/http/decorators/resource-permission.decorator';
 import { User } from '@presentation/http/decorators/user.decorator';
+import {
+  UpdateDiaryAudioBodyDTO,
+  UpdateDiaryAudioParamsDTO
+} from '@presentation/http/dtos/diary/update-diary-audio.dto';
+import { FILE_CONSTRAINTS } from '@shared/constants';
 
 import {
   CreateDiaryBodyDTO,
@@ -52,6 +65,7 @@ export class DiaryController {
     private readonly findOneDiaryUseCase: FindOneDiaryUseCase,
     private readonly findDiariesUseCase: FindDiariesUseCase,
     private readonly updateDiaryUseCase: UpdateDiaryUseCase,
+    private readonly updateDiaryAudioUseCase: UpdateDiaryAudioUseCase,
     private readonly deleteDiaryUseCase: DeleteDiaryUseCase
   ) {}
 
@@ -105,6 +119,30 @@ export class DiaryController {
   @ApiNotFoundResponse({ description: 'Diário não encontrado' })
   async update(@Param() params: UpdateDiaryParamsDTO, @Body() data: UpdateDiaryBodyDTO): Promise<DiaryResponseDTO> {
     return await this.updateDiaryUseCase.execute({ filters: { id: params.diaryId }, data });
+  }
+
+  @Patch(':diaryId/audio')
+  @ResourcePermission({ param: 'diaryId', type: 'diary', permissions: ['edit'] })
+  @SerializeOptions({ type: DiaryResponseDTO })
+  @UseInterceptors(FileInterceptor('file'))
+  @ApiOperation({ summary: 'Atualizar o áudio de um diário' })
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({ type: UpdateDiaryAudioBodyDTO })
+  @ApiOkResponse({ description: 'Diário atualizado com sucesso', type: DiaryResponseDTO })
+  @ApiNotFoundResponse({ description: 'Diário não encontrado' })
+  async updateAudio(
+    @Param() params: UpdateDiaryAudioParamsDTO,
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [
+          new MaxFileSizeValidator({ maxSize: FILE_CONSTRAINTS.audio.maxSize }),
+          new FileTypeValidator({ fileType: FILE_CONSTRAINTS.audio.allowedTypes })
+        ]
+      })
+    )
+    file: Express.Multer.File
+  ): Promise<DiaryResponseDTO> {
+    return await this.updateDiaryAudioUseCase.execute({ filters: { id: params.diaryId }, file });
   }
 
   @Delete(':diaryId')
