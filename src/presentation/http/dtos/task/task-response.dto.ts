@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Exclude, Expose } from 'class-transformer';
 
-import { TaskStatus } from '@domain/entities/task/task.interface';
+import { TaskStatus } from '@domain/task/task.interface';
 
 @Exclude()
 export class TaskResponseDTO {

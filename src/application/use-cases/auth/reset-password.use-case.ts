@@ -4,7 +4,7 @@ import { hash } from 'bcrypt';
 
 import { AuthErrorCodes, Exception, UserErrorCodes } from '@application/errors';
 import { JwtConfig } from '@config/jwt/config';
-import { IUserRepository, USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
+import { IUserRepository, USER_REPOSITORY_TOKEN } from '@domain/user/user.repository';
 import { CacheProvider } from '@providers/cache/cache.provider';
 import { JwtProvider } from '@providers/jwt/jwt.provider';
 

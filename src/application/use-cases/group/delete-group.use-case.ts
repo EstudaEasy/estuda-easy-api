@@ -1,12 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { Exception, GroupErrorCodes } from '@application/errors';
-import { GroupMemberRole } from '@domain/entities/group-member/group-member.interface';
-import { FilterGroup, GROUP_REPOSITORY_TOKEN, IGroupRepository } from '@domain/repositories/group/group.repository';
-import {
-  GROUP_MEMBER_REPOSITORY_TOKEN,
-  IGroupMemberRepository
-} from '@domain/repositories/group-member/group-member.repository';
+import { FilterGroup, GROUP_REPOSITORY_TOKEN, IGroupRepository } from '@domain/group/group.repository';
+import { GroupMemberRole } from '@domain/group-member/group-member.interface';
+import { GROUP_MEMBER_REPOSITORY_TOKEN, IGroupMemberRepository } from '@domain/group-member/group-member.repository';
 
 type DeleteGroupInput = {
   filters: FilterGroup;

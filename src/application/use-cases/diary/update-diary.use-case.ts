@@ -1,13 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { DiaryErrorCodes, Exception } from '@application/errors';
-import { DiaryEntity } from '@domain/entities/diary/diary.entity';
-import {
-  DIARY_REPOSITORY_TOKEN,
-  FilterDiary,
-  IDiaryRepository,
-  UpdateDiary
-} from '@domain/repositories/diary/diary.repository';
+import { DiaryEntity } from '@domain/diary/diary.entity';
+import { DIARY_REPOSITORY_TOKEN, FilterDiary, IDiaryRepository, UpdateDiary } from '@domain/diary/diary.repository';
 
 type UpdateDiaryInput = {
   filters: FilterDiary;

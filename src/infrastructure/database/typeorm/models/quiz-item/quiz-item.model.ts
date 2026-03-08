@@ -9,7 +9,7 @@ import {
   UpdateDateColumn
 } from 'typeorm';
 
-import { IQuizItem } from '@domain/entities/quiz-item/quiz-item.interface';
+import { IQuizItem } from '@domain/quiz-item/quiz-item.interface';
 
 import { QuizModel } from '../quiz/quiz.model';
 import { QuizOptionModel } from '../quiz-option/quiz-option.model';

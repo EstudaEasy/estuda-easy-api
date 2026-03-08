@@ -1,11 +1,11 @@
 import { Test } from '@nestjs/testing';
 
-import { QuizMock } from '@domain/entities/quiz/__mocks__/quiz.mock';
-import { ResourceMock } from '@domain/entities/resource/__mocks__/resource.mock';
-import { ResourceType } from '@domain/entities/resource/resource.interface';
-import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
-import { QUIZ_REPOSITORY_TOKEN } from '@domain/repositories/quiz/quiz.repository';
-import { RESOURCE_REPOSITORY_TOKEN } from '@domain/repositories/resource/resource.repository';
+import { QuizMock } from '@domain/quiz/__mocks__/quiz.mock';
+import { QUIZ_REPOSITORY_TOKEN } from '@domain/quiz/quiz.repository';
+import { ResourceMock } from '@domain/resource/__mocks__/resource.mock';
+import { ResourceType } from '@domain/resource/resource.interface';
+import { RESOURCE_REPOSITORY_TOKEN } from '@domain/resource/resource.repository';
+import { UserMock } from '@domain/user/__mocks__/user.mock';
 
 import { CreateQuizUseCase } from '../create-quiz.use-case';
 

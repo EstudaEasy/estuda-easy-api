@@ -1,13 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { Exception, ResourceShareLinkErrorCodes } from '@application/errors';
-import { ResourceShareLinkEntity } from '@domain/entities/resource-share-link/resource-share-link.entity';
+import { ResourceShareLinkEntity } from '@domain/resource-share-link/resource-share-link.entity';
 import {
   FilterResourceShareLink,
   RESOURCE_SHARE_LINK_REPOSITORY_TOKEN,
   IResourceShareLinkRepository,
   RelationsResourceShareLink
-} from '@domain/repositories/resource-share-link/resource-share-link.repository';
+} from '@domain/resource-share-link/resource-share-link.repository';
 
 type FindOneResourceShareLinkInput = {
   filters: FilterResourceShareLink;

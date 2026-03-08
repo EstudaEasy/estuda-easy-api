@@ -1,18 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { Exception, GroupErrorCodes, GroupMemberErrorCodes } from '@application/errors';
-import { GroupEntity } from '@domain/entities/group/group.entity';
-import { GroupMemberRole } from '@domain/entities/group-member/group-member.interface';
-import {
-  FilterGroup,
-  GROUP_REPOSITORY_TOKEN,
-  IGroupRepository,
-  UpdateGroup
-} from '@domain/repositories/group/group.repository';
-import {
-  GROUP_MEMBER_REPOSITORY_TOKEN,
-  IGroupMemberRepository
-} from '@domain/repositories/group-member/group-member.repository';
+import { GroupEntity } from '@domain/group/group.entity';
+import { FilterGroup, GROUP_REPOSITORY_TOKEN, IGroupRepository, UpdateGroup } from '@domain/group/group.repository';
+import { GroupMemberRole } from '@domain/group-member/group-member.interface';
+import { GROUP_MEMBER_REPOSITORY_TOKEN, IGroupMemberRepository } from '@domain/group-member/group-member.repository';
 
 type UpdateGroupInput = {
   filters: FilterGroup;

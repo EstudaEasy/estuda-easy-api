@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { DiaryErrorCodes, Exception } from '@application/errors';
-import { DIARY_REPOSITORY_TOKEN, FilterDiary, IDiaryRepository } from '@domain/repositories/diary/diary.repository';
+import { DIARY_REPOSITORY_TOKEN, FilterDiary, IDiaryRepository } from '@domain/diary/diary.repository';
 import { S3Provider } from '@providers/s3/s3.provider';
 
 type DeleteDiaryInput = {

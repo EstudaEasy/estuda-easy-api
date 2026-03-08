@@ -1,12 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { GroupEntity } from '@domain/entities/group/group.entity';
-import { GroupMemberRole } from '@domain/entities/group-member/group-member.interface';
-import { CreateGroup, GROUP_REPOSITORY_TOKEN, IGroupRepository } from '@domain/repositories/group/group.repository';
-import {
-  GROUP_MEMBER_REPOSITORY_TOKEN,
-  IGroupMemberRepository
-} from '@domain/repositories/group-member/group-member.repository';
+import { GroupEntity } from '@domain/group/group.entity';
+import { CreateGroup, GROUP_REPOSITORY_TOKEN, IGroupRepository } from '@domain/group/group.repository';
+import { GroupMemberRole } from '@domain/group-member/group-member.interface';
+import { GROUP_MEMBER_REPOSITORY_TOKEN, IGroupMemberRepository } from '@domain/group-member/group-member.repository';
 import { Nanoid } from '@shared/utils';
 
 export interface CreateGroupInput {

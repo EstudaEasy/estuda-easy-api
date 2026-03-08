@@ -10,7 +10,7 @@ import {
   RelationsResourceShare,
   RESOURCE_SHARE_REPOSITORY_TOKEN,
   UpdateResourceShare
-} from '@domain/repositories/resource-share/resource-share.repository';
+} from '@domain/resource-share/resource-share.repository';
 
 import { ResourceShareModel } from '../../models/resource-share/resource-share.model';
 

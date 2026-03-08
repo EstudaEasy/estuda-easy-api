@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { QuizItemEntity } from '@domain/entities/quiz-item/quiz-item.entity';
+import { QuizItemEntity } from '@domain/quiz-item/quiz-item.entity';
 import {
   FilterQuizItem,
   IQuizItemRepository,
   QUIZ_ITEM_REPOSITORY_TOKEN,
   RelationsQuizItem
-} from '@domain/repositories/quiz-item/quiz-item.repository';
+} from '@domain/quiz-item/quiz-item.repository';
 
 type FindQuizItemsInput = {
   filters?: FilterQuizItem;

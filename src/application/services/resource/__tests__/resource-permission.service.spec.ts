@@ -1,10 +1,10 @@
 import { Test } from '@nestjs/testing';
 
 import { Exception, ResourceErrorCodes } from '@application/errors';
-import { ResourceMock } from '@domain/entities/resource/__mocks__/resource.mock';
-import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
-import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
-import { RESOURCE_REPOSITORY_TOKEN } from '@domain/repositories/resource/resource.repository';
+import { ResourceMock } from '@domain/resource/__mocks__/resource.mock';
+import { RESOURCE_REPOSITORY_TOKEN } from '@domain/resource/resource.repository';
+import { SharePermission } from '@domain/resource-share/resource-share.interface';
+import { UserMock } from '@domain/user/__mocks__/user.mock';
 import { FilterOperator } from '@shared/types';
 
 import { ResourcePermissionService } from '../resource-permission.service';

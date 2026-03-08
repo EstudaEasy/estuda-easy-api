@@ -4,7 +4,7 @@ import { DeleteResult, Repository } from 'typeorm';
 
 import { ResourceShareModel } from '@database/typeorm/models/resource-share/resource-share.model';
 import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
-import { ResourceShareMock } from '@domain/entities/resource-share/__mocks__/resource-share.mock';
+import { ResourceShareMock } from '@domain/resource-share/__mocks__/resource-share.mock';
 
 import { ResourceShareRepository } from '../resource-share.repository';
 

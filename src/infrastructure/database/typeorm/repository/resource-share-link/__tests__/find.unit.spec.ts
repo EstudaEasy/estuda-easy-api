@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 
 import { ResourceShareLinkModel } from '@database/typeorm/models/resource-share-link/resource-share-link.model';
 import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
-import { ResourceShareLinkMock } from '@domain/entities/resource-share-link/__mocks__/resource-share-link.mock';
+import { ResourceShareLinkMock } from '@domain/resource-share-link/__mocks__/resource-share-link.mock';
 
 import { ResourceShareLinkRepository } from '../resource-share-link.repository';
 

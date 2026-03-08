@@ -1,12 +1,12 @@
 import { Test } from '@nestjs/testing';
 
 import { Exception, ResourceErrorCodes, ResourceShareLinkErrorCodes } from '@application/errors';
-import { ResourceMock } from '@domain/entities/resource/__mocks__/resource.mock';
-import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
-import { ResourceShareLinkMock } from '@domain/entities/resource-share-link/__mocks__/resource-share-link.mock';
-import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
-import { RESOURCE_REPOSITORY_TOKEN } from '@domain/repositories/resource/resource.repository';
-import { RESOURCE_SHARE_LINK_REPOSITORY_TOKEN } from '@domain/repositories/resource-share-link/resource-share-link.repository';
+import { ResourceMock } from '@domain/resource/__mocks__/resource.mock';
+import { RESOURCE_REPOSITORY_TOKEN } from '@domain/resource/resource.repository';
+import { SharePermission } from '@domain/resource-share/resource-share.interface';
+import { ResourceShareLinkMock } from '@domain/resource-share-link/__mocks__/resource-share-link.mock';
+import { RESOURCE_SHARE_LINK_REPOSITORY_TOKEN } from '@domain/resource-share-link/resource-share-link.repository';
+import { UserMock } from '@domain/user/__mocks__/user.mock';
 
 import { GenerateResourceShareLinkUseCase } from '../generate-resource-share-link.use-case';
 

@@ -6,10 +6,7 @@ import { ConfigService } from '@nestjs/config';
 import { AuthenticatedUser } from '@adapters/jwt/strategies/types/authenticated-user.type';
 import { AuthErrorCodes, Exception } from '@application/errors';
 import { JwtConfig } from '@config/jwt/config';
-import {
-  IUserSessionRepository,
-  USER_SESSION_REPOSITORY_TOKEN
-} from '@domain/repositories/user-session/user-session.repository';
+import { IUserSessionRepository, USER_SESSION_REPOSITORY_TOKEN } from '@domain/user-session/user-session.repository';
 import { JwtProvider } from '@providers/jwt/jwt.provider';
 
 type RefreshTokensUserInput = {

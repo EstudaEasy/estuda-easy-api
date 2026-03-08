@@ -1,13 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { FlashcardErrorCodes, Exception } from '@application/errors';
-import { FlashcardEntity } from '@domain/entities/flashcard/flashcard.entity';
+import { FlashcardEntity } from '@domain/flashcard/flashcard.entity';
 import {
   FilterFlashcard,
   FLASHCARD_REPOSITORY_TOKEN,
   IFlashcardRepository,
   UpdateFlashcard
-} from '@domain/repositories/flashcard/flashcard.repository';
+} from '@domain/flashcard/flashcard.repository';
 
 type UpdateFlashcardInput = {
   filters: FilterFlashcard;

@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { TaskMock } from '@domain/entities/task/__mocks__/task.mock';
-import { TASK_REPOSITORY_TOKEN } from '@domain/repositories/task/task.repository';
+import { TaskMock } from '@domain/task/__mocks__/task.mock';
+import { TASK_REPOSITORY_TOKEN } from '@domain/task/task.repository';
 
 import { FindTasksUseCase } from '../find-tasks.use-case';
 

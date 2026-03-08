@@ -10,7 +10,7 @@ import {
   RelationsResource,
   RESOURCE_REPOSITORY_TOKEN,
   UpdateResource
-} from '@domain/repositories/resource/resource.repository';
+} from '@domain/resource/resource.repository';
 
 import { ResourceModel } from '../../models/resource/resource.model';
 

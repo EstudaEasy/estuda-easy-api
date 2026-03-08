@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { WhiteboardMock } from '@domain/entities/whiteboard/__mocks__/whiteboard.mock';
-import { WHITEBOARD_REPOSITORY_TOKEN } from '@domain/repositories/whiteboard/whiteboard.repository';
+import { WhiteboardMock } from '@domain/whiteboard/__mocks__/whiteboard.mock';
+import { WHITEBOARD_REPOSITORY_TOKEN } from '@domain/whiteboard/whiteboard.repository';
 
 import { FindWhiteboardsUseCase } from '../find-whiteboards.use-case';
 

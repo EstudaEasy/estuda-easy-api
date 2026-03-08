@@ -1,8 +1,8 @@
 import { Test } from '@nestjs/testing';
 
 import { DeckErrorCodes, Exception } from '@application/errors';
-import { DeckMock } from '@domain/entities/deck/__mocks__/deck.mock';
-import { DECK_REPOSITORY_TOKEN } from '@domain/repositories/deck/deck.repository';
+import { DeckMock } from '@domain/deck/__mocks__/deck.mock';
+import { DECK_REPOSITORY_TOKEN } from '@domain/deck/deck.repository';
 
 import { UpdateDeckUseCase } from '../update-deck.use-case';
 

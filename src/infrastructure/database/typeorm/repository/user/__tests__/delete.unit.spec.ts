@@ -4,7 +4,7 @@ import { DeleteResult, Repository } from 'typeorm';
 
 import { UserModel } from '@database/typeorm/models/user/user.model';
 import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
-import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
+import { UserMock } from '@domain/user/__mocks__/user.mock';
 
 import { UserRepository } from '../user.repository';
 

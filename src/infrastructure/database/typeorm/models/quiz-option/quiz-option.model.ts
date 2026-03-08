@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-import { IQuizOption } from '@domain/entities/quiz-option/quiz-option.interface';
+import { IQuizOption } from '@domain/quiz-option/quiz-option.interface';
 
 import { QuizItemModel } from '../quiz-item/quiz-item.model';
 

@@ -8,7 +8,7 @@ import {
   UpdateDateColumn
 } from 'typeorm';
 
-import { IDiary } from '@domain/entities/diary/diary.interface';
+import { IDiary } from '@domain/diary/diary.interface';
 
 import { ResourceModel } from '../resource/resource.model';
 

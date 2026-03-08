@@ -4,7 +4,7 @@ import { Repository, UpdateResult } from 'typeorm';
 
 import { DiaryModel } from '@database/typeorm/models/diary/diary.model';
 import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
-import { DiaryMock } from '@domain/entities/diary/__mocks__/diary.mock';
+import { DiaryMock } from '@domain/diary/__mocks__/diary.mock';
 
 import { DiaryRepository } from '../diary.repository';
 

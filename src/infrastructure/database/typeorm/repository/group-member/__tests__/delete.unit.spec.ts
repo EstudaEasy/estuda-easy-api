@@ -4,7 +4,7 @@ import { DeleteResult, Repository } from 'typeorm';
 
 import { GroupMemberModel } from '@database/typeorm/models/group-member/group-member.model';
 import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
-import { GroupMemberMock } from '@domain/entities/group-member/__mocks__/group-member.mock';
+import { GroupMemberMock } from '@domain/group-member/__mocks__/group-member.mock';
 
 import { GroupMemberRepository } from '../group-member.repository';
 

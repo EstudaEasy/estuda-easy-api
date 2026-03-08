@@ -1,13 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { TaskErrorCodes, Exception } from '@application/errors';
-import { TaskEntity } from '@domain/entities/task/task.entity';
-import {
-  TASK_REPOSITORY_TOKEN,
-  FilterTask,
-  ITaskRepository,
-  RelationsTask
-} from '@domain/repositories/task/task.repository';
+import { TaskEntity } from '@domain/task/task.entity';
+import { TASK_REPOSITORY_TOKEN, FilterTask, ITaskRepository, RelationsTask } from '@domain/task/task.repository';
 
 type FindOneTaskInput = {
   filters: FilterTask;

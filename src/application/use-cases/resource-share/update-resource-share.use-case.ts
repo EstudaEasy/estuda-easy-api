@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { Exception, ResourceShareErrorCodes } from '@application/errors';
-import { ResourceShareEntity } from '@domain/entities/resource-share/resource-share.entity';
-import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
+import { ResourceShareEntity } from '@domain/resource-share/resource-share.entity';
+import { SharePermission } from '@domain/resource-share/resource-share.interface';
 import {
   RESOURCE_SHARE_REPOSITORY_TOKEN,
   IResourceShareRepository
-} from '@domain/repositories/resource-share/resource-share.repository';
+} from '@domain/resource-share/resource-share.repository';
 
 type UpdateResourceShareInput = {
   shareId: number;

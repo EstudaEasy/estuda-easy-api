@@ -1,13 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { Exception, GroupErrorCodes, GroupMemberErrorCodes } from '@application/errors';
-import { GroupMemberEntity } from '@domain/entities/group-member/group-member.entity';
-import { GroupMemberRole } from '@domain/entities/group-member/group-member.interface';
-import { GROUP_REPOSITORY_TOKEN, IGroupRepository } from '@domain/repositories/group/group.repository';
-import {
-  GROUP_MEMBER_REPOSITORY_TOKEN,
-  IGroupMemberRepository
-} from '@domain/repositories/group-member/group-member.repository';
+import { GROUP_REPOSITORY_TOKEN, IGroupRepository } from '@domain/group/group.repository';
+import { GroupMemberEntity } from '@domain/group-member/group-member.entity';
+import { GroupMemberRole } from '@domain/group-member/group-member.interface';
+import { GROUP_MEMBER_REPOSITORY_TOKEN, IGroupMemberRepository } from '@domain/group-member/group-member.repository';
 
 type JoinGroupInput = {
   inviteCode: string;

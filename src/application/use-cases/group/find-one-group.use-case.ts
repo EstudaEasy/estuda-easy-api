@@ -1,13 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { Exception, GroupErrorCodes } from '@application/errors';
-import { GroupEntity } from '@domain/entities/group/group.entity';
-import {
-  FilterGroup,
-  GROUP_REPOSITORY_TOKEN,
-  IGroupRepository,
-  RelationsGroup
-} from '@domain/repositories/group/group.repository';
+import { GroupEntity } from '@domain/group/group.entity';
+import { FilterGroup, GROUP_REPOSITORY_TOKEN, IGroupRepository, RelationsGroup } from '@domain/group/group.repository';
 
 type FindOneGroupInput = {
   filters: FilterGroup;

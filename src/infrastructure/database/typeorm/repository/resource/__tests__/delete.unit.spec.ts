@@ -4,7 +4,7 @@ import { DeleteResult, Repository } from 'typeorm';
 
 import { ResourceModel } from '@database/typeorm/models/resource/resource.model';
 import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
-import { ResourceMock } from '@domain/entities/resource/__mocks__/resource.mock';
+import { ResourceMock } from '@domain/resource/__mocks__/resource.mock';
 
 import { ResourceRepository } from '../resource.repository';
 

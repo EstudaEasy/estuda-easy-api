@@ -2,8 +2,8 @@ import { Inject, Injectable } from '@nestjs/common';
 import { hash } from 'bcrypt';
 
 import { Exception, UserErrorCodes } from '@application/errors';
-import { UserEntity } from '@domain/entities/user/user.entity';
-import { CreateUser, IUserRepository, USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
+import { UserEntity } from '@domain/user/user.entity';
+import { CreateUser, IUserRepository, USER_REPOSITORY_TOKEN } from '@domain/user/user.repository';
 
 export interface CreateUserInput {
   data: CreateUser;

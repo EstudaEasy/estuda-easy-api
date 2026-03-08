@@ -4,8 +4,8 @@ import { Repository, UpdateResult } from 'typeorm';
 
 import { ResourceModel } from '@database/typeorm/models/resource/resource.model';
 import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
-import { ResourceMock } from '@domain/entities/resource/__mocks__/resource.mock';
-import { ResourceType } from '@domain/entities/resource/resource.interface';
+import { ResourceMock } from '@domain/resource/__mocks__/resource.mock';
+import { ResourceType } from '@domain/resource/resource.interface';
 
 import { ResourceRepository } from '../resource.repository';
 

@@ -1,9 +1,9 @@
 import { Test } from '@nestjs/testing';
 
 import { Exception, AuthErrorCodes } from '@application/errors';
-import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
-import { UserSessionMock } from '@domain/entities/user-session/__mocks__/user-session.mock';
-import { USER_SESSION_REPOSITORY_TOKEN } from '@domain/repositories/user-session/user-session.repository';
+import { UserMock } from '@domain/user/__mocks__/user.mock';
+import { UserSessionMock } from '@domain/user-session/__mocks__/user-session.mock';
+import { USER_SESSION_REPOSITORY_TOKEN } from '@domain/user-session/user-session.repository';
 import { JwtProvider } from '@providers/jwt/jwt.provider';
 
 import { LogoutUseCase } from '../logout.use-case';

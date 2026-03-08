@@ -1,8 +1,8 @@
 import { Test } from '@nestjs/testing';
 
 import { Exception, QuizErrorCodes } from '@application/errors';
-import { QuizMock } from '@domain/entities/quiz/__mocks__/quiz.mock';
-import { QUIZ_REPOSITORY_TOKEN } from '@domain/repositories/quiz/quiz.repository';
+import { QuizMock } from '@domain/quiz/__mocks__/quiz.mock';
+import { QUIZ_REPOSITORY_TOKEN } from '@domain/quiz/quiz.repository';
 
 import { UpdateQuizUseCase } from '../update-quiz.use-case';
 

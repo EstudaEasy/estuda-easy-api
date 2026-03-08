@@ -1,13 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { Exception, QuizErrorCodes } from '@application/errors';
-import { QuizEntity } from '@domain/entities/quiz/quiz.entity';
-import {
-  FilterQuiz,
-  IQuizRepository,
-  QUIZ_REPOSITORY_TOKEN,
-  UpdateQuiz
-} from '@domain/repositories/quiz/quiz.repository';
+import { QuizEntity } from '@domain/quiz/quiz.entity';
+import { FilterQuiz, IQuizRepository, QUIZ_REPOSITORY_TOKEN, UpdateQuiz } from '@domain/quiz/quiz.repository';
 
 type UpdateQuizInput = {
   filters: FilterQuiz;

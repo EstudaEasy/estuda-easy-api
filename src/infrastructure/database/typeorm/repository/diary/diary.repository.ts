@@ -10,7 +10,7 @@ import {
   IDiaryRepository,
   RelationsDiary,
   UpdateDiary
-} from '@domain/repositories/diary/diary.repository';
+} from '@domain/diary/diary.repository';
 
 import { DiaryModel } from '../../models/diary/diary.model';
 

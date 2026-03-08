@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { FlashcardMock } from '@domain/entities/flashcard/__mocks__/flashcard.mock';
-import { FLASHCARD_REPOSITORY_TOKEN } from '@domain/repositories/flashcard/flashcard.repository';
+import { FlashcardMock } from '@domain/flashcard/__mocks__/flashcard.mock';
+import { FLASHCARD_REPOSITORY_TOKEN } from '@domain/flashcard/flashcard.repository';
 
 import { FindFlashcardsUseCase } from '../find-flashcards.use-case';
 

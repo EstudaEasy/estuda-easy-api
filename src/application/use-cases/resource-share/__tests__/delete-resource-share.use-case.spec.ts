@@ -1,10 +1,10 @@
 import { Test } from '@nestjs/testing';
 
 import { Exception, ResourceShareErrorCodes } from '@application/errors';
-import { ResourceMock } from '@domain/entities/resource/__mocks__/resource.mock';
-import { ResourceShareMock } from '@domain/entities/resource-share/__mocks__/resource-share.mock';
-import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
-import { RESOURCE_SHARE_REPOSITORY_TOKEN } from '@domain/repositories/resource-share/resource-share.repository';
+import { ResourceMock } from '@domain/resource/__mocks__/resource.mock';
+import { ResourceShareMock } from '@domain/resource-share/__mocks__/resource-share.mock';
+import { RESOURCE_SHARE_REPOSITORY_TOKEN } from '@domain/resource-share/resource-share.repository';
+import { UserMock } from '@domain/user/__mocks__/user.mock';
 
 import { DeleteResourceShareUseCase } from '../delete-resource-share.use-case';
 

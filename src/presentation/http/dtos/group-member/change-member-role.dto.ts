@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsEnum, IsInt, IsNotEmpty, IsPositive, IsUUID } from 'class-validator';
 
-import { GroupMemberRole } from '@domain/entities/group-member/group-member.interface';
+import { GroupMemberRole } from '@domain/group-member/group-member.interface';
 
 export class ChangeMemberRoleParamsDTO {
   @ApiProperty({

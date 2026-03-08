@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, Index, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 
-import { IUserSession } from '@domain/entities/user-session/interface';
+import { IUserSession } from '@domain/user-session/interface';
 
 import { UserModel } from '../user/user.model';
 

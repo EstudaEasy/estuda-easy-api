@@ -1,12 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { DiaryEntity } from '@domain/entities/diary/diary.entity';
-import {
-  DIARY_REPOSITORY_TOKEN,
-  FilterDiary,
-  IDiaryRepository,
-  RelationsDiary
-} from '@domain/repositories/diary/diary.repository';
+import { DiaryEntity } from '@domain/diary/diary.entity';
+import { DIARY_REPOSITORY_TOKEN, FilterDiary, IDiaryRepository, RelationsDiary } from '@domain/diary/diary.repository';
 
 type FindDiariesInput = {
   filters?: FilterDiary;

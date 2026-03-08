@@ -10,7 +10,7 @@ import {
   UpdateDateColumn
 } from 'typeorm';
 
-import { IResource, ResourceType } from '@domain/entities/resource/resource.interface';
+import { IResource, ResourceType } from '@domain/resource/resource.interface';
 
 import { DeckModel } from '../deck/deck.model';
 import { DiaryModel } from '../diary/diary.model';

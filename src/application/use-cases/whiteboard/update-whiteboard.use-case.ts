@@ -1,13 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { Exception, WhiteboardErrorCodes } from '@application/errors';
-import { WhiteboardEntity } from '@domain/entities/whiteboard/whiteboard.entity';
+import { WhiteboardEntity } from '@domain/whiteboard/whiteboard.entity';
 import {
   FilterWhiteboard,
   IWhiteboardRepository,
   UpdateWhiteboard,
   WHITEBOARD_REPOSITORY_TOKEN
-} from '@domain/repositories/whiteboard/whiteboard.repository';
+} from '@domain/whiteboard/whiteboard.repository';
 
 type UpdateWhiteboardInput = {
   filters: FilterWhiteboard;

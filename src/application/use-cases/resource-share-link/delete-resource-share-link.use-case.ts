@@ -4,7 +4,7 @@ import { Exception, ResourceShareLinkErrorCodes } from '@application/errors';
 import {
   RESOURCE_SHARE_LINK_REPOSITORY_TOKEN,
   IResourceShareLinkRepository
-} from '@domain/repositories/resource-share-link/resource-share-link.repository';
+} from '@domain/resource-share-link/resource-share-link.repository';
 
 type DeleteResourceShareLinkInput = {
   resourceId: string;

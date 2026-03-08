@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum, IsNotEmpty, IsUUID } from 'class-validator';
 
-import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
+import { SharePermission } from '@domain/resource-share/resource-share.interface';
 
 export class GenerateResourceShareLinkParamsDTO {
   @ApiProperty({

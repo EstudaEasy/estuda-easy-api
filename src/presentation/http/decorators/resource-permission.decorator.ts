@@ -1,8 +1,8 @@
 import { applyDecorators, SetMetadata, UseGuards } from '@nestjs/common';
 import { ApiForbiddenResponse } from '@nestjs/swagger';
 
-import { ResourceType } from '@domain/entities/resource/resource.interface';
-import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
+import { ResourceType } from '@domain/resource/resource.interface';
+import { SharePermission } from '@domain/resource-share/resource-share.interface';
 
 import { ResourcePermissionGuard } from '../guards/resource/resource-permission.guard';
 

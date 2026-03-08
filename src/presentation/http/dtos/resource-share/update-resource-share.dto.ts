@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsEnum, IsInt, IsNotEmpty, IsPositive } from 'class-validator';
 
-import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
+import { SharePermission } from '@domain/resource-share/resource-share.interface';
 
 export class UpdateResourceShareParamsDTO {
   @ApiProperty({

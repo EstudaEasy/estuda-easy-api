@@ -9,7 +9,7 @@ import {
   FLASHCARD_REPOSITORY_TOKEN,
   IFlashcardRepository,
   UpdateFlashcard
-} from '@domain/repositories/flashcard/flashcard.repository';
+} from '@domain/flashcard/flashcard.repository';
 
 import { FlashcardModel } from '../../models/flashcard/flashcard.model';
 

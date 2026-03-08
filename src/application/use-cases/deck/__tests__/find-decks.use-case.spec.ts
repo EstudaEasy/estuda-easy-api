@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { DeckMock } from '@domain/entities/deck/__mocks__/deck.mock';
-import { DECK_REPOSITORY_TOKEN } from '@domain/repositories/deck/deck.repository';
+import { DeckMock } from '@domain/deck/__mocks__/deck.mock';
+import { DECK_REPOSITORY_TOKEN } from '@domain/deck/deck.repository';
 
 import { FindDecksUseCase } from '../find-decks.use-case';
 

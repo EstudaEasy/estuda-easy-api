@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { QuizItemMock } from '@domain/entities/quiz-item/__mocks__/quiz-item.mock';
-import { QUIZ_ITEM_REPOSITORY_TOKEN } from '@domain/repositories/quiz-item/quiz-item.repository';
+import { QuizItemMock } from '@domain/quiz-item/__mocks__/quiz-item.mock';
+import { QUIZ_ITEM_REPOSITORY_TOKEN } from '@domain/quiz-item/quiz-item.repository';
 
 import { FindQuizItemsUseCase } from '../find-quiz-items.use-case';
 

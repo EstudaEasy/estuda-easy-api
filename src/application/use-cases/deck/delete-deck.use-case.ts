@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { DeckErrorCodes, Exception } from '@application/errors';
-import { DECK_REPOSITORY_TOKEN, FilterDeck, IDeckRepository } from '@domain/repositories/deck/deck.repository';
+import { DECK_REPOSITORY_TOKEN, FilterDeck, IDeckRepository } from '@domain/deck/deck.repository';
 
 type DeleteDeckInput = {
   filters: FilterDeck;

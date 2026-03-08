@@ -8,7 +8,7 @@ import {
   UpdateDateColumn
 } from 'typeorm';
 
-import { IWhiteboard } from '@domain/entities/whiteboard/whiteboard.interface';
+import { IWhiteboard } from '@domain/whiteboard/whiteboard.interface';
 
 import { ResourceModel } from '../resource/resource.model';
 

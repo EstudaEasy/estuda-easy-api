@@ -1,11 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { Exception, GroupMemberErrorCodes } from '@application/errors';
-import { GroupMemberRole } from '@domain/entities/group-member/group-member.interface';
-import {
-  GROUP_MEMBER_REPOSITORY_TOKEN,
-  IGroupMemberRepository
-} from '@domain/repositories/group-member/group-member.repository';
+import { GroupMemberRole } from '@domain/group-member/group-member.interface';
+import { GROUP_MEMBER_REPOSITORY_TOKEN, IGroupMemberRepository } from '@domain/group-member/group-member.repository';
 
 type RemoveGroupMemberInput = {
   groupId: string;

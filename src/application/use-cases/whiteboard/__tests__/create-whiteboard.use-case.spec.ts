@@ -1,11 +1,11 @@
 import { Test } from '@nestjs/testing';
 
-import { ResourceMock } from '@domain/entities/resource/__mocks__/resource.mock';
-import { ResourceType } from '@domain/entities/resource/resource.interface';
-import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
-import { WhiteboardMock } from '@domain/entities/whiteboard/__mocks__/whiteboard.mock';
-import { RESOURCE_REPOSITORY_TOKEN } from '@domain/repositories/resource/resource.repository';
-import { WHITEBOARD_REPOSITORY_TOKEN } from '@domain/repositories/whiteboard/whiteboard.repository';
+import { ResourceMock } from '@domain/resource/__mocks__/resource.mock';
+import { ResourceType } from '@domain/resource/resource.interface';
+import { RESOURCE_REPOSITORY_TOKEN } from '@domain/resource/resource.repository';
+import { UserMock } from '@domain/user/__mocks__/user.mock';
+import { WhiteboardMock } from '@domain/whiteboard/__mocks__/whiteboard.mock';
+import { WHITEBOARD_REPOSITORY_TOKEN } from '@domain/whiteboard/whiteboard.repository';
 
 import { CreateWhiteboardUseCase } from '../create-whiteboard.use-case';
 

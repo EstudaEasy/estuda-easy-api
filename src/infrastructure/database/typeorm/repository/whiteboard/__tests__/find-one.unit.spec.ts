@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 
 import { WhiteboardModel } from '@database/typeorm/models/whiteboard/whiteboard.model';
 import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
-import { WhiteboardMock } from '@domain/entities/whiteboard/__mocks__/whiteboard.mock';
+import { WhiteboardMock } from '@domain/whiteboard/__mocks__/whiteboard.mock';
 
 import { WhiteboardRepository } from '../whiteboard.repository';
 

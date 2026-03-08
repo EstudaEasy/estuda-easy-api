@@ -10,7 +10,7 @@ import {
   RelationsResourceShareLink,
   RESOURCE_SHARE_LINK_REPOSITORY_TOKEN,
   UpdateResourceShareLink
-} from '@domain/repositories/resource-share-link/resource-share-link.repository';
+} from '@domain/resource-share-link/resource-share-link.repository';
 
 import { ResourceShareLinkModel } from '../../models/resource-share-link/resource-share-link.model';
 

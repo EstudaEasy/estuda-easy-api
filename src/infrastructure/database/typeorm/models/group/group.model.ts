@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-import { IGroup } from '@domain/entities/group/group.interface';
+import { IGroup } from '@domain/group/group.interface';
 
 import { GroupMemberModel } from '../group-member/group-member.model';
 

@@ -10,7 +10,7 @@ import {
   RelationsWhiteboard,
   UpdateWhiteboard,
   WHITEBOARD_REPOSITORY_TOKEN
-} from '@domain/repositories/whiteboard/whiteboard.repository';
+} from '@domain/whiteboard/whiteboard.repository';
 
 import { WhiteboardModel } from '../../models/whiteboard/whiteboard.model';
 

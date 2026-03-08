@@ -4,8 +4,8 @@ import { Repository, UpdateResult } from 'typeorm';
 
 import { ResourceShareModel } from '@database/typeorm/models/resource-share/resource-share.model';
 import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
-import { ResourceShareMock } from '@domain/entities/resource-share/__mocks__/resource-share.mock';
-import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
+import { ResourceShareMock } from '@domain/resource-share/__mocks__/resource-share.mock';
+import { SharePermission } from '@domain/resource-share/resource-share.interface';
 
 import { ResourceShareRepository } from '../resource-share.repository';
 

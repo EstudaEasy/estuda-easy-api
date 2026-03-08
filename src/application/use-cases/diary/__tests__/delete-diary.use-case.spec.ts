@@ -1,8 +1,8 @@
 import { Test } from '@nestjs/testing';
 
 import { DiaryErrorCodes, Exception } from '@application/errors';
-import { DiaryMock } from '@domain/entities/diary/__mocks__/diary.mock';
-import { DIARY_REPOSITORY_TOKEN } from '@domain/repositories/diary/diary.repository';
+import { DiaryMock } from '@domain/diary/__mocks__/diary.mock';
+import { DIARY_REPOSITORY_TOKEN } from '@domain/diary/diary.repository';
 import { S3Provider } from '@providers/s3/s3.provider';
 
 import { DeleteDiaryUseCase } from '../delete-diary.use-case';

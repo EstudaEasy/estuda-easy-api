@@ -10,7 +10,7 @@ import {
   ITaskRepository,
   RelationsTask,
   UpdateTask
-} from '@domain/repositories/task/task.repository';
+} from '@domain/task/task.repository';
 
 import { TaskModel } from '../../models/task/task.model';
 

@@ -1,15 +1,15 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { Exception, ResourceShareLinkErrorCodes } from '@application/errors';
-import { ResourceShareEntity } from '@domain/entities/resource-share/resource-share.entity';
+import { ResourceShareEntity } from '@domain/resource-share/resource-share.entity';
 import {
   RESOURCE_SHARE_REPOSITORY_TOKEN,
   IResourceShareRepository
-} from '@domain/repositories/resource-share/resource-share.repository';
+} from '@domain/resource-share/resource-share.repository';
 import {
   RESOURCE_SHARE_LINK_REPOSITORY_TOKEN,
   IResourceShareLinkRepository
-} from '@domain/repositories/resource-share-link/resource-share-link.repository';
+} from '@domain/resource-share-link/resource-share-link.repository';
 
 type CreateResourceShareFromLinkInput = {
   linkId: string;

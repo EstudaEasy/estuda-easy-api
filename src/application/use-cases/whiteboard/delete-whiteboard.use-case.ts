@@ -5,7 +5,7 @@ import {
   FilterWhiteboard,
   IWhiteboardRepository,
   WHITEBOARD_REPOSITORY_TOKEN
-} from '@domain/repositories/whiteboard/whiteboard.repository';
+} from '@domain/whiteboard/whiteboard.repository';
 
 type DeleteWhiteboardInput = {
   filters: FilterWhiteboard;

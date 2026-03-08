@@ -10,7 +10,7 @@ import {
   QUIZ_REPOSITORY_TOKEN,
   RelationsQuiz,
   UpdateQuiz
-} from '@domain/repositories/quiz/quiz.repository';
+} from '@domain/quiz/quiz.repository';
 
 import { QuizModel } from '../../models/quiz/quiz.model';
 

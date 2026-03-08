@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { QuizEntity } from '@domain/entities/quiz/quiz.entity';
-import { ResourceType } from '@domain/entities/resource/resource.interface';
-import { CreateQuiz, IQuizRepository, QUIZ_REPOSITORY_TOKEN } from '@domain/repositories/quiz/quiz.repository';
-import { IResourceRepository, RESOURCE_REPOSITORY_TOKEN } from '@domain/repositories/resource/resource.repository';
+import { QuizEntity } from '@domain/quiz/quiz.entity';
+import { CreateQuiz, IQuizRepository, QUIZ_REPOSITORY_TOKEN } from '@domain/quiz/quiz.repository';
+import { ResourceType } from '@domain/resource/resource.interface';
+import { IResourceRepository, RESOURCE_REPOSITORY_TOKEN } from '@domain/resource/resource.repository';
 
 export interface CreateQuizInput {
   data: CreateQuiz;

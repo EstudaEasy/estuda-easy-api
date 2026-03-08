@@ -9,7 +9,7 @@ import {
   UpdateDateColumn
 } from 'typeorm';
 
-import { GroupMemberRole, IGroupMember } from '@domain/entities/group-member/group-member.interface';
+import { GroupMemberRole, IGroupMember } from '@domain/group-member/group-member.interface';
 
 import { GroupModel } from '../group/group.model';
 import { UserModel } from '../user/user.model';

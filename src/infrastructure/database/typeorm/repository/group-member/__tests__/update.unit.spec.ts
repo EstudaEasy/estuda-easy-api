@@ -4,8 +4,8 @@ import { Repository, UpdateResult } from 'typeorm';
 
 import { GroupMemberModel } from '@database/typeorm/models/group-member/group-member.model';
 import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
-import { GroupMemberMock } from '@domain/entities/group-member/__mocks__/group-member.mock';
-import { GroupMemberRole } from '@domain/entities/group-member/group-member.interface';
+import { GroupMemberMock } from '@domain/group-member/__mocks__/group-member.mock';
+import { GroupMemberRole } from '@domain/group-member/group-member.interface';
 
 import { GroupMemberRepository } from '../group-member.repository';
 

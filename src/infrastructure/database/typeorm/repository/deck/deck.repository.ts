@@ -10,7 +10,7 @@ import {
   IDeckRepository,
   RelationsDeck,
   UpdateDeck
-} from '@domain/repositories/deck/deck.repository';
+} from '@domain/deck/deck.repository';
 
 import { DeckModel } from '../../models/deck/deck.model';
 

@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { ResourceShareMock } from '@domain/entities/resource-share/__mocks__/resource-share.mock';
-import { RESOURCE_SHARE_REPOSITORY_TOKEN } from '@domain/repositories/resource-share/resource-share.repository';
+import { ResourceShareMock } from '@domain/resource-share/__mocks__/resource-share.mock';
+import { RESOURCE_SHARE_REPOSITORY_TOKEN } from '@domain/resource-share/resource-share.repository';
 
 import { FindResourceSharesUseCase } from '../find-resource-shares.use-case';
 

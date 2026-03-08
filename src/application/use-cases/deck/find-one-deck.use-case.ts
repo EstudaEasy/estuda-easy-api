@@ -1,13 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { DeckErrorCodes, Exception } from '@application/errors';
-import { DeckEntity } from '@domain/entities/deck/deck.entity';
-import {
-  DECK_REPOSITORY_TOKEN,
-  FilterDeck,
-  IDeckRepository,
-  RelationsDeck
-} from '@domain/repositories/deck/deck.repository';
+import { DeckEntity } from '@domain/deck/deck.entity';
+import { DECK_REPOSITORY_TOKEN, FilterDeck, IDeckRepository, RelationsDeck } from '@domain/deck/deck.repository';
 
 type FindOneDeckInput = {
   filters: FilterDeck;

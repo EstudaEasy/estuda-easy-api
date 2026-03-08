@@ -3,10 +3,10 @@ import { Test } from '@nestjs/testing';
 import { compare } from 'bcrypt';
 
 import { Exception, AuthErrorCodes } from '@application/errors';
-import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
-import { UserSessionMock } from '@domain/entities/user-session/__mocks__/user-session.mock';
-import { USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
-import { USER_SESSION_REPOSITORY_TOKEN } from '@domain/repositories/user-session/user-session.repository';
+import { UserMock } from '@domain/user/__mocks__/user.mock';
+import { USER_REPOSITORY_TOKEN } from '@domain/user/user.repository';
+import { UserSessionMock } from '@domain/user-session/__mocks__/user-session.mock';
+import { USER_SESSION_REPOSITORY_TOKEN } from '@domain/user-session/user-session.repository';
 import { JwtProvider } from '@providers/jwt/jwt.provider';
 
 import { LoginUseCase } from '../login.use-case';

@@ -4,7 +4,7 @@ import { DeleteResult, Repository } from 'typeorm';
 
 import { FlashcardModel } from '@database/typeorm/models/flashcard/flashcard.model';
 import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
-import { FlashcardMock } from '@domain/entities/flashcard/__mocks__/flashcard.mock';
+import { FlashcardMock } from '@domain/flashcard/__mocks__/flashcard.mock';
 
 import { FlashcardRepository } from '../flashcard.repository';
 

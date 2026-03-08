@@ -1,12 +1,12 @@
 import { Test } from '@nestjs/testing';
 
 import { TaskErrorCodes, Exception } from '@application/errors';
-import { ResourceMock } from '@domain/entities/resource/__mocks__/resource.mock';
-import { ResourceType } from '@domain/entities/resource/resource.interface';
-import { TaskMock } from '@domain/entities/task/__mocks__/task.mock';
-import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
-import { RESOURCE_REPOSITORY_TOKEN } from '@domain/repositories/resource/resource.repository';
-import { TASK_REPOSITORY_TOKEN } from '@domain/repositories/task/task.repository';
+import { ResourceMock } from '@domain/resource/__mocks__/resource.mock';
+import { ResourceType } from '@domain/resource/resource.interface';
+import { RESOURCE_REPOSITORY_TOKEN } from '@domain/resource/resource.repository';
+import { TaskMock } from '@domain/task/__mocks__/task.mock';
+import { TASK_REPOSITORY_TOKEN } from '@domain/task/task.repository';
+import { UserMock } from '@domain/user/__mocks__/user.mock';
 
 import { CreateTaskUseCase } from '../create-task.use-case';
 

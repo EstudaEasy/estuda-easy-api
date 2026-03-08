@@ -10,7 +10,7 @@ import {
   IGroupRepository,
   RelationsGroup,
   UpdateGroup
-} from '@domain/repositories/group/group.repository';
+} from '@domain/group/group.repository';
 
 import { GroupModel } from '../../models/group/group.model';
 

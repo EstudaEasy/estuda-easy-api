@@ -1,8 +1,8 @@
 import { Test } from '@nestjs/testing';
 
 import { Exception, GroupErrorCodes } from '@application/errors';
-import { GroupMock } from '@domain/entities/group/__mocks__/group.mock';
-import { GROUP_REPOSITORY_TOKEN } from '@domain/repositories/group/group.repository';
+import { GroupMock } from '@domain/group/__mocks__/group.mock';
+import { GROUP_REPOSITORY_TOKEN } from '@domain/group/group.repository';
 
 import { FindOneGroupUseCase } from '../find-one-group.use-case';
 

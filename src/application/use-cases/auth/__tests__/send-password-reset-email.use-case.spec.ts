@@ -2,8 +2,8 @@ import { ConfigService } from '@nestjs/config';
 import { Test } from '@nestjs/testing';
 
 import { Exception, UserErrorCodes } from '@application/errors';
-import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
-import { USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
+import { UserMock } from '@domain/user/__mocks__/user.mock';
+import { USER_REPOSITORY_TOKEN } from '@domain/user/user.repository';
 import { CacheProvider } from '@providers/cache/cache.provider';
 import { JwtProvider } from '@providers/jwt/jwt.provider';
 import { MailerProvider } from '@providers/mailer/mailer.provider';

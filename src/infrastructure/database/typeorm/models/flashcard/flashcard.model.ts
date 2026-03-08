@@ -8,7 +8,7 @@ import {
   UpdateDateColumn
 } from 'typeorm';
 
-import { IFlashcard } from '@domain/entities/flashcard/flashcard.interface';
+import { IFlashcard } from '@domain/flashcard/flashcard.interface';
 
 import { DeckModel } from '../deck/deck.model';
 

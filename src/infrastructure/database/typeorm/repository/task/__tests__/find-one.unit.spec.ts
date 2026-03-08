@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 
 import { TaskModel } from '@database/typeorm/models/task/task.model';
 import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
-import { TaskMock } from '@domain/entities/task/__mocks__/task.mock';
+import { TaskMock } from '@domain/task/__mocks__/task.mock';
 
 import { TaskRepository } from '../task.repository';
 

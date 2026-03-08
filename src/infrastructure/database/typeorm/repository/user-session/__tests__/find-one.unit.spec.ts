@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 
 import { UserSessionModel } from '@database/typeorm/models/user-session/user-session.model';
 import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
-import { UserSessionMock } from '@domain/entities/user-session/__mocks__/user-session.mock';
+import { UserSessionMock } from '@domain/user-session/__mocks__/user-session.mock';
 
 import { UserSessionRepository } from '../user-session.repository';
 

@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { ResourceShareEntity } from '@domain/entities/resource-share/resource-share.entity';
+import { ResourceShareEntity } from '@domain/resource-share/resource-share.entity';
 import {
   FilterResourceShare,
   IResourceShareRepository,
   RESOURCE_SHARE_REPOSITORY_TOKEN,
   RelationsResourceShare
-} from '@domain/repositories/resource-share/resource-share.repository';
+} from '@domain/resource-share/resource-share.repository';
 
 type FindResourceSharesInput = {
   filters?: FilterResourceShare;

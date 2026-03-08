@@ -3,8 +3,8 @@ import { Test } from '@nestjs/testing';
 import { hash } from 'bcrypt';
 
 import { Exception, AuthErrorCodes, UserErrorCodes } from '@application/errors';
-import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
-import { USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
+import { UserMock } from '@domain/user/__mocks__/user.mock';
+import { USER_REPOSITORY_TOKEN } from '@domain/user/user.repository';
 import { CacheProvider } from '@providers/cache/cache.provider';
 import { JwtProvider } from '@providers/jwt/jwt.provider';
 

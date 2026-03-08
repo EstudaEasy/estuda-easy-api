@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { DiaryMock } from '@domain/entities/diary/__mocks__/diary.mock';
-import { DIARY_REPOSITORY_TOKEN } from '@domain/repositories/diary/diary.repository';
+import { DiaryMock } from '@domain/diary/__mocks__/diary.mock';
+import { DIARY_REPOSITORY_TOKEN } from '@domain/diary/diary.repository';
 
 import { FindDiariesUseCase } from '../find-diaries.use-case';
 

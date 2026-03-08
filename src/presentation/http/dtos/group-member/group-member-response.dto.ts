@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Exclude, Expose, Type } from 'class-transformer';
 
-import { GroupMemberRole } from '@domain/entities/group-member/group-member.interface';
+import { GroupMemberRole } from '@domain/group-member/group-member.interface';
 
 import { UserResponseDTO } from '../user/user-response.dto';
 

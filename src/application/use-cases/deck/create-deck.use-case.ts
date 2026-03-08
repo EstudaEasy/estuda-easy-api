@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { DeckEntity } from '@domain/entities/deck/deck.entity';
-import { ResourceType } from '@domain/entities/resource/resource.interface';
-import { CreateDeck, DECK_REPOSITORY_TOKEN, IDeckRepository } from '@domain/repositories/deck/deck.repository';
-import { IResourceRepository, RESOURCE_REPOSITORY_TOKEN } from '@domain/repositories/resource/resource.repository';
+import { DeckEntity } from '@domain/deck/deck.entity';
+import { CreateDeck, DECK_REPOSITORY_TOKEN, IDeckRepository } from '@domain/deck/deck.repository';
+import { ResourceType } from '@domain/resource/resource.interface';
+import { IResourceRepository, RESOURCE_REPOSITORY_TOKEN } from '@domain/resource/resource.repository';
 
 export interface CreateDeckInput {
   data: Omit<CreateDeck, 'resource'>;

@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { GroupMemberMock } from '@domain/entities/group-member/__mocks__/group-member.mock';
-import { GROUP_MEMBER_REPOSITORY_TOKEN } from '@domain/repositories/group-member/group-member.repository';
+import { GroupMemberMock } from '@domain/group-member/__mocks__/group-member.mock';
+import { GROUP_MEMBER_REPOSITORY_TOKEN } from '@domain/group-member/group-member.repository';
 
 import { FindGroupMembersUseCase } from '../find-group-members.use-case';
 

@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { TaskErrorCodes, Exception } from '@application/errors';
-import { ResourceType } from '@domain/entities/resource/resource.interface';
-import { TaskEntity } from '@domain/entities/task/task.entity';
-import { IResourceRepository, RESOURCE_REPOSITORY_TOKEN } from '@domain/repositories/resource/resource.repository';
-import { CreateTask, TASK_REPOSITORY_TOKEN, ITaskRepository } from '@domain/repositories/task/task.repository';
+import { ResourceType } from '@domain/resource/resource.interface';
+import { IResourceRepository, RESOURCE_REPOSITORY_TOKEN } from '@domain/resource/resource.repository';
+import { TaskEntity } from '@domain/task/task.entity';
+import { CreateTask, TASK_REPOSITORY_TOKEN, ITaskRepository } from '@domain/task/task.repository';
 
 export interface CreateTaskInput {
   data: Omit<CreateTask, 'resource'>;

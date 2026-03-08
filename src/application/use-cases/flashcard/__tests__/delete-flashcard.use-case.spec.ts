@@ -1,8 +1,8 @@
 import { Test } from '@nestjs/testing';
 
 import { FlashcardErrorCodes, Exception } from '@application/errors';
-import { FlashcardMock } from '@domain/entities/flashcard/__mocks__/flashcard.mock';
-import { FLASHCARD_REPOSITORY_TOKEN } from '@domain/repositories/flashcard/flashcard.repository';
+import { FlashcardMock } from '@domain/flashcard/__mocks__/flashcard.mock';
+import { FLASHCARD_REPOSITORY_TOKEN } from '@domain/flashcard/flashcard.repository';
 
 import { DeleteFlashcardUseCase } from '../delete-flashcard.use-case';
 

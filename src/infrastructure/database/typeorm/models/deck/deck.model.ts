@@ -9,7 +9,7 @@ import {
   UpdateDateColumn
 } from 'typeorm';
 
-import { IDeck } from '@domain/entities/deck/deck.interface';
+import { IDeck } from '@domain/deck/deck.interface';
 
 import { FlashcardModel } from '../flashcard/flashcard.model';
 import { ResourceModel } from '../resource/resource.model';

@@ -8,8 +8,8 @@ import {
   UpdateDateColumn
 } from 'typeorm';
 
-import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
-import { IResourceShareLink } from '@domain/entities/resource-share-link/resource-share-link.interface';
+import { SharePermission } from '@domain/resource-share/resource-share.interface';
+import { IResourceShareLink } from '@domain/resource-share-link/resource-share-link.interface';
 
 import { ResourceModel } from '../resource/resource.model';
 

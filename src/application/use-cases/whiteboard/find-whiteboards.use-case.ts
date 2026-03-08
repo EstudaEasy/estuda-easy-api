@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { WhiteboardEntity } from '@domain/entities/whiteboard/whiteboard.entity';
+import { WhiteboardEntity } from '@domain/whiteboard/whiteboard.entity';
 import {
   FilterWhiteboard,
   IWhiteboardRepository,
   RelationsWhiteboard,
   WHITEBOARD_REPOSITORY_TOKEN
-} from '@domain/repositories/whiteboard/whiteboard.repository';
+} from '@domain/whiteboard/whiteboard.repository';
 
 type FindWhiteboardsInput = {
   filters?: FilterWhiteboard;

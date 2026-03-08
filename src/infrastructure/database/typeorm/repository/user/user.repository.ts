@@ -10,7 +10,7 @@ import {
   UpdateUser,
   RelationsUser,
   USER_REPOSITORY_TOKEN
-} from '@domain/repositories/user/user.repository';
+} from '@domain/user/user.repository';
 
 import { UserModel } from '../../models/user/user.model';
 

@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 
 import { QuizModel } from '@database/typeorm/models/quiz/quiz.model';
 import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
-import { QuizMock } from '@domain/entities/quiz/__mocks__/quiz.mock';
+import { QuizMock } from '@domain/quiz/__mocks__/quiz.mock';
 
 import { QuizRepository } from '../quiz.repository';
 

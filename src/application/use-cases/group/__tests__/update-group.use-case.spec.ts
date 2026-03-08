@@ -1,11 +1,11 @@
 import { Test } from '@nestjs/testing';
 
 import { Exception, GroupErrorCodes, GroupMemberErrorCodes } from '@application/errors';
-import { GroupMock } from '@domain/entities/group/__mocks__/group.mock';
-import { GroupMemberMock } from '@domain/entities/group-member/__mocks__/group-member.mock';
-import { GroupMemberRole } from '@domain/entities/group-member/group-member.interface';
-import { GROUP_REPOSITORY_TOKEN } from '@domain/repositories/group/group.repository';
-import { GROUP_MEMBER_REPOSITORY_TOKEN } from '@domain/repositories/group-member/group-member.repository';
+import { GroupMock } from '@domain/group/__mocks__/group.mock';
+import { GROUP_REPOSITORY_TOKEN } from '@domain/group/group.repository';
+import { GroupMemberMock } from '@domain/group-member/__mocks__/group-member.mock';
+import { GroupMemberRole } from '@domain/group-member/group-member.interface';
+import { GROUP_MEMBER_REPOSITORY_TOKEN } from '@domain/group-member/group-member.repository';
 
 import { UpdateGroupUseCase } from '../update-group.use-case';
 

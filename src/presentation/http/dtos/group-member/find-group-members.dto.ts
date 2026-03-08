@@ -2,7 +2,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsEnum, IsInt, IsNotEmpty, IsOptional, IsPositive, IsUUID } from 'class-validator';
 
-import { GroupMemberRole } from '@domain/entities/group-member/group-member.interface';
+import { GroupMemberRole } from '@domain/group-member/group-member.interface';
 
 import { GroupMemberResponseDTO } from './group-member-response.dto';
 

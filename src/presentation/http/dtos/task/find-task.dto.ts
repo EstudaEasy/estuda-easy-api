@@ -2,7 +2,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsOptional, IsString, IsUUID, IsEnum, Length } from 'class-validator';
 
-import { TaskStatus } from '@domain/entities/task/task.interface';
+import { TaskStatus } from '@domain/task/task.interface';
 
 import { TaskResponseDTO } from './task-response.dto';
 

@@ -1,8 +1,8 @@
 import { Test } from '@nestjs/testing';
 
 import { TaskErrorCodes, Exception } from '@application/errors';
-import { TaskMock } from '@domain/entities/task/__mocks__/task.mock';
-import { TASK_REPOSITORY_TOKEN } from '@domain/repositories/task/task.repository';
+import { TaskMock } from '@domain/task/__mocks__/task.mock';
+import { TASK_REPOSITORY_TOKEN } from '@domain/task/task.repository';
 
 import { DeleteTaskUseCase } from '../delete-task.use-case';
 

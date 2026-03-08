@@ -5,7 +5,7 @@ import {
   FilterQuizItem,
   IQuizItemRepository,
   QUIZ_ITEM_REPOSITORY_TOKEN
-} from '@domain/repositories/quiz-item/quiz-item.repository';
+} from '@domain/quiz-item/quiz-item.repository';
 
 type DeleteQuizItemInput = {
   filters: FilterQuizItem;

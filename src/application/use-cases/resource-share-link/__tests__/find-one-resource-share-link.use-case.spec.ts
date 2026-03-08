@@ -1,8 +1,8 @@
 import { Test } from '@nestjs/testing';
 
 import { Exception, ResourceShareLinkErrorCodes } from '@application/errors';
-import { ResourceShareLinkMock } from '@domain/entities/resource-share-link/__mocks__/resource-share-link.mock';
-import { RESOURCE_SHARE_LINK_REPOSITORY_TOKEN } from '@domain/repositories/resource-share-link/resource-share-link.repository';
+import { ResourceShareLinkMock } from '@domain/resource-share-link/__mocks__/resource-share-link.mock';
+import { RESOURCE_SHARE_LINK_REPOSITORY_TOKEN } from '@domain/resource-share-link/resource-share-link.repository';
 
 import { FindOneResourceShareLinkUseCase } from '../find-one-resource-share-link.use-case';
 

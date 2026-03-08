@@ -1,7 +1,7 @@
 import { applyDecorators, SetMetadata, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
 
-import { UserRole } from '@domain/entities/user/user.interface';
+import { UserRole } from '@domain/user/user.interface';
 
 import { UserAccessTokenGuard } from '../guards/users/user-access.guard';
 

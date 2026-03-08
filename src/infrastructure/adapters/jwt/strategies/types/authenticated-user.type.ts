@@ -1,4 +1,4 @@
-import { UserRole } from '@domain/entities/user/user.interface';
+import { UserRole } from '@domain/user/user.interface';
 
 export type AuthenticatedUser = {
   id: number;

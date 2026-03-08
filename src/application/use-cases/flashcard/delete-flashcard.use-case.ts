@@ -5,7 +5,7 @@ import {
   FilterFlashcard,
   FLASHCARD_REPOSITORY_TOKEN,
   IFlashcardRepository
-} from '@domain/repositories/flashcard/flashcard.repository';
+} from '@domain/flashcard/flashcard.repository';
 
 type DeleteFlashcardInput = {
   filters: FilterFlashcard;

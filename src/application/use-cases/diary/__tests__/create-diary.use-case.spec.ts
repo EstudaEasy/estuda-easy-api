@@ -1,11 +1,11 @@
 import { Test } from '@nestjs/testing';
 
-import { DiaryMock } from '@domain/entities/diary/__mocks__/diary.mock';
-import { ResourceMock } from '@domain/entities/resource/__mocks__/resource.mock';
-import { ResourceType } from '@domain/entities/resource/resource.interface';
-import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
-import { DIARY_REPOSITORY_TOKEN } from '@domain/repositories/diary/diary.repository';
-import { RESOURCE_REPOSITORY_TOKEN } from '@domain/repositories/resource/resource.repository';
+import { DiaryMock } from '@domain/diary/__mocks__/diary.mock';
+import { DIARY_REPOSITORY_TOKEN } from '@domain/diary/diary.repository';
+import { ResourceMock } from '@domain/resource/__mocks__/resource.mock';
+import { ResourceType } from '@domain/resource/resource.interface';
+import { RESOURCE_REPOSITORY_TOKEN } from '@domain/resource/resource.repository';
+import { UserMock } from '@domain/user/__mocks__/user.mock';
 
 import { CreateDiaryUseCase } from '../create-diary.use-case';
 

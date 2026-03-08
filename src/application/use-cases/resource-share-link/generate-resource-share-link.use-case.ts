@@ -1,13 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { Exception, ResourceErrorCodes, ResourceShareLinkErrorCodes } from '@application/errors';
-import { SharePermission } from '@domain/entities/resource-share/resource-share.interface';
-import { ResourceShareLinkEntity } from '@domain/entities/resource-share-link/resource-share-link.entity';
-import { IResourceRepository, RESOURCE_REPOSITORY_TOKEN } from '@domain/repositories/resource/resource.repository';
+import { IResourceRepository, RESOURCE_REPOSITORY_TOKEN } from '@domain/resource/resource.repository';
+import { SharePermission } from '@domain/resource-share/resource-share.interface';
+import { ResourceShareLinkEntity } from '@domain/resource-share-link/resource-share-link.entity';
 import {
   RESOURCE_SHARE_LINK_REPOSITORY_TOKEN,
   IResourceShareLinkRepository
-} from '@domain/repositories/resource-share-link/resource-share-link.repository';
+} from '@domain/resource-share-link/resource-share-link.repository';
 
 type GenerateResourceShareLinkInput = {
   resourceId: string;

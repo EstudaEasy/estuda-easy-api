@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 
 import { DeckModel } from '@database/typeorm/models/deck/deck.model';
 import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
-import { DeckMock } from '@domain/entities/deck/__mocks__/deck.mock';
+import { DeckMock } from '@domain/deck/__mocks__/deck.mock';
 
 import { DeckRepository } from '../deck.repository';
 

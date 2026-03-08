@@ -8,7 +8,7 @@ import {
   UpdateDateColumn
 } from 'typeorm';
 
-import { ITask, TaskStatus } from '@domain/entities/task/task.interface';
+import { ITask, TaskStatus } from '@domain/task/task.interface';
 
 import { ResourceModel } from '../resource/resource.model';
 

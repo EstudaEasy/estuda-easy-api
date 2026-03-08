@@ -1,9 +1,9 @@
 import { Test } from '@nestjs/testing';
 
 import { Exception, GroupMemberErrorCodes } from '@application/errors';
-import { GroupMemberMock } from '@domain/entities/group-member/__mocks__/group-member.mock';
-import { GroupMemberRole } from '@domain/entities/group-member/group-member.interface';
-import { GROUP_MEMBER_REPOSITORY_TOKEN } from '@domain/repositories/group-member/group-member.repository';
+import { GroupMemberMock } from '@domain/group-member/__mocks__/group-member.mock';
+import { GroupMemberRole } from '@domain/group-member/group-member.interface';
+import { GROUP_MEMBER_REPOSITORY_TOKEN } from '@domain/group-member/group-member.repository';
 
 import { ChangeMemberRoleUseCase } from '../change-member-role.use-case';
 

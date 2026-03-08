@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { FlashcardEntity } from '@domain/entities/flashcard/flashcard.entity';
+import { FlashcardEntity } from '@domain/flashcard/flashcard.entity';
 import {
   CreateFlashcard,
   FLASHCARD_REPOSITORY_TOKEN,
   IFlashcardRepository
-} from '@domain/repositories/flashcard/flashcard.repository';
+} from '@domain/flashcard/flashcard.repository';
 
 export interface CreateFlashcardInput {
   data: CreateFlashcard;

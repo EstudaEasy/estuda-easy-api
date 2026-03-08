@@ -5,8 +5,8 @@ import { Repository } from 'typeorm';
 import { QuizItemModel } from '@database/typeorm/models/quiz-item/quiz-item.model';
 import { QuizOptionModel } from '@database/typeorm/models/quiz-option/quiz-option.model';
 import { TypeOrmUtilsService } from '@database/typeorm/utils/typeorm-utils.service';
-import { QuizItemMock } from '@domain/entities/quiz-item/__mocks__/quiz-item.mock';
-import { QuizOptionMock } from '@domain/entities/quiz-option/__mocks__/quiz-option.mock';
+import { QuizItemMock } from '@domain/quiz-item/__mocks__/quiz-item.mock';
+import { QuizOptionMock } from '@domain/quiz-option/__mocks__/quiz-option.mock';
 
 import { QuizItemRepository } from '../quiz-item.repository';
 

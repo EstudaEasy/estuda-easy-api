@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { DiaryEntity } from '@domain/entities/diary/diary.entity';
-import { ResourceType } from '@domain/entities/resource/resource.interface';
-import { CreateDiary, DIARY_REPOSITORY_TOKEN, IDiaryRepository } from '@domain/repositories/diary/diary.repository';
-import { IResourceRepository, RESOURCE_REPOSITORY_TOKEN } from '@domain/repositories/resource/resource.repository';
+import { DiaryEntity } from '@domain/diary/diary.entity';
+import { CreateDiary, DIARY_REPOSITORY_TOKEN, IDiaryRepository } from '@domain/diary/diary.repository';
+import { ResourceType } from '@domain/resource/resource.interface';
+import { IResourceRepository, RESOURCE_REPOSITORY_TOKEN } from '@domain/resource/resource.repository';
 
 export interface CreateDiaryInput {
   data: Omit<CreateDiary, 'resource'>;

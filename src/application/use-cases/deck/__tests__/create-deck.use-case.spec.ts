@@ -1,11 +1,11 @@
 import { Test } from '@nestjs/testing';
 
-import { DeckMock } from '@domain/entities/deck/__mocks__/deck.mock';
-import { ResourceMock } from '@domain/entities/resource/__mocks__/resource.mock';
-import { ResourceType } from '@domain/entities/resource/resource.interface';
-import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
-import { DECK_REPOSITORY_TOKEN } from '@domain/repositories/deck/deck.repository';
-import { RESOURCE_REPOSITORY_TOKEN } from '@domain/repositories/resource/resource.repository';
+import { DeckMock } from '@domain/deck/__mocks__/deck.mock';
+import { DECK_REPOSITORY_TOKEN } from '@domain/deck/deck.repository';
+import { ResourceMock } from '@domain/resource/__mocks__/resource.mock';
+import { ResourceType } from '@domain/resource/resource.interface';
+import { RESOURCE_REPOSITORY_TOKEN } from '@domain/resource/resource.repository';
+import { UserMock } from '@domain/user/__mocks__/user.mock';
 
 import { CreateDeckUseCase } from '../create-deck.use-case';
 

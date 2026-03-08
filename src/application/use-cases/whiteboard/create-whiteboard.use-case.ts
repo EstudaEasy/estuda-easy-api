@@ -1,13 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { ResourceType } from '@domain/entities/resource/resource.interface';
-import { WhiteboardEntity } from '@domain/entities/whiteboard/whiteboard.entity';
-import { IResourceRepository, RESOURCE_REPOSITORY_TOKEN } from '@domain/repositories/resource/resource.repository';
+import { ResourceType } from '@domain/resource/resource.interface';
+import { IResourceRepository, RESOURCE_REPOSITORY_TOKEN } from '@domain/resource/resource.repository';
+import { WhiteboardEntity } from '@domain/whiteboard/whiteboard.entity';
 import {
   CreateWhiteboard,
   IWhiteboardRepository,
   WHITEBOARD_REPOSITORY_TOKEN
-} from '@domain/repositories/whiteboard/whiteboard.repository';
+} from '@domain/whiteboard/whiteboard.repository';
 
 export interface CreateWhiteboardInput {
   data: Omit<CreateWhiteboard, 'resource'>;
