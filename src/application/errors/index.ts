@@ -11,6 +11,9 @@ import groupMember, { ErrorCode as GroupMemberErrorCodes } from './group-member/
 import quiz, { ErrorCode as QuizErrorCodes } from './quiz/quiz.errors';
 import quizItem, { ErrorCode as QuizItemErrorCodes } from './quiz-item/quiz-item.errors';
 import resource, { ErrorCode as ResourceErrorCodes } from './resource/resource.errors';
+import resourceConversion, {
+  ErrorCode as ResourceConversionErrorCodes
+} from './resource-conversion/resource-conversion.errors';
 import resourceShare, { ErrorCode as ResourceShareErrorCodes } from './resource-share/resource-share.errors';
 import resourceShareLink, {
   ErrorCode as ResourceShareLinkErrorCodes
@@ -28,6 +31,7 @@ export {
   GroupMemberErrorCodes,
   QuizErrorCodes,
   QuizItemErrorCodes,
+  ResourceConversionErrorCodes,
   ResourceErrorCodes,
   ResourceShareErrorCodes,
   ResourceShareLinkErrorCodes,
@@ -44,6 +48,7 @@ export const errors = {
   ...group,
   ...groupMember,
   ...resource,
+  ...resourceConversion,
   ...resourceShare,
   ...resourceShareLink,
   ...quiz,
