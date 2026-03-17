@@ -4,12 +4,12 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
 import { JwtConfig } from '@config/jwt/config';
+import { DecodedJwtToken } from '@providers/jwt/types/decoded-jwt.type';
 
-import { AuthenticatedUser } from '../types/authenticated-user.type';
-import { DecodedJwtToken } from '../types/decoded-jwt.type';
+import { AuthenticatedUser } from '../types/auth-user.type';
 
 @Injectable()
-export class JwtAccessTokenStrategy extends PassportStrategy(Strategy, 'access-token') {
+export class AccessTokenStrategy extends PassportStrategy(Strategy, 'access-token') {
   constructor(readonly configService: ConfigService) {
     const { accessSecret } = configService.getOrThrow<JwtConfig>('jwt');
 

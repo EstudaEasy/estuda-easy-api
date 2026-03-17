@@ -17,6 +17,12 @@ describe('Use Cases -> Diary -> Update Audio', () => {
     audioUrl: 'https://bucket.s3.amazonaws.com/diaries/audios/new-audio.mp3'
   });
 
+  const file = {
+    buffer: Buffer.from('audio'),
+    mimetype: 'audio/mpeg',
+    originalname: 'audio.mp3'
+  } as Express.Multer.File;
+
   const diaryRepositoryMock = {
     findOne: jest.fn(),
     update: jest.fn()
@@ -52,8 +58,6 @@ describe('Use Cases -> Diary -> Update Audio', () => {
     s3ServiceMock.uploadFile.mockResolvedValue({ url: updatedDiary.audioUrl });
     diaryRepositoryMock.update.mockResolvedValue(updatedDiary);
 
-    const file = { buffer: Buffer.from('audio'), mimetype: 'audio/mpeg' } as Express.Multer.File;
-
     const input = { filters: { id: diary.id }, file };
 
     const result = await updateDiaryAudioUseCase.execute(input);
@@ -74,7 +78,6 @@ describe('Use Cases -> Diary -> Update Audio', () => {
     s3ServiceMock.uploadFile.mockResolvedValue({ url: updatedDiary.audioUrl });
     diaryRepositoryMock.update.mockResolvedValue(updatedDiary);
 
-    const file = { buffer: Buffer.from('audio'), mimetype: 'audio/mpeg' } as Express.Multer.File;
     const input = { filters: { id: diary.id }, file };
 
     const result = await updateDiaryAudioUseCase.execute(input);
@@ -86,8 +89,9 @@ describe('Use Cases -> Diary -> Update Audio', () => {
 
   it('should throw not found when diary does not exist', async () => {
     diaryRepositoryMock.findOne.mockResolvedValue(null);
-    const file = { buffer: Buffer.from('audio'), mimetype: 'audio/mpeg' } as Express.Multer.File;
+
     const input = { filters: { id: diary.id }, file };
+
     await expect(updateDiaryAudioUseCase.execute(input)).rejects.toThrow(new Exception(DiaryErrorCodes.NOT_FOUND));
     expect(s3ServiceMock.uploadFile).not.toHaveBeenCalled();
     expect(diaryRepositoryMock.update).not.toHaveBeenCalled();
@@ -98,7 +102,6 @@ describe('Use Cases -> Diary -> Update Audio', () => {
     s3ServiceMock.uploadFile.mockResolvedValue({ url: updatedDiary.audioUrl });
     diaryRepositoryMock.update.mockResolvedValue(null);
 
-    const file = { buffer: Buffer.from('audio'), mimetype: 'audio/mpeg' } as Express.Multer.File;
     const input = { filters: { id: diary.id }, file };
 
     await expect(updateDiaryAudioUseCase.execute(input)).rejects.toThrow(new Exception(DiaryErrorCodes.NOT_UPDATED));

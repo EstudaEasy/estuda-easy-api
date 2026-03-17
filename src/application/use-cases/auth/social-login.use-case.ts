@@ -2,28 +2,27 @@ import { randomUUID } from 'crypto';
 
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { compare } from 'bcrypt';
+import { hash } from 'bcrypt';
 
 import { AuthenticatedUser } from '@adapters/auth/types/auth-user.type';
-import { AuthErrorCodes, Exception } from '@application/errors';
 import { JwtConfig } from '@config/jwt/config';
 import { IUserRepository, USER_REPOSITORY_TOKEN } from '@domain/user/user.repository';
 import { IUserSessionRepository, USER_SESSION_REPOSITORY_TOKEN } from '@domain/user-session/user-session.repository';
 import { JwtProvider } from '@providers/jwt/jwt.provider';
 
-type LoginInput = {
+type SocialLoginInput = {
+  name: string;
   email: string;
-  password: string;
   ipAddress: string;
 };
 
-type LoginOutput = {
+type SocialLoginOutput = {
   accessToken: string;
   refreshToken: string;
 };
 
 @Injectable()
-export class LoginUseCase {
+export class SocialLoginUseCase {
   constructor(
     @Inject(USER_REPOSITORY_TOKEN)
     private readonly userRepository: IUserRepository,
@@ -33,14 +32,13 @@ export class LoginUseCase {
     private readonly jwtService: JwtProvider
   ) {}
 
-  async execute(input: LoginInput): Promise<LoginOutput> {
-    const { email, password, ipAddress } = input;
+  async execute(input: SocialLoginInput): Promise<SocialLoginOutput> {
+    const { name, email, ipAddress } = input;
 
-    const user = await this.userRepository.findOne({ email });
-    const isPasswordValid = user ? await compare(password, user?.password ?? '') : false;
+    let user = await this.userRepository.findOne({ email });
 
-    if (!user || !isPasswordValid) {
-      throw new Exception(AuthErrorCodes.INVALID_CREDENTIALS);
+    if (!user) {
+      user = await this.userRepository.create({ name, email, password: await hash(randomUUID(), 10) });
     }
 
     const userPayload: AuthenticatedUser = {
@@ -50,18 +48,18 @@ export class LoginUseCase {
       role: user.role
     };
 
-    const jwtConfig = this.configService.getOrThrow<JwtConfig>('jwt');
+    return await this.generateTokens(userPayload, ipAddress);
+  }
+
+  private async generateTokens(
+    user: AuthenticatedUser,
+    ipAddress: string
+  ): Promise<{ accessToken: string; refreshToken: string }> {
+    const { accessSecret, refreshSecret } = this.configService.getOrThrow<JwtConfig>('jwt');
     const jti = randomUUID();
 
-    const accessToken = await this.jwtService.signToken(
-      { user: userPayload },
-      { secret: jwtConfig.accessSecret, expiresIn: '15m' }
-    );
-
-    const refreshToken = await this.jwtService.signToken(
-      { user: userPayload, jti },
-      { secret: jwtConfig.refreshSecret, expiresIn: '7d' }
-    );
+    const accessToken = await this.jwtService.signToken({ user }, { secret: accessSecret, expiresIn: '15m' });
+    const refreshToken = await this.jwtService.signToken({ user, jti }, { secret: refreshSecret, expiresIn: '7d' });
 
     const { exp } = this.jwtService.decodeToken<{ user: AuthenticatedUser }>(refreshToken);
     const expiresAt = new Date(exp! * 1000);

@@ -11,10 +11,25 @@ import { LogoutUseCase } from './logout.use-case';
 import { RefreshTokensUseCase } from './refresh-tokens.use-case';
 import { ResetPasswordUseCase } from './reset-password.use-case';
 import { SendPasswordResetEmailUseCase } from './send-password-reset-email.use-case';
+import { SocialLoginUseCase } from './social-login.use-case';
 
 @Module({
   imports: [UserRepositoryModule, UserSessionRepositoryModule, CacheModule, JwtModule, MailerModule],
-  providers: [LoginUseCase, LogoutUseCase, RefreshTokensUseCase, ResetPasswordUseCase, SendPasswordResetEmailUseCase],
-  exports: [LoginUseCase, LogoutUseCase, RefreshTokensUseCase, ResetPasswordUseCase, SendPasswordResetEmailUseCase]
+  providers: [
+    LoginUseCase,
+    LogoutUseCase,
+    RefreshTokensUseCase,
+    ResetPasswordUseCase,
+    SendPasswordResetEmailUseCase,
+    SocialLoginUseCase
+  ],
+  exports: [
+    LoginUseCase,
+    LogoutUseCase,
+    RefreshTokensUseCase,
+    ResetPasswordUseCase,
+    SendPasswordResetEmailUseCase,
+    SocialLoginUseCase
+  ]
 })
 export class AuthUseCasesModule {}

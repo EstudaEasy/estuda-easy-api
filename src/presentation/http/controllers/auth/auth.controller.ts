@@ -2,10 +2,12 @@ import {
   Body,
   ClassSerializerInterceptor,
   Controller,
+  Get,
   HttpCode,
   HttpStatus,
   Ip,
   Post,
+  Req,
   SerializeOptions,
   UseGuards,
   UseInterceptors
@@ -19,12 +21,15 @@ import {
   ApiNotFoundResponse,
   ApiBadRequestResponse
 } from '@nestjs/swagger';
+import { Request } from 'express';
 
+import { SocialAuthenticatedUser } from '@adapters/auth/types/social-auth-user.type';
 import { LoginUseCase } from '@application/use-cases/auth/login.use-case';
 import { LogoutUseCase } from '@application/use-cases/auth/logout.use-case';
 import { RefreshTokensUseCase } from '@application/use-cases/auth/refresh-tokens.use-case';
 import { ResetPasswordUseCase } from '@application/use-cases/auth/reset-password.use-case';
 import { SendPasswordResetEmailUseCase } from '@application/use-cases/auth/send-password-reset-email.use-case';
+import { SocialLoginUseCase } from '@application/use-cases/auth/social-login.use-case';
 import {
   LoginBodyDTO,
   LoginResponseDTO,
@@ -32,8 +37,10 @@ import {
   RefreshTokensBodyDTO,
   RefreshTokensResponseDTO,
   ResetPasswordDTO,
-  SendPasswordResetEmailBodyDTO
+  SendPasswordResetEmailBodyDTO,
+  SocialLoginResponseDTO
 } from '@presentation/http/dtos/auth';
+import { GoogleAuthGuard } from '@presentation/http/guards/users/google-auth.guard';
 import { UserRefreshTokenGuard } from '@presentation/http/guards/users/user-refresh.guard';
 
 @ApiTags('Autenticação')
@@ -45,7 +52,8 @@ export class AuthController {
     private readonly logoutUseCase: LogoutUseCase,
     private readonly refreshTokensUseCase: RefreshTokensUseCase,
     private readonly resetPasswordUseCase: ResetPasswordUseCase,
-    private readonly sendPasswordResetEmailUseCase: SendPasswordResetEmailUseCase
+    private readonly sendPasswordResetEmailUseCase: SendPasswordResetEmailUseCase,
+    private readonly socialLoginUseCase: SocialLoginUseCase
   ) {}
 
   @Post('login')
@@ -95,5 +103,20 @@ export class AuthController {
   @ApiUnauthorizedResponse({ description: 'Token de redefinição inválido' })
   async resetPassword(@Body() data: ResetPasswordDTO): Promise<void> {
     return await this.resetPasswordUseCase.execute(data);
+  }
+
+  @Get('google')
+  @UseGuards(GoogleAuthGuard)
+  @ApiOperation({ summary: 'Fazer login com conta do Google' })
+  @ApiNoContentResponse({ description: 'Redirecionamento para o Google realizado com sucesso' })
+  async googleAuth(): Promise<void> {}
+
+  @Get('google/callback')
+  @UseGuards(GoogleAuthGuard)
+  @ApiOperation({ summary: 'Callback de login com conta do Google' })
+  @ApiOkResponse({ description: 'Login com Google realizado com sucesso', type: SocialLoginResponseDTO })
+  async googleAuthCallback(@Req() req: Request, @Ip() ipAddress: string): Promise<SocialLoginResponseDTO> {
+    const user = req.user as SocialAuthenticatedUser;
+    return await this.socialLoginUseCase.execute({ name: user.name, email: user.email, ipAddress });
   }
 }

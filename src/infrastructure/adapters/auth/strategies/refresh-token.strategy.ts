@@ -4,12 +4,12 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
 import { JwtConfig } from '@config/jwt/config';
+import { DecodedJwtToken } from '@providers/jwt/types/decoded-jwt.type';
 
-import { AuthenticatedUser } from '../types/authenticated-user.type';
-import { DecodedJwtToken } from '../types/decoded-jwt.type';
+import { AuthenticatedUser } from '../types/auth-user.type';
 
 @Injectable()
-export class JwtRefreshTokenStrategy extends PassportStrategy(Strategy, 'refresh-token') {
+export class RefreshTokenStrategy extends PassportStrategy(Strategy, 'refresh-token') {
   constructor(readonly configService: ConfigService) {
     const { refreshSecret } = configService.getOrThrow<JwtConfig>('jwt');
 

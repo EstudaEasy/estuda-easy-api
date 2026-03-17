@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable, Logger } from '@nestjs/common';
 import { ModuleRef, Reflector } from '@nestjs/core';
 
-import { AuthenticatedUser } from '@adapters/jwt/strategies/types/authenticated-user.type';
+import { AuthenticatedUser } from '@adapters/auth/types/auth-user.type';
 import { ResourcePermissionService } from '@application/services/resource/resource-permission.service';
 import { ResourceType } from '@domain/resource/resource.interface';
 import { SharePermission } from '@domain/resource-share/resource-share.interface';
