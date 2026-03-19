@@ -6,6 +6,7 @@ import { DiaryModule } from './controllers/diary/diary.module';
 import { FlashcardModule } from './controllers/flashcard/flashcard.module';
 import { GroupModule } from './controllers/group/group.module';
 import { GroupMemberModule } from './controllers/group-member/group-member.module';
+import { GroupPostModule } from './controllers/group-post/group-post.module';
 import { QuizModule } from './controllers/quiz/quiz.module';
 import { QuizItemModule } from './controllers/quiz-item/quiz-item.module';
 import { ResourceConversionModule } from './controllers/resource-conversion/resource-conversion.module';
@@ -23,6 +24,7 @@ import { WhiteboardModule } from './controllers/whiteboard/whiteboard.module';
     FlashcardModule,
     GroupModule,
     GroupMemberModule,
+    GroupPostModule,
     QuizModule,
     QuizItemModule,
     ResourceConversionModule,
