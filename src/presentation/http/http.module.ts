@@ -10,6 +10,7 @@ import { GroupPostModule } from './controllers/group-post/group-post.module';
 import { QuizModule } from './controllers/quiz/quiz.module';
 import { QuizItemModule } from './controllers/quiz-item/quiz-item.module';
 import { ResourceConversionModule } from './controllers/resource-conversion/resource-conversion.module';
+import { ResourceFavoriteModule } from './controllers/resource-favorite/resource-favorite.module';
 import { ResourceShareModule } from './controllers/resource-share/resource-share.module';
 import { ResourceShareLinkModule } from './controllers/resource-share-link/resource-share-link.module';
 import { TaskModule } from './controllers/task/task.module';
@@ -28,6 +29,7 @@ import { WhiteboardModule } from './controllers/whiteboard/whiteboard.module';
     QuizModule,
     QuizItemModule,
     ResourceConversionModule,
+    ResourceFavoriteModule,
     ResourceShareModule,
     ResourceShareLinkModule,
     TaskModule,
