@@ -1,7 +1,7 @@
 import { IGroup } from '@domain/group/group.interface';
 import { DomainFilter } from '@shared/types';
 
-export type CreateGroup = Omit<IGroup, 'id' | 'members' | 'resources' | 'createdAt' | 'updatedAt'>;
+export type CreateGroup = Omit<IGroup, 'id' | 'members' | 'resources' | 'posts' | 'createdAt' | 'updatedAt'>;
 export type UpdateGroup = Partial<CreateGroup>;
 export type FilterGroup = DomainFilter<IGroup> | DomainFilter<IGroup>[];
 export type RelationsGroup = { members?: boolean; resources?: boolean };
