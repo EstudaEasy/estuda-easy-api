@@ -8,6 +8,7 @@ import diary, { ErrorCode as DiaryErrorCodes } from './diary/diary.errors';
 import flashcard, { ErrorCode as FlashcardErrorCodes } from './flashcard/flashcard.errors';
 import group, { ErrorCode as GroupErrorCodes } from './group/group.errors';
 import groupMember, { ErrorCode as GroupMemberErrorCodes } from './group-member/group-member.errors';
+import groupPost, { ErrorCode as GroupPostErrorCodes } from './group-post/group-post.errors';
 import quiz, { ErrorCode as QuizErrorCodes } from './quiz/quiz.errors';
 import quizItem, { ErrorCode as QuizItemErrorCodes } from './quiz-item/quiz-item.errors';
 import resource, { ErrorCode as ResourceErrorCodes } from './resource/resource.errors';
@@ -29,6 +30,7 @@ export {
   FlashcardErrorCodes,
   GroupErrorCodes,
   GroupMemberErrorCodes,
+  GroupPostErrorCodes,
   QuizErrorCodes,
   QuizItemErrorCodes,
   ResourceConversionErrorCodes,
@@ -47,6 +49,7 @@ export const errors = {
   ...flashcard,
   ...group,
   ...groupMember,
+  ...groupPost,
   ...resource,
   ...resourceConversion,
   ...resourceShare,
