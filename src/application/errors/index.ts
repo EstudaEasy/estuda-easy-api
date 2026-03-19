@@ -15,6 +15,9 @@ import resource, { ErrorCode as ResourceErrorCodes } from './resource/resource.e
 import resourceConversion, {
   ErrorCode as ResourceConversionErrorCodes
 } from './resource-conversion/resource-conversion.errors';
+import resourceFavorite, {
+  ErrorCode as ResourceFavoriteErrorCodes
+} from './resource-favorite/resource-favorite.errors';
 import resourceShare, { ErrorCode as ResourceShareErrorCodes } from './resource-share/resource-share.errors';
 import resourceShareLink, {
   ErrorCode as ResourceShareLinkErrorCodes
@@ -35,6 +38,7 @@ export {
   QuizItemErrorCodes,
   ResourceConversionErrorCodes,
   ResourceErrorCodes,
+  ResourceFavoriteErrorCodes,
   ResourceShareErrorCodes,
   ResourceShareLinkErrorCodes,
   TaskErrorCodes,
@@ -51,6 +55,7 @@ export const errors = {
   ...groupMember,
   ...groupPost,
   ...resource,
+  ...resourceFavorite,
   ...resourceConversion,
   ...resourceShare,
   ...resourceShareLink,
