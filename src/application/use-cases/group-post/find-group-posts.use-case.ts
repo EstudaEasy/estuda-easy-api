@@ -28,7 +28,7 @@ export class FindGroupPostsUseCase {
   async execute(input: FindGroupPostsInput = {}): Promise<FindGroupPostsOutput> {
     const { filters, relations } = input;
 
-    const { posts, total } = await this.groupPostRepository.find(filters, relations);
+    const { posts, total } = await this.groupPostRepository.find(filters, relations, { createdAt: 'DESC' });
 
     return {
       posts: posts.map((post) => new GroupPostEntity(post)),

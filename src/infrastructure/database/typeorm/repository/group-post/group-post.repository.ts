@@ -9,6 +9,7 @@ import {
   GROUP_POST_REPOSITORY_TOKEN,
   IGroupPostRepository,
   RelationsGroupPost,
+  OrderGroupPost,
   UpdateGroupPost
 } from '@domain/group-post/group-post.repository';
 
@@ -29,10 +30,11 @@ export class GroupPostRepository implements IGroupPostRepository {
 
   async find(
     filters?: FilterGroupPost,
-    relations?: RelationsGroupPost
+    relations?: RelationsGroupPost,
+    order?: OrderGroupPost
   ): Promise<{ posts: GroupPostModel[]; total: number }> {
     const where = this.typeOrmUtilsService.buildWhere(filters);
-    const [posts, total] = await this.repository.findAndCount({ where, relations });
+    const [posts, total] = await this.repository.findAndCount({ where, relations, order });
     return { posts, total };
   }
 

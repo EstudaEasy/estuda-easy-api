@@ -41,7 +41,7 @@ describe('Use Cases -> Group Post -> Find', () => {
 
     const result = await findGroupPostsUseCase.execute(input);
 
-    expect(groupPostRepositoryMock.find).toHaveBeenCalledWith(input.filters, input.relations);
+    expect(groupPostRepositoryMock.find).toHaveBeenCalledWith(input.filters, input.relations, { createdAt: 'DESC' });
     expect(result.posts).toEqual(posts);
     expect(result.total).toBe(total);
   });
@@ -51,7 +51,7 @@ describe('Use Cases -> Group Post -> Find', () => {
 
     const result = await findGroupPostsUseCase.execute();
 
-    expect(groupPostRepositoryMock.find).toHaveBeenCalledWith(undefined, undefined);
+    expect(groupPostRepositoryMock.find).toHaveBeenCalledWith(undefined, undefined, { createdAt: 'DESC' });
     expect(result.posts).toEqual(posts);
     expect(result.total).toBe(total);
   });
