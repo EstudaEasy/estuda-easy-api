@@ -3,13 +3,10 @@ import {
   ClassSerializerInterceptor,
   Controller,
   Delete,
-  FileTypeValidator,
   Get,
   HttpCode,
   HttpStatus,
-  MaxFileSizeValidator,
   Param,
-  ParseFilePipe,
   Patch,
   Post,
   Query,
@@ -35,6 +32,7 @@ import { FindDiariesUseCase } from '@application/use-cases/diary/find-diaries.us
 import { FindOneDiaryUseCase } from '@application/use-cases/diary/find-one-diary.use-case';
 import { UpdateDiaryAudioUseCase } from '@application/use-cases/diary/update-diary-audio.use-case';
 import { UpdateDiaryUseCase } from '@application/use-cases/diary/update-diary.use-case';
+import { FileValidationPipe } from '@core/pipes/file-validation.pipe';
 import { Auth } from '@presentation/http/decorators/auth.decorator';
 import { ResourcePermission } from '@presentation/http/decorators/resource-permission.decorator';
 import { User } from '@presentation/http/decorators/user.decorator';
@@ -132,15 +130,7 @@ export class DiaryController {
   @ApiNotFoundResponse({ description: 'Diário não encontrado' })
   async updateAudio(
     @Param() params: UpdateDiaryAudioParamsDTO,
-    @UploadedFile(
-      new ParseFilePipe({
-        validators: [
-          new MaxFileSizeValidator({ maxSize: FILE_CONSTRAINTS.audio.maxSize }),
-          new FileTypeValidator({ fileType: FILE_CONSTRAINTS.audio.allowedTypes })
-        ]
-      })
-    )
-    file: Express.Multer.File
+    @UploadedFile(new FileValidationPipe({ ...FILE_CONSTRAINTS.audio })) file: Express.Multer.File
   ): Promise<DiaryResponseDTO> {
     return await this.updateDiaryAudioUseCase.execute({ filters: { id: params.diaryId }, file });
   }
