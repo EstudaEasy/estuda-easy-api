@@ -8,6 +8,7 @@ import {
   Ip,
   Post,
   Req,
+  Res,
   SerializeOptions,
   UseGuards,
   UseInterceptors
@@ -21,7 +22,7 @@ import {
   ApiNotFoundResponse,
   ApiBadRequestResponse
 } from '@nestjs/swagger';
-import { Request } from 'express';
+import { Request, Response } from 'express';
 
 import { SocialAuthenticatedUser } from '@adapters/auth/types/social-auth-user.type';
 import { LoginUseCase } from '@application/use-cases/auth/login.use-case';
@@ -37,8 +38,7 @@ import {
   RefreshTokensBodyDTO,
   RefreshTokensResponseDTO,
   ResetPasswordDTO,
-  SendPasswordResetEmailBodyDTO,
-  SocialLoginResponseDTO
+  SendPasswordResetEmailBodyDTO
 } from '@presentation/http/dtos/auth';
 import { GoogleAuthGuard } from '@presentation/http/guards/users/google-auth.guard';
 import { UserRefreshTokenGuard } from '@presentation/http/guards/users/user-refresh.guard';
@@ -114,9 +114,14 @@ export class AuthController {
   @Get('google/callback')
   @UseGuards(GoogleAuthGuard)
   @ApiOperation({ summary: 'Callback de login com conta do Google' })
-  @ApiOkResponse({ description: 'Login com Google realizado com sucesso', type: SocialLoginResponseDTO })
-  async googleAuthCallback(@Req() req: Request, @Ip() ipAddress: string): Promise<SocialLoginResponseDTO> {
+  @ApiOkResponse({ description: 'Login com Google realizado com sucesso. Redirecionamento para o cliente com tokens' })
+  async googleAuthCallback(
+    @Req() req: Request,
+    @Ip() ipAddress: string,
+    @Res({ passthrough: true }) res: Response
+  ): Promise<void> {
     const user = req.user as SocialAuthenticatedUser;
-    return await this.socialLoginUseCase.execute({ name: user.name, email: user.email, ipAddress });
+    const tokens = await this.socialLoginUseCase.execute({ name: user.name, email: user.email, ipAddress });
+    res.redirect(`${process.env.BASE_URL_CLIENT}/auth/callback?${new URLSearchParams({ ...tokens })}`);
   }
 }
