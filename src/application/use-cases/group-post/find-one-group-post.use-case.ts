@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { Exception, GroupPostErrorCodes } from '@application/errors';
+import { GroupPostErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { GroupPostEntity } from '@domain/group-post/group-post.entity';
 import {
   FilterGroupPost,

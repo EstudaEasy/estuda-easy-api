@@ -3,8 +3,9 @@ import { randomUUID } from 'crypto';
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
-import { Exception, UserErrorCodes } from '@application/errors';
+import { UserErrorCodes } from '@application/errors';
 import { JwtConfig } from '@config/jwt/config';
+import { Exception } from '@core/exceptions';
 import { IUserRepository, USER_REPOSITORY_TOKEN } from '@domain/user/user.repository';
 import { CacheProvider } from '@providers/cache/cache.provider';
 import { JwtProvider } from '@providers/jwt/jwt.provider';

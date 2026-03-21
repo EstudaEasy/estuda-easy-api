@@ -1,7 +1,8 @@
 import { ConfigService } from '@nestjs/config';
 import { Test } from '@nestjs/testing';
 
-import { Exception, AuthErrorCodes } from '@application/errors';
+import { AuthErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { UserMock } from '@domain/user/__mocks__/user.mock';
 import { UserSessionMock } from '@domain/user-session/__mocks__/user-session.mock';
 import { USER_SESSION_REPOSITORY_TOKEN } from '@domain/user-session/user-session.repository';

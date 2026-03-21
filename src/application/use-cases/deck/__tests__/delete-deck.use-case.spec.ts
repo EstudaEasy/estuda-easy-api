@@ -1,6 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { DeckErrorCodes, Exception } from '@application/errors';
+import { DeckErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { DeckMock } from '@domain/deck/__mocks__/deck.mock';
 import { DECK_REPOSITORY_TOKEN } from '@domain/deck/deck.repository';
 

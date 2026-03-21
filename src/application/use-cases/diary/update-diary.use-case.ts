@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { DiaryErrorCodes, Exception } from '@application/errors';
+import { DiaryErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { DiaryEntity } from '@domain/diary/diary.entity';
 import { DIARY_REPOSITORY_TOKEN, FilterDiary, IDiaryRepository, UpdateDiary } from '@domain/diary/diary.repository';
 

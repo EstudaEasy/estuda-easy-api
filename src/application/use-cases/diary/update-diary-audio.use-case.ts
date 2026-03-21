@@ -3,7 +3,8 @@ import { extname } from 'path';
 
 import { Inject, Injectable } from '@nestjs/common';
 
-import { DiaryErrorCodes, Exception } from '@application/errors';
+import { DiaryErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { DiaryEntity } from '@domain/diary/diary.entity';
 import { DIARY_REPOSITORY_TOKEN, FilterDiary, IDiaryRepository } from '@domain/diary/diary.repository';
 import { S3Provider } from '@providers/s3/s3.provider';

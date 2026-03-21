@@ -1,6 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { Exception, GroupMemberErrorCodes } from '@application/errors';
+import { GroupMemberErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { GroupMemberMock } from '@domain/group-member/__mocks__/group-member.mock';
 import { GroupMemberRole } from '@domain/group-member/group-member.interface';
 import { GROUP_MEMBER_REPOSITORY_TOKEN } from '@domain/group-member/group-member.repository';

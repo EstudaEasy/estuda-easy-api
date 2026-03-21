@@ -1,6 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { Exception, QuizErrorCodes } from '@application/errors';
+import { QuizErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { QuizMock } from '@domain/quiz/__mocks__/quiz.mock';
 import { QUIZ_REPOSITORY_TOKEN } from '@domain/quiz/quiz.repository';
 

@@ -1,6 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { Exception, GroupPostErrorCodes } from '@application/errors';
+import { GroupPostErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { GroupPostMock } from '@domain/group-post/__mocks__/group-post.mock';
 import { GROUP_POST_REPOSITORY_TOKEN } from '@domain/group-post/group-post.repository';
 

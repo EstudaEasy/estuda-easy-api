@@ -1,6 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { DiaryErrorCodes, Exception } from '@application/errors';
+import { DiaryErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { DiaryMock } from '@domain/diary/__mocks__/diary.mock';
 import { DIARY_REPOSITORY_TOKEN } from '@domain/diary/diary.repository';
 

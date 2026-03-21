@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { Exception, GroupMemberErrorCodes } from '@application/errors';
+import { GroupMemberErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { GroupMemberEntity } from '@domain/group-member/group-member.entity';
 import {
   FilterGroupMember,

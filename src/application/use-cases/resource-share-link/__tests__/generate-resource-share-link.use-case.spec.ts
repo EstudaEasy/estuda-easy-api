@@ -1,6 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { Exception, ResourceErrorCodes, ResourceShareLinkErrorCodes } from '@application/errors';
+import { ResourceErrorCodes, ResourceShareLinkErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { ResourceMock } from '@domain/resource/__mocks__/resource.mock';
 import { RESOURCE_REPOSITORY_TOKEN } from '@domain/resource/resource.repository';
 import { SharePermission } from '@domain/resource-share/resource-share.interface';

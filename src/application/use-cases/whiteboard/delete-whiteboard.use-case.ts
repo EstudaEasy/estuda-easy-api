@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { Exception, WhiteboardErrorCodes } from '@application/errors';
+import { WhiteboardErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import {
   FilterWhiteboard,
   IWhiteboardRepository,

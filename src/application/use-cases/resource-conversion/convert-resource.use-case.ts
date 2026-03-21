@@ -1,6 +1,7 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 
-import { Exception, ResourceConversionErrorCodes } from '@application/errors';
+import { ResourceConversionErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { IAIProvider, AI_PROVIDER_TOKEN } from '@domain/ai/ai.interface';
 import { IDeckRepository, DECK_REPOSITORY_TOKEN } from '@domain/deck/deck.repository';
 import { IDiaryRepository, DIARY_REPOSITORY_TOKEN } from '@domain/diary/diary.repository';

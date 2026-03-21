@@ -1,6 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { TaskErrorCodes, Exception } from '@application/errors';
+import { TaskErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { TaskMock } from '@domain/task/__mocks__/task.mock';
 import { TASK_REPOSITORY_TOKEN } from '@domain/task/task.repository';
 

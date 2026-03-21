@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { TaskErrorCodes, Exception } from '@application/errors';
+import { TaskErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { TASK_REPOSITORY_TOKEN, FilterTask, ITaskRepository } from '@domain/task/task.repository';
 
 type DeleteTaskInput = {

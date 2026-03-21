@@ -1,6 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { Exception, UserErrorCodes } from '@application/errors';
+import { UserErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { UserMock } from '@domain/user/__mocks__/user.mock';
 import { USER_REPOSITORY_TOKEN } from '@domain/user/user.repository';
 

@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { Exception, ResourceErrorCodes, ResourceFavoriteErrorCodes } from '@application/errors';
+import { ResourceErrorCodes, ResourceFavoriteErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { IResourceRepository, RESOURCE_REPOSITORY_TOKEN } from '@domain/resource/resource.repository';
 import { ResourceFavoriteEntity } from '@domain/resource-favorite/resource-favorite.entity';
 import {

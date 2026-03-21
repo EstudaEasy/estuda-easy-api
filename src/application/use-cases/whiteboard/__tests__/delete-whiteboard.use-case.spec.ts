@@ -1,6 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { Exception, WhiteboardErrorCodes } from '@application/errors';
+import { WhiteboardErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { WhiteboardMock } from '@domain/whiteboard/__mocks__/whiteboard.mock';
 import { WHITEBOARD_REPOSITORY_TOKEN } from '@domain/whiteboard/whiteboard.repository';
 

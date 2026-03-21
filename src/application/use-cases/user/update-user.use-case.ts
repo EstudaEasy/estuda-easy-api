@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { hash } from 'bcrypt';
 
-import { Exception, UserErrorCodes } from '@application/errors';
+import { UserErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { UserEntity } from '@domain/user/user.entity';
 import { IUserRepository, USER_REPOSITORY_TOKEN, UpdateUser, FilterUser } from '@domain/user/user.repository';
 

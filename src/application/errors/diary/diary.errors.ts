@@ -1,6 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 
-import { MapErrors } from '../types';
+import { MapErrors } from '@core/types';
 
 export enum ErrorCode {
   NOT_FOUND = 'DiaryNotFoundError',
@@ -9,30 +9,30 @@ export enum ErrorCode {
 }
 
 const errors: MapErrors<ErrorCode> = {
-  [ErrorCode.NOT_FOUND]: {
+  [ErrorCode.NOT_FOUND]: () => ({
     message: {
       pt_BR: 'Diário não encontrado',
       en_US: 'Diary not found',
       es_ES: 'Diario no encontrado'
     },
     status: HttpStatus.NOT_FOUND
-  },
-  [ErrorCode.NOT_UPDATED]: {
+  }),
+  [ErrorCode.NOT_UPDATED]: () => ({
     message: {
       pt_BR: 'Erro ao atualizar o diário',
       en_US: 'Error updating diary',
       es_ES: 'Error al actualizar el diario'
     },
     status: HttpStatus.CONFLICT
-  },
-  [ErrorCode.NOT_DELETED]: {
+  }),
+  [ErrorCode.NOT_DELETED]: () => ({
     message: {
       pt_BR: 'Erro ao deletar o diário',
       en_US: 'Error deleting diary',
       es_ES: 'Error al eliminar el diario'
     },
     status: HttpStatus.CONFLICT
-  }
+  })
 };
 
 export default errors;

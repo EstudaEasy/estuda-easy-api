@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { FlashcardErrorCodes, Exception } from '@application/errors';
+import { FlashcardErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import {
   FilterFlashcard,
   FLASHCARD_REPOSITORY_TOKEN,

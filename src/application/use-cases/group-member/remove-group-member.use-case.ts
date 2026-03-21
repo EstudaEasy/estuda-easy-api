@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { Exception, GroupMemberErrorCodes } from '@application/errors';
+import { GroupMemberErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { GroupMemberRole } from '@domain/group-member/group-member.interface';
 import { GROUP_MEMBER_REPOSITORY_TOKEN, IGroupMemberRepository } from '@domain/group-member/group-member.repository';
 

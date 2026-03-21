@@ -1,7 +1,3 @@
-import { HttpException } from '@nestjs/common';
-
-import { Lang } from '@core/types';
-
 import auth, { ErrorCode as AuthErrorCodes } from './auth/auth.errors';
 import deck, { ErrorCode as DeckErrorCodes } from './deck/deck.errors';
 import diary, { ErrorCode as DiaryErrorCodes } from './diary/diary.errors';
@@ -46,7 +42,7 @@ export {
   WhiteboardErrorCodes
 };
 
-export const errors = {
+export const applicationErrors = {
   ...auth,
   ...deck,
   ...diary,
@@ -65,17 +61,3 @@ export const errors = {
   ...whiteboard,
   ...user
 };
-
-export class Exception extends HttpException {
-  public readonly code: keyof typeof errors;
-  public readonly lang?: Lang;
-
-  constructor(code: keyof typeof errors, lang: Lang = 'pt_BR') {
-    const { status, message } = errors[code];
-
-    super(message[lang], status);
-
-    this.code = code;
-    this.lang = lang;
-  }
-}

@@ -5,8 +5,9 @@ import { ConfigService } from '@nestjs/config';
 import { compare } from 'bcrypt';
 
 import { AuthenticatedUser } from '@adapters/auth/types/auth-user.type';
-import { AuthErrorCodes, Exception } from '@application/errors';
+import { AuthErrorCodes } from '@application/errors';
 import { JwtConfig } from '@config/jwt/config';
+import { Exception } from '@core/exceptions';
 import { IUserRepository, USER_REPOSITORY_TOKEN } from '@domain/user/user.repository';
 import { IUserSessionRepository, USER_SESSION_REPOSITORY_TOKEN } from '@domain/user-session/user-session.repository';
 import { JwtProvider } from '@providers/jwt/jwt.provider';

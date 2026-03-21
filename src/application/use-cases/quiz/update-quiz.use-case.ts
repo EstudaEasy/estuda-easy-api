@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { Exception, QuizErrorCodes } from '@application/errors';
+import { QuizErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { QuizEntity } from '@domain/quiz/quiz.entity';
 import { FilterQuiz, IQuizRepository, QUIZ_REPOSITORY_TOKEN, UpdateQuiz } from '@domain/quiz/quiz.repository';
 

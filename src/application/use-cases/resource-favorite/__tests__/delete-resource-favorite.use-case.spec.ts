@@ -1,6 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { Exception, ResourceFavoriteErrorCodes } from '@application/errors';
+import { ResourceFavoriteErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { ResourceFavoriteMock } from '@domain/resource-favorite/__mocks__/resource-favorite.mock';
 import { RESOURCE_FAVORITE_REPOSITORY_TOKEN } from '@domain/resource-favorite/resource-favorite.repository';
 

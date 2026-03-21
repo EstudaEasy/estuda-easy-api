@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { Exception, ResourceErrorCodes, ResourceShareLinkErrorCodes } from '@application/errors';
+import { ResourceErrorCodes, ResourceShareLinkErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { IResourceRepository, RESOURCE_REPOSITORY_TOKEN } from '@domain/resource/resource.repository';
 import { SharePermission } from '@domain/resource-share/resource-share.interface';
 import { ResourceShareLinkEntity } from '@domain/resource-share-link/resource-share-link.entity';

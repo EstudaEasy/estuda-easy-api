@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { DeckErrorCodes, Exception } from '@application/errors';
+import { DeckErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { DeckEntity } from '@domain/deck/deck.entity';
 import { DECK_REPOSITORY_TOKEN, FilterDeck, IDeckRepository, UpdateDeck } from '@domain/deck/deck.repository';
 

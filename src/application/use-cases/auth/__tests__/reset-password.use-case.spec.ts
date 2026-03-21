@@ -2,7 +2,8 @@ import { ConfigService } from '@nestjs/config';
 import { Test } from '@nestjs/testing';
 import { hash } from 'bcrypt';
 
-import { Exception, AuthErrorCodes, UserErrorCodes } from '@application/errors';
+import { AuthErrorCodes, UserErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { UserMock } from '@domain/user/__mocks__/user.mock';
 import { USER_REPOSITORY_TOKEN } from '@domain/user/user.repository';
 import { CacheProvider } from '@providers/cache/cache.provider';

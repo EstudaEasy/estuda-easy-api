@@ -1,6 +1,7 @@
 import { Test } from '@nestjs/testing';
 
-import { FlashcardErrorCodes, Exception } from '@application/errors';
+import { FlashcardErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { FlashcardMock } from '@domain/flashcard/__mocks__/flashcard.mock';
 import { FLASHCARD_REPOSITORY_TOKEN } from '@domain/flashcard/flashcard.repository';
 
