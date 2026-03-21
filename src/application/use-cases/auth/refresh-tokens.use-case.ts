@@ -64,7 +64,7 @@ export class RefreshTokensUseCase {
     );
 
     const newRefreshToken = await this.jwtService.signToken(
-      { user: userPayload, jti },
+      { user: userPayload, jti: newJti },
       { secret: jwtConfig.refreshSecret, expiresIn: '2m' }
     );
 
