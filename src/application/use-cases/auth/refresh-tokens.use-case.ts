@@ -60,12 +60,12 @@ export class RefreshTokensUseCase {
 
     const newAccessToken = await this.jwtService.signToken(
       { user: userPayload },
-      { secret: jwtConfig.accessSecret, expiresIn: '1m' }
+      { secret: jwtConfig.accessSecret, expiresIn: '15m' }
     );
 
     const newRefreshToken = await this.jwtService.signToken(
-      { user: userPayload, jti },
-      { secret: jwtConfig.refreshSecret, expiresIn: '2m' }
+      { user: userPayload, jti: newJti },
+      { secret: jwtConfig.refreshSecret, expiresIn: '7d' }
     );
 
     const { exp } = this.jwtService.decodeToken<{ user: AuthenticatedUser }>(refreshToken);
