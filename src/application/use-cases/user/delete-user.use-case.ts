@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { Exception, UserErrorCodes } from '@application/errors';
-import { IUserRepository, USER_REPOSITORY_TOKEN, FilterUser } from '@domain/repositories/user/user.repository';
+import { UserErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
+import { IUserRepository, USER_REPOSITORY_TOKEN, FilterUser } from '@domain/user/user.repository';
 
 type DeleteUserInput = {
   filters: FilterUser;

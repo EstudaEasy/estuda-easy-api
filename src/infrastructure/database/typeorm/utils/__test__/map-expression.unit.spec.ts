@@ -36,6 +36,37 @@ describe('TypeOrm -> Utils -> MapExpression', () => {
     expect(result).toBe('John');
   });
 
+  it('should return null when expression is null', () => {
+    const result = service.mapExpression(null);
+
+    expect(result).toBeNull();
+  });
+
+  it('should return undefined when expression is undefined', () => {
+    const result = service.mapExpression(undefined);
+
+    expect(result).toBeUndefined();
+  });
+
+  it('should handle Date objects directly', () => {
+    const date = new Date('2023-01-01');
+    const result = service.mapExpression(date);
+
+    expect(result).toBe(date);
+  });
+
+  it('should handle numbers directly', () => {
+    const result = service.mapExpression(42);
+
+    expect(result).toBe(42);
+  });
+
+  it('should handle booleans directly', () => {
+    const result = service.mapExpression(true);
+
+    expect(result).toBe(true);
+  });
+
   it('should map EQUALS operator', () => {
     const expression: FilterExpression = {
       operator: FilterOperator.EQUALS,
@@ -155,5 +186,77 @@ describe('TypeOrm -> Utils -> MapExpression', () => {
     const result = service.mapExpression(expression);
 
     expect(result).toEqual(ILike('%John%'));
+  });
+
+  it('should map array of expressions', () => {
+    const expressions = [
+      { operator: FilterOperator.EQUALS, value: 'John' },
+      { operator: FilterOperator.EQUALS, value: 'Jane' }
+    ];
+
+    const result = service.mapExpression(expressions);
+
+    expect(result).toEqual([Equal('John'), Equal('Jane')]);
+  });
+
+  it('should map array of primitive values', () => {
+    const values = ['John', 'Jane', 'Bob'];
+
+    const result = service.mapExpression(values);
+
+    expect(result).toEqual(['John', 'Jane', 'Bob']);
+  });
+
+  it('should map empty array', () => {
+    const result = service.mapExpression([]);
+
+    expect(result).toEqual([]);
+  });
+
+  it('should map nested filter expressions in BETWEEN', () => {
+    const expression: FilterExpression = {
+      operator: FilterOperator.BETWEEN,
+      value: [
+        { operator: FilterOperator.EQUALS, value: 10 },
+        { operator: FilterOperator.EQUALS, value: 20 }
+      ]
+    };
+
+    const result = service.mapExpression(expression);
+
+    expect(result).toEqual(Between(Equal(10), Equal(20)));
+  });
+
+  it('should map nested NOT with complex expression', () => {
+    const expression: FilterExpression = {
+      operator: FilterOperator.NOT,
+      value: { operator: FilterOperator.IN, value: ['A', 'B'] }
+    };
+
+    const result = service.mapExpression(expression);
+
+    expect(result).toEqual(Not(In(['A', 'B'])));
+  });
+
+  it('should handle plain object (non-filter expression)', () => {
+    const obj = { name: 'John', age: 25 };
+
+    const result = service.mapExpression(obj);
+
+    expect(result).toEqual({ name: 'John', age: 25 });
+  });
+
+  it('should handle object with filter expressions inside', () => {
+    const obj = {
+      name: { operator: FilterOperator.EQUALS, value: 'John' },
+      age: 25
+    };
+
+    const result = service.mapExpression(obj);
+
+    expect(result).toEqual({
+      name: Equal('John'),
+      age: 25
+    });
   });
 });

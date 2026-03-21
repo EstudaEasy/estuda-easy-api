@@ -3,15 +3,18 @@ import {
   Catch,
   ArgumentsHost,
   HttpStatus,
-  HttpException
+  HttpException,
+  Logger
 } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
 
-import { Exception } from '@application/errors';
+import { Exception } from '@core/exceptions';
 import { Lang } from '@core/types';
 
 @Catch()
 export class ExceptionFilter implements NestExceptionFilter {
+  private readonly logger = new Logger(ExceptionFilter.name);
+
   constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
 
   catch(exception: unknown, host: ArgumentsHost): void {
@@ -23,15 +26,16 @@ export class ExceptionFilter implements NestExceptionFilter {
     let message = 'Unknown error';
     let error = 'Internal Server Error';
 
-    if (exception instanceof HttpException) {
-      statusCode = exception.getStatus();
-      message = (exception.getResponse() as any).message;
-      error = exception.name;
-    }
-
     if (exception instanceof Exception) {
       const lang = this.detectLanguage(request);
-      message = new Exception(exception.code, lang).message;
+      exception = new Exception(exception.code, exception.params, lang);
+    }
+
+    if (exception instanceof HttpException) {
+      statusCode = exception.getStatus();
+      const response = exception.getResponse();
+      message = typeof response === 'string' ? response : (response as any).message;
+      error = exception.name;
     }
 
     const responseBody = {
@@ -42,6 +46,7 @@ export class ExceptionFilter implements NestExceptionFilter {
       path: httpAdapter.getRequestUrl(ctx.getRequest())
     };
 
+    this.logger.error(exception);
     httpAdapter.reply(ctx.getResponse(), responseBody, statusCode);
   }
 

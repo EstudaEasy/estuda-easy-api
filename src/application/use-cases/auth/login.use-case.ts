@@ -4,14 +4,12 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { compare } from 'bcrypt';
 
-import { AuthenticatedUser } from '@adapters/jwt/strategies/types/authenticated-user.type';
-import { AuthErrorCodes, Exception } from '@application/errors';
+import { AuthenticatedUser } from '@adapters/auth/types/auth-user.type';
+import { AuthErrorCodes } from '@application/errors';
 import { JwtConfig } from '@config/jwt/config';
-import { IUserRepository, USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
-import {
-  IUserSessionRepository,
-  USER_SESSION_REPOSITORY_TOKEN
-} from '@domain/repositories/user-session/user-session.repository';
+import { Exception } from '@core/exceptions';
+import { IUserRepository, USER_REPOSITORY_TOKEN } from '@domain/user/user.repository';
+import { IUserSessionRepository, USER_SESSION_REPOSITORY_TOKEN } from '@domain/user-session/user-session.repository';
 import { JwtProvider } from '@providers/jwt/jwt.provider';
 
 type LoginInput = {
@@ -40,7 +38,7 @@ export class LoginUseCase {
     const { email, password, ipAddress } = input;
 
     const user = await this.userRepository.findOne({ email });
-    const isPasswordValid = user ? compare(password, user?.password ?? '') : false;
+    const isPasswordValid = user ? await compare(password, user?.password ?? '') : false;
 
     if (!user || !isPasswordValid) {
       throw new Exception(AuthErrorCodes.INVALID_CREDENTIALS);

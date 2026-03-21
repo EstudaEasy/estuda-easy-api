@@ -10,7 +10,7 @@ import {
   UpdateUserSession,
   USER_SESSION_REPOSITORY_TOKEN,
   FilterUserSession
-} from '@domain/repositories/user-session/user-session.repository';
+} from '@domain/user-session/user-session.repository';
 
 import { UserSessionModel } from '../../models/user-session/user-session.model';
 

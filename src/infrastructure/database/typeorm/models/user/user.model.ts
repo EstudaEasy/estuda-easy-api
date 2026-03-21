@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-import { IUser, UserRole } from '@domain/entities/user/user.interface';
+import { IUser, UserRole } from '@domain/user/user.interface';
 
 @Entity({ name: 'users' })
 export class UserModel implements IUser {

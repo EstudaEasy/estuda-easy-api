@@ -1,8 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { UserEntity } from '@domain/entities/user/user.entity';
-import { RelationsUser } from '@domain/entities/user/user.interface';
-import { IUserRepository, USER_REPOSITORY_TOKEN, FilterUser } from '@domain/repositories/user/user.repository';
+import { UserEntity } from '@domain/user/user.entity';
+import { IUserRepository, USER_REPOSITORY_TOKEN, FilterUser, RelationsUser } from '@domain/user/user.repository';
 
 type FindUsersInput = {
   filters?: FilterUser;

@@ -74,4 +74,60 @@ describe('TypeOrm -> Utils -> BuildWhere', () => {
 
     expect(result).toEqual([{ name: Equal('John') }, { age: MoreThan(18) }]);
   });
+
+  it('should handle empty array of filters', () => {
+    const filters: FilterType[] = [];
+
+    const result = service.buildWhere(filters);
+
+    expect(result).toEqual([]);
+  });
+
+  it('should handle empty object filter', () => {
+    const filter: FilterType = {};
+
+    const result = service.buildWhere(filter);
+
+    expect(result).toEqual({});
+  });
+
+  it('should handle nested object filters', () => {
+    type NestedFilter = DomainFilter<{
+      user: { id: number; name: string };
+    }>;
+
+    const filter: NestedFilter = {
+      user: { id: 1, name: 'John' }
+    };
+
+    const result = service.buildWhere(filter);
+
+    expect(result).toEqual({
+      user: { id: 1, name: 'John' }
+    });
+  });
+
+  it('should skip only undefined and null values, keeping other falsy values', () => {
+    type ExtendedFilter = DomainFilter<{
+      name: string;
+      age: number;
+      active: boolean;
+      count: number;
+    }>;
+
+    const filter: ExtendedFilter = {
+      name: '',
+      age: 0,
+      active: false,
+      count: undefined
+    };
+
+    const result = service.buildWhere(filter);
+
+    expect(result).toEqual({
+      name: '',
+      age: 0,
+      active: false
+    });
+  });
 });

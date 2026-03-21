@@ -1,0 +1,61 @@
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
+} from 'typeorm';
+
+import { IResource, ResourceType } from '@domain/resource/resource.interface';
+
+import { DeckModel } from '../deck/deck.model';
+import { DiaryModel } from '../diary/diary.model';
+import { QuizModel } from '../quiz/quiz.model';
+import { ResourceShareModel } from '../resource-share/resource-share.model';
+import { TaskModel } from '../task/task.model';
+import { UserModel } from '../user/user.model';
+import { WhiteboardModel } from '../whiteboard/whiteboard.model';
+
+@Entity({ name: 'resources' })
+export class ResourceModel implements IResource {
+  @PrimaryGeneratedColumn('uuid', { name: 'id' })
+  id: string;
+
+  @Column({ type: 'enum', enum: ResourceType, name: 'type' })
+  type: ResourceType;
+
+  @Column({ name: 'user_id', type: 'int' })
+  userId: number;
+
+  @ManyToOne(() => UserModel, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'user_id', foreignKeyConstraintName: 'fk_resources_users' })
+  user?: UserModel;
+
+  @OneToOne(() => DeckModel, (deck) => deck.resource)
+  deck?: DeckModel;
+
+  @OneToOne(() => DiaryModel, (diary) => diary.resource)
+  diary?: DiaryModel;
+
+  @OneToOne(() => QuizModel, (quiz) => quiz.resource)
+  quiz?: QuizModel;
+
+  @OneToOne(() => TaskModel, (task) => task.resource)
+  task?: TaskModel;
+
+  @OneToOne(() => WhiteboardModel, (whiteboard) => whiteboard.resource)
+  whiteboard?: WhiteboardModel;
+
+  @OneToMany(() => ResourceShareModel, (share) => share.resource)
+  shares?: ResourceShareModel[];
+
+  @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamptz' })
+  updatedAt: Date;
+}

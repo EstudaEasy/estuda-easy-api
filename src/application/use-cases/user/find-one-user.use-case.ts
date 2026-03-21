@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { Exception, UserErrorCodes } from '@application/errors';
-import { UserEntity } from '@domain/entities/user/user.entity';
-import { RelationsUser } from '@domain/entities/user/user.interface';
-import { IUserRepository, USER_REPOSITORY_TOKEN, FilterUser } from '@domain/repositories/user/user.repository';
+import { UserErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
+import { UserEntity } from '@domain/user/user.entity';
+import { IUserRepository, USER_REPOSITORY_TOKEN, FilterUser, RelationsUser } from '@domain/user/user.repository';
 
 type FindOneUserInput = {
   filters: FilterUser;

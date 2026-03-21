@@ -1,8 +1,9 @@
 import { Test } from '@nestjs/testing';
 
-import { Exception, UserErrorCodes } from '@application/errors';
-import { UserMock } from '@domain/entities/user/__mocks__/user.mock';
-import { USER_REPOSITORY_TOKEN } from '@domain/repositories/user/user.repository';
+import { UserErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
+import { UserMock } from '@domain/user/__mocks__/user.mock';
+import { USER_REPOSITORY_TOKEN } from '@domain/user/user.repository';
 
 import { FindOneUserUseCase } from '../find-one-user.use-case';
 

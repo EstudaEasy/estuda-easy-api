@@ -1,0 +1,45 @@
+import { Inject, Injectable } from '@nestjs/common';
+
+import { GroupErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
+import { FilterGroup, GROUP_REPOSITORY_TOKEN, IGroupRepository } from '@domain/group/group.repository';
+import { GroupMemberRole } from '@domain/group-member/group-member.interface';
+import { GROUP_MEMBER_REPOSITORY_TOKEN, IGroupMemberRepository } from '@domain/group-member/group-member.repository';
+
+type DeleteGroupInput = {
+  filters: FilterGroup;
+  userId: number;
+};
+
+@Injectable()
+export class DeleteGroupUseCase {
+  constructor(
+    @Inject(GROUP_REPOSITORY_TOKEN)
+    private readonly groupRepository: IGroupRepository,
+    @Inject(GROUP_MEMBER_REPOSITORY_TOKEN)
+    private readonly groupMemberRepository: IGroupMemberRepository
+  ) {}
+
+  async execute(input: DeleteGroupInput): Promise<void> {
+    const { filters, userId } = input;
+
+    const group = await this.groupRepository.findOne(filters);
+    if (!group) {
+      throw new Exception(GroupErrorCodes.NOT_FOUND);
+    }
+
+    const isOwner = await this.groupMemberRepository.findOne({
+      userId,
+      groupId: group.id,
+      role: GroupMemberRole.OWNER
+    });
+    if (!isOwner) {
+      throw new Exception(GroupErrorCodes.ONLY_OWNER_PERMISSION);
+    }
+
+    const deleted = await this.groupRepository.delete(filters);
+    if (!deleted) {
+      throw new Exception(GroupErrorCodes.NOT_DELETED);
+    }
+  }
+}

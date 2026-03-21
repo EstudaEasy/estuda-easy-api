@@ -1,0 +1,51 @@
+import { Inject, Injectable } from '@nestjs/common';
+
+import { GroupErrorCodes } from '@application/errors';
+import { Exception } from '@core/exceptions';
+import { GroupEntity } from '@domain/group/group.entity';
+import { FilterGroup, GROUP_REPOSITORY_TOKEN, IGroupRepository } from '@domain/group/group.repository';
+import { GroupMemberRole } from '@domain/group-member/group-member.interface';
+import { GROUP_MEMBER_REPOSITORY_TOKEN, IGroupMemberRepository } from '@domain/group-member/group-member.repository';
+import { Nanoid } from '@shared/utils';
+
+type ResetGroupInviteCodeInput = {
+  filters: FilterGroup;
+  userId: number;
+};
+
+@Injectable()
+export class ResetGroupInviteCodeUseCase {
+  constructor(
+    @Inject(GROUP_REPOSITORY_TOKEN)
+    private readonly groupRepository: IGroupRepository,
+    @Inject(GROUP_MEMBER_REPOSITORY_TOKEN)
+    private readonly groupMemberRepository: IGroupMemberRepository
+  ) {}
+
+  async execute(input: ResetGroupInviteCodeInput): Promise<GroupEntity> {
+    const { filters, userId } = input;
+
+    const group = await this.groupRepository.findOne(filters);
+    if (!group) {
+      throw new Exception(GroupErrorCodes.NOT_FOUND);
+    }
+
+    const isOwner = await this.groupMemberRepository.findOne({
+      userId,
+      groupId: group.id,
+      role: GroupMemberRole.OWNER
+    });
+    if (!isOwner) {
+      throw new Exception(GroupErrorCodes.ONLY_OWNER_PERMISSION);
+    }
+
+    const inviteCode = Nanoid.generate(8);
+
+    const updatedGroup = await this.groupRepository.update(filters, { inviteCode });
+    if (!updatedGroup) {
+      throw new Exception(GroupErrorCodes.NOT_UPDATED);
+    }
+
+    return new GroupEntity(updatedGroup);
+  }
+}
