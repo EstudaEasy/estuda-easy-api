@@ -55,12 +55,12 @@ export class LoginUseCase {
 
     const accessToken = await this.jwtService.signToken(
       { user: userPayload },
-      { secret: jwtConfig.accessSecret, expiresIn: '1m' }
+      { secret: jwtConfig.accessSecret, expiresIn: '15m' }
     );
 
     const refreshToken = await this.jwtService.signToken(
       { user: userPayload, jti },
-      { secret: jwtConfig.refreshSecret, expiresIn: '2m' }
+      { secret: jwtConfig.refreshSecret, expiresIn: '7d' }
     );
 
     const { exp } = this.jwtService.decodeToken<{ user: AuthenticatedUser }>(refreshToken);
