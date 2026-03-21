@@ -1,3 +1,4 @@
+import abacatePayConfig from './abacatepay/config';
 import s3Config from './aws/s3/config';
 import geminiConfig from './gemini/config';
 import googleConfig from './google/config';
@@ -7,6 +8,7 @@ import openaiConfig from './openai/config';
 import typeOrmConfig from './typeorm/config';
 
 export default () => ({
+  abacatepay: { ...abacatePayConfig() },
   s3: { ...s3Config() },
   jwt: { ...jwtConfig() },
   mailer: { ...mailerConfig() },

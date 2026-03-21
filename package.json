@@ -27,6 +27,8 @@
     "schema:drop": "npm run typeorm schema:drop"
   },
   "dependencies": {
+    "@abacatepay/rest": "^0.0.3",
+    "@abacatepay/sdk": "^1.2.0",
     "@aws-sdk/client-s3": "^3.1003.0",
     "@google/genai": "^1.44.0",
     "@nestjs-modules/mailer": "^2.0.2",
@@ -58,6 +60,7 @@
     "typeorm": "^0.3.28"
   },
   "devDependencies": {
+    "@abacatepay/types": "^2.0.3",
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.18.0",
     "@faker-js/faker": "9.6.0",
