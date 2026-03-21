@@ -1,98 +1,146 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+﻿# EstudaEasy API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<div align="center">
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+![NestJS](https://img.shields.io/badge/NestJS-11-E0234E?style=flat-square&logo=nestjs)
+![Node.js](https://img.shields.io/badge/Node.js-20+-339933?style=flat-square&logo=node.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?style=flat-square&logo=postgresql)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=flat-square&logo=docker)
 
-## Description
+</div>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Sobre o Projeto
+Este é o back-end (API) da plataforma EstudaEasy desenvolvida para disciplina de Projeto de Desenvolvimento de Software, com foco em estudantes que desejam otimizar sua rotina de estudos. Concentra diversas técnicas e ferramentas em um único lugar, oferecendo uma experiência integrada, colaborativa e potencializada por inteligência artificial.
 
-## Project setup
+## Visão Geral
+
+A API centraliza regras de negócio e recursos da plataforma, incluindo:
+
+- Autenticação e autorização (JWT e OAuth2 com Google)
+- Gestão de usuários e sessões
+- Decks, flashcards e diários
+- Grupos de estudo, membros e postagens
+- Quizzes, itens e opções de quiz
+- Recursos compartilhados, favoritos e conversões
+- Tarefas e quadro branco (whiteboard)
+- Integrações com provedores de IA
+
+## Stack Tecnológica
+
+- NestJS
+- TypeScript
+- TypeORM
+- PostgreSQL
+- JWT + Passport
+- Swagger
+- AWS S3
+- OpenAI e Google Gemini
+- Nodemailer + Handlebars
+- Jest + Supertest
+- Docker Compose
+
+## Estrutura do Projeto
+
+A organização segue uma arquitetura em camadas com separação de responsabilidades:
+
+- `src/domain`: entidades e contratos do domínio
+- `src/application`: casos de uso, serviços e regras da aplicação
+- `src/infrastructure`: adaptadores, banco e provedores externos
+- `src/presentation`: camada HTTP e validações
+- `src/config`: configurações por módulo
+- `src/core`: exceções, filtros, pipes e utilitários base
+
+## Pré-requisitos
+
+Instale as ferramentas abaixo:
+
+- Node.js 20+
+- npm 10+
+- Docker e Docker Compose
+
+## Instalação
+
+1. Clone o repositório:
 
 ```bash
-$ npm install
+git clone <url-do-repositorio>
+cd estuda-easy-api
 ```
 
-## Compile and run the project
+2. Instale as dependências:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
+3. Configure as variáveis de ambiente:
+
+- Crie um arquivo `.env` com base no padrão do projeto.
+- Defina credenciais.
+
+4. Suba os serviços de infraestrutura locais:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+docker-compose up -d
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+5. Rode as migrations:
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm run migration:run
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## Executando o Projeto
 
-## Resources
+### Desenvolvimento
 
-Check out a few resources that may come in handy when working with NestJS:
+```bash
+npm run start:dev
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Debug
 
-## Support
+```bash
+npm run start:debug
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Produção
 
-## Stay in touch
+```bash
+npm run build
+npm run start:prod
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Scripts Disponíveis
 
-## License
+```bash
+# Build
+npm run build
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+# Lint
+npm run lint
+
+# Testes unitários
+npm run test
+
+# Testes com cobertura
+npm run test:cov
+
+# Testes e2e
+npm run test:e2e
+
+# Migrations
+npm run migration:create
+npm run migration:generate
+npm run migration:show
+npm run migration:run
+npm run migration:revert
+```
+
+## Documentação da API
+
+A documentação interativa é disponibilizada via Swagger em ambiente local e está disponível na rota:
+
+- `/docs`
+
