@@ -10,6 +10,7 @@ import {
   getDiaryToQuizPrompt,
   getDiaryToTaskPrompt,
   getQuizToDeckPrompt,
+  getQuizToQuizPrompt,
   getQuizToTaskPrompt
 } from './prompts';
 import { ConversionKey, ConversionPrompt, ConvertibleSourceType, ConvertibleTargetType } from './types';
@@ -20,6 +21,7 @@ export const SUPPORTED_CONVERSIONS: Set<ConversionKey> = new Set([
   `${ResourceType.DIARY}->${ResourceType.TASK}`,
   `${ResourceType.QUIZ}->${ResourceType.DECK}`,
   `${ResourceType.QUIZ}->${ResourceType.TASK}`,
+  `${ResourceType.QUIZ}->${ResourceType.QUIZ}`,
   `${ResourceType.DECK}->${ResourceType.QUIZ}`,
   `${ResourceType.DECK}->${ResourceType.TASK}`
 ]);
@@ -51,6 +53,9 @@ export function createPrompt(
 
     case `${ResourceType.QUIZ}->${ResourceType.TASK}`:
       return getQuizToTaskPrompt(sourceData as IQuiz);
+
+    case `${ResourceType.QUIZ}->${ResourceType.QUIZ}`:
+      return getQuizToQuizPrompt(sourceData as IQuiz);
 
     case `${ResourceType.DECK}->${ResourceType.QUIZ}`:
       return getDeckToQuizPrompt(sourceData as IDeck);

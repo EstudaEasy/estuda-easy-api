@@ -5,3 +5,4 @@ export * from './diary-to-quiz.prompt';
 export * from './diary-to-task.prompt';
 export * from './quiz-to-deck.prompt';
 export * from './quiz-to-task.prompt';
+export * from './quiz-to-quiz.prompt';
