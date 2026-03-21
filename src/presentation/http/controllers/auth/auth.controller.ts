@@ -122,6 +122,6 @@ export class AuthController {
   ): Promise<void> {
     const user = req.user as SocialAuthenticatedUser;
     const tokens = await this.socialLoginUseCase.execute({ name: user.name, email: user.email, ipAddress });
-    res.redirect(`${process.env.BASE_URL_CLIENT}/auth/callback?${new URLSearchParams({ ...tokens })}`);
+    res.redirect(`${process.env.BASE_URL_CLIENT}/social-login?${new URLSearchParams({ ...tokens })}`);
   }
 }
