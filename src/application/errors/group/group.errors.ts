@@ -1,6 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 
-import { MapErrors } from '@core/types';
+import { ErrorsMap } from '@core/types';
 
 export enum ErrorCode {
   NOT_FOUND = 'GroupNotFoundError',
@@ -10,7 +10,7 @@ export enum ErrorCode {
   PERMISSION_DENIED = 'GroupPermissionDeniedError'
 }
 
-const errors: MapErrors<ErrorCode> = {
+const errors: ErrorsMap<ErrorCode> = {
   [ErrorCode.NOT_FOUND]: () => ({
     message: {
       pt_BR: 'Grupo não encontrado',

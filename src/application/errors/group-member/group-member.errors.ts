@@ -1,6 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 
-import { MapErrors } from '@core/types';
+import { ErrorsMap } from '@core/types';
 
 export enum ErrorCode {
   NOT_FOUND = 'GroupMemberNotFoundError',
@@ -12,7 +12,7 @@ export enum ErrorCode {
   CANNOT_REMOVE_OWNER = 'GroupMemberCannotRemoveOwnerError'
 }
 
-const errors: MapErrors<ErrorCode> = {
+const errors: ErrorsMap<ErrorCode> = {
   [ErrorCode.NOT_FOUND]: () => ({
     message: {
       pt_BR: 'Membro do grupo não encontrado',

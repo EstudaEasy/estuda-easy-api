@@ -1,6 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 
-import { MapErrors } from '@core/types';
+import { ErrorsMap } from '@core/types';
 
 export enum ErrorCode {
   INVALID_CREDENTIALS = 'AuthInvalidCredentialsError',
@@ -10,7 +10,7 @@ export enum ErrorCode {
   PASSWORD_CONFIRMATION_MISMATCH = 'AuthPasswordConfirmationMismatchError'
 }
 
-const errors: MapErrors<ErrorCode> = {
+const errors: ErrorsMap<ErrorCode> = {
   [ErrorCode.INVALID_CREDENTIALS]: () => ({
     message: {
       pt_BR: 'Credenciais inválidas',

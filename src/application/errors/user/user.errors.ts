@@ -1,6 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 
-import { MapErrors } from '@core/types';
+import { ErrorsMap } from '@core/types';
 
 export enum ErrorCode {
   EMAIL_ALREADY_IN_USE = 'UserEmailAlreadyInUseError',
@@ -9,7 +9,7 @@ export enum ErrorCode {
   NOT_DELETED = 'UserNotDeletedError'
 }
 
-const errors: MapErrors<ErrorCode> = {
+const errors: ErrorsMap<ErrorCode> = {
   [ErrorCode.EMAIL_ALREADY_IN_USE]: () => ({
     message: {
       pt_BR: 'O email informado já está em uso',

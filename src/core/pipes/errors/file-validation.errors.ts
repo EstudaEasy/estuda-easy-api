@@ -1,6 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 
-import { MapErrors } from '@core/types';
+import { ErrorsMap } from '@core/types';
 
 export enum ErrorCode {
   FILE_NOT_PROVIDED = 'FileNotProvidedError',
@@ -8,7 +8,12 @@ export enum ErrorCode {
   INVALID_FILE_TYPE = 'InvalidFileTypeError'
 }
 
-const errors: MapErrors<ErrorCode> = {
+export type ErrorParams = {
+  [ErrorCode.FILE_TOO_LARGE]: { maxSize: number };
+  [ErrorCode.INVALID_FILE_TYPE]: { expectedTypes: string };
+};
+
+const errors: ErrorsMap<ErrorCode, ErrorParams> = {
   [ErrorCode.FILE_NOT_PROVIDED]: () => ({
     message: {
       pt_BR: 'Nenhum arquivo foi enviado.',
@@ -28,9 +33,9 @@ const errors: MapErrors<ErrorCode> = {
   }),
   [ErrorCode.INVALID_FILE_TYPE]: (params) => ({
     message: {
-      pt_BR: 'O tipo do arquivo é inválido. Tipos permitidos: {{expected}}.',
-      en_US: 'The file type is invalid. Allowed types: {{expected}}.',
-      es_ES: 'El tipo del archivo es inválido. Tipos permitidos: {{expected}}.'
+      pt_BR: 'O tipo do arquivo é inválido. Tipos permitidos: {{expectedTypes}}.',
+      en_US: 'The file type is invalid. Allowed types: {{expectedTypes}}.',
+      es_ES: 'El tipo del archivo es inválido. Tipos permitidos: {{expectedTypes}}.'
     },
     params,
     status: HttpStatus.BAD_REQUEST

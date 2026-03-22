@@ -1,13 +1,13 @@
 import { HttpStatus } from '@nestjs/common';
 
-import { MapErrors } from '@core/types';
+import { ErrorsMap } from '@core/types';
 
 export enum ErrorCode {
   NOT_FOUND = 'ResourceNotFoundError',
   INSUFFICIENT_PERMISSIONS = 'ResourceInsufficientPermissionsError'
 }
 
-const errors: MapErrors<ErrorCode> = {
+const errors: ErrorsMap<ErrorCode> = {
   [ErrorCode.NOT_FOUND]: () => ({
     message: {
       pt_BR: 'Recurso não encontrado',

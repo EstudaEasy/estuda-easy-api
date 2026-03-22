@@ -1,6 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 
-import { MapErrors } from '@core/types';
+import { ErrorsMap } from '@core/types';
 
 export enum ErrorCode {
   NOT_FOUND = 'TaskNotFoundError',
@@ -9,7 +9,7 @@ export enum ErrorCode {
   INVALID_DATE_RANGE = 'TaskInvalidDateRangeError'
 }
 
-const errors: MapErrors<ErrorCode> = {
+const errors: ErrorsMap<ErrorCode> = {
   [ErrorCode.NOT_FOUND]: () => ({
     message: {
       pt_BR: 'Tarefa não encontrada',

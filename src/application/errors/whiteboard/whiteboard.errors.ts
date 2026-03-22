@@ -1,6 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 
-import { MapErrors } from '@core/types';
+import { ErrorsMap } from '@core/types';
 
 export enum ErrorCode {
   NOT_FOUND = 'WhiteboardNotFoundError',
@@ -8,7 +8,7 @@ export enum ErrorCode {
   NOT_DELETED = 'WhiteboardNotDeletedError'
 }
 
-const errors: MapErrors<ErrorCode> = {
+const errors: ErrorsMap<ErrorCode> = {
   [ErrorCode.NOT_FOUND]: () => ({
     message: {
       pt_BR: 'Whiteboard não encontrado',

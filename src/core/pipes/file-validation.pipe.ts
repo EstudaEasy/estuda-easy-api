@@ -27,8 +27,8 @@ export class FileValidationPipe implements PipeTransform {
     if (allowedTypes) {
       const mimeBase = file.mimetype.split(';')[0].trim();
       if (!allowedTypes.test(mimeBase)) {
-        const expected = allowedExtensions?.join(', ') ?? allowedTypes.toString();
-        throw new Exception(FileValidationErrorCodes.INVALID_FILE_TYPE, { expected });
+        const expectedTypes = allowedExtensions?.join(', ') ?? allowedTypes.toString();
+        throw new Exception(FileValidationErrorCodes.INVALID_FILE_TYPE, { expectedTypes });
       }
     }
 

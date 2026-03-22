@@ -1,6 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 
-import { MapErrors } from '@core/types';
+import { ErrorsMap } from '@core/types';
 
 export enum ErrorCode {
   SOURCE_NOT_FOUND = 'ResourceConversionSourceNotFoundError',
@@ -8,7 +8,7 @@ export enum ErrorCode {
   AI_GENERATION_FAILED = 'ResourceConversionAiGenerationFailedError'
 }
 
-const errors: MapErrors<ErrorCode> = {
+const errors: ErrorsMap<ErrorCode> = {
   [ErrorCode.SOURCE_NOT_FOUND]: () => ({
     message: {
       pt_BR: 'Recurso de origem não encontrado',

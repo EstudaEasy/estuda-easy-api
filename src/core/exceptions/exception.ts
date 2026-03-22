@@ -1,7 +1,7 @@
 import { HttpException } from '@nestjs/common';
 
 import { applicationErrors } from '@application/errors';
-import { pipeErrors } from '@core/pipes/errors';
+import { pipeErrors, PipeErrorsParams } from '@core/pipes/errors';
 import { Lang } from '@core/types';
 
 const errors = {
@@ -9,20 +9,19 @@ const errors = {
   ...pipeErrors
 };
 
-export class Exception extends HttpException {
-  public readonly code: keyof typeof errors;
-  public readonly params?: Record<string, unknown>;
-  public readonly lang?: Lang;
+type ErrorCodes = keyof typeof errors;
+type ErrorParams = PipeErrorsParams;
 
-  constructor(code: keyof typeof errors, params?: Record<string, unknown>, lang: Lang = 'pt_BR') {
-    const { status, message } = errors[code](params);
+export class Exception<E extends ErrorCodes> extends HttpException {
+  constructor(
+    public readonly code: E,
+    public readonly params?: E extends keyof ErrorParams ? ErrorParams[E] : undefined,
+    public readonly lang: Lang = 'pt_BR'
+  ) {
+    const { status, message } = errors[code](params as any);
     const formattedMessage = Exception.formatMessage(message[lang], params);
 
     super(formattedMessage, status);
-
-    this.params = params;
-    this.code = code;
-    this.lang = lang;
   }
 
   private static formatMessage(message: string, params?: Record<string, unknown>): string {

@@ -1,6 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 
-import { MapErrors } from '@core/types';
+import { ErrorsMap } from '@core/types';
 
 export enum ErrorCode {
   NOT_FOUND = 'ResourceShareLinkNotFoundError',
@@ -11,7 +11,7 @@ export enum ErrorCode {
   OWNER_CANNOT_JOIN = 'ResourceShareLinkOwnerCannotJoinError'
 }
 
-const errors: MapErrors<ErrorCode> = {
+const errors: ErrorsMap<ErrorCode> = {
   [ErrorCode.NOT_FOUND]: () => ({
     message: {
       pt_BR: 'Link de compartilhamento não encontrado',
